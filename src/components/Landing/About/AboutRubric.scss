@@ -1,0 +1,61 @@
+.about__rubric {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &:not(:last-child) {
+    margin-bottom: 5rem;
+  }
+
+  &__heading {
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  &__paragraph {
+    max-width: 60rem;
+    font-size: 1.6rem;
+  }
+
+  &__illustration {
+    display: none;
+  }
+
+  @media only screen and (max-width: 1175px) {
+    align-items: center;
+    &__paragraph {
+      max-width: initial;
+      max-width: 50rem;
+    }
+
+    &__illustration {
+      display: block;
+      max-width: 30rem;
+      margin-bottom: 10rem;
+    }
+  }
+
+  @media only screen and (max-width: 991px) {
+    &:last-child {
+      margin-bottom: 20rem;
+    }
+
+    &__heading {
+      font-size: 2rem;
+    }
+
+    &__paragraph {
+      max-width: initial;
+      max-width: 50rem;
+      font-size: 2rem;
+    }
+
+    &__illustration {
+      display: block;
+      margin-top: 20rem;
+      max-width: 30rem;
+    }
+  }
+}

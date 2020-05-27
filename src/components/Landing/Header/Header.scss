@@ -1,0 +1,41 @@
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+
+  80% {
+    transform: translateX(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.landing__header {
+  min-height: 100vh;
+  position: relative;
+  background-image: linear-gradient(rgba(#434343, 0.8), rgba(#000000, 0.8)),
+    url('~assets/images/landing-logo-image.jpg');
+  background-size: cover;
+  padding: 3rem;
+  ::selection {
+    background-color: #fff;
+    color: #000;
+  }
+
+  .logo {
+    animation: moveInLeft 1s ease-out;
+  }
+
+  @media only screen and (max-width: 671px) {
+    .logo {
+      font-size: 4rem;
+      margin-top: 3rem;
+      margin-bottom: 10rem;
+    }
+    text-align: center;
+  }
+}

@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'Permanent Marker';
+  font-style: normal;
+  font-weight: normal;
+  src: url('~assets/fonts/PermanentMarker-Regular.ttf');
+}
+
+.landing-footer {
+  display: flex;
+  justify-content: space-around;
+  background-color: #333;
+  color: #fff;
+  clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 100%);
+  min-height: 15rem;
+  align-items: center;
+  font-size: 1.4rem;
+  margin-top: -10rem;
+  padding-top: 5rem;
+
+  .logo {
+    font-size: 1.8rem;
+  }
+
+  ::selection {
+    background-color: #fff;
+    color: #000;
+  }
+
+  @media only screen and (max-width: 991px) {
+    font-size: 1.6rem;
+    flex-direction: column-reverse;
+    clip-path: polygon(0 25%, 100% 0, 100% 100%, 0 100%);
+
+    .logo {
+      margin: 5rem;
+      font-size: 2rem;
+    }
+  }
+}

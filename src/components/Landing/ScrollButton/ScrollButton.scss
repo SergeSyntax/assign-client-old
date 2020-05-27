@@ -1,0 +1,11 @@
+#scroll-button {
+  position: fixed;
+  z-index: 10;
+  bottom: 5rem;
+  right: 5rem;
+  background: #6c63ff;
+  color: #fff;
+  .scroll-button__icon {
+    font-size: 2rem;
+  }
+}

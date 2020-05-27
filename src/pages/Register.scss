@@ -1,0 +1,105 @@
+@font-face {
+  font-family: 'Permanent Marker';
+  font-style: normal;
+  font-weight: normal;
+  src: url('~assets/fonts/PermanentMarker-Regular.ttf');
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-225deg, #473b7b 0%, #3584a7 70%, #30d2be 100%);
+  min-height: 100vh;
+  &__header {
+    font-size: 2rem;
+    text-align: center;
+    margin: 0rem 0 2rem;
+    .logo {
+      font-size: 1.1em;
+    }
+
+    .subtitle {
+      color: #fff;
+      font-size: 0.65em;
+    }
+  }
+
+  &__actions {
+    max-width: 46rem;
+    padding: 2rem 4rem;
+    background-color: #fff;
+    .auth-buttons {
+      > :first-child {
+        margin-bottom: 2rem;
+      }
+      .google-button {
+        background-color: #fff;
+        border-color: #b2bac4;
+        &__icon {
+          margin-right: 1rem;
+          font-size: 1.2em;
+          margin-left: -1.7rem;
+        }
+      }
+      .facebook-button {
+        background-color: #3b5998;
+        color: #fff;
+        &__icon {
+          margin-right: 1rem;
+          font-size: 1.2em;
+        }
+      }
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+    .label {
+      text-transform: capitalize;
+      display: flex;
+      align-items: center;
+      font-size: 1.7rem;
+      padding: 0.5rem;
+      margin-top: 1.3rem;
+
+      &__icon {
+        margin-left: 1rem;
+        margin-right: 0.7rem;
+        font-size: 1.2em;
+      }
+    }
+
+    #register-submit {
+      margin-top: 2rem;
+      background-color: #0073b1;
+      color: #fff;
+    }
+  }
+
+  &__legal {
+    margin-top: 1rem;
+    // margin-left: 3rem;
+    text-align: center;
+
+    font-size: 1.3rem;
+  }
+
+  &__login-offer {
+    margin: 2rem 0;
+    text-align: center;
+    text-transform: capitalize;
+
+    &__link {
+      font-weight: bold;
+    }
+  }
+  &__copyright {
+    margin-top: 1.7rem;
+    font-size: 1.3rem;
+    color: #fff;
+  }
+}

@@ -1,0 +1,45 @@
+.feature {
+  box-shadow: 0 1.5rem 4rem rgba(#000, 0.15);
+  min-height: 40rem;
+  background: rgba($color: #edf0f5, $alpha: 0.7);
+  max-width: 30rem;
+  border-radius: 2rem;
+  padding: 4rem;
+
+  &__icon {
+    font-size: 3em;
+    display: block;
+    margin: 2rem auto;
+    color: #6c63ff;
+  }
+  &__heading {
+    text-align: center;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  @media only screen and (max-width: 1400px) {
+    max-width: 28rem;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    max-width: 40rem;
+    min-height: initial;
+    &:not(:last-child) {
+      margin-bottom: 5rem;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    &__icon {
+      font-size: 10rem;
+    }
+    &__heading {
+      font-size: 2rem;
+    }
+    &__paragraph {
+      font-size: 2rem;
+    }
+  }
+}
