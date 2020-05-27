@@ -2,10 +2,6 @@
   "name": "assign-client",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "12.16.3",
-    "npm": "6.14.4"
-  },
   "dependencies": {
     "@material-ui/core": "^4.9.14",
     "@testing-library/jest-dom": "^4.2.4",
