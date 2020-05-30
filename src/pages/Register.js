@@ -1,65 +1,25 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import { registerUser } from '../../../actions';
-import { MdMailOutline, MdLockOutline } from 'react-icons/md';
-import { IoMdPerson } from 'react-icons/io';
-import { IoLogoGoogle } from 'react-icons/io';
-import { FaFacebookF } from 'react-icons/fa';
+import { MdMailOutline, MdLockOutline, MdPersonOutline } from 'react-icons/md';
+
 import Button from '@material-ui/core/Button';
 import MaterialLink from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 
 import './Register.scss';
 import Logo from 'components/shared/Logo/Logo';
-
-const formFields = [
-  {
-    name: 'name',
-    type: 'text',
-    placeholder: 'i.e. Steve Rozmarin',
-    icon: IoMdPerson,
-    minLength: 2,
-    maxLength: 255,
-  },
-  {
-    name: 'email',
-    type: 'email',
-    placeholder: 'i.e. example@example.com',
-    icon: MdMailOutline,
-    minLength: 5,
-    maxLength: 255,
-  },
-  {
-    name: 'password',
-    type: 'password',
-    placeholder: 'i.e. max@!%$5475347',
-    icon: MdLockOutline,
-    minLength: 6,
-    maxLength: 255,
-  },
-];
-
-const renderButtons = () =>
-  formFields.map((filed) => (
-    <Fragment key={filed.name}>
-      <label className="label" htmlFor={filed.name}>
-        <filed.icon className="label__icon" />
-        <span>{filed.name}</span>
-      </label>
-      <TextField
-        id={filed.name}
-        className="input"
-        name={filed.name}
-        variant="outlined"
-        fullWidth
-        placeholder={filed.placeholder}
-        type={filed.type}
-      />
-    </Fragment>
-  ));
+import AuthButtons from 'components/Register/AuthButtons';
 
 const Register = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onSubmit = e => {
+    e.preventDefault();
+    console.log(formData);
+  }
+
   return (
     <div className="register">
       <header className="register__header">
@@ -67,19 +27,63 @@ const Register = () => {
         <p className="subtitle">make most of your teamwork!</p>
       </header>
       <div className="register__actions">
-        <div className="auth-buttons">
-          <Button variant="contained" color="default" fullWidth className="google-button ">
-            <IoLogoGoogle className="google-button__icon" />
-            <span> Continue with Google</span>
-          </Button>
-          <Button variant="contained" color="default" fullWidth className="facebook-button">
-            <FaFacebookF className="facebook-button__icon" />
-            <span> Continue with facebook</span>
-          </Button>
-        </div>
-        <form className="register__form">
-          {renderButtons()}
-
+        <AuthButtons />
+        <form
+          onSubmit={onSubmit}
+          className="register__form"
+        >
+          <Fragment>
+            <label className="label" htmlFor="name">
+              <MdPersonOutline className="label__icon" />
+              <span>name</span>
+            </label>
+            <TextField
+              onChange={onChange}
+              value={formData.name}
+              id="name"
+              className="input"
+              name="name"
+              variant="outlined"
+              fullWidth
+              placeholder="i.e. Steve Rozmarin"
+              type="text"
+            />
+          </Fragment>
+          <Fragment>
+            <label className="label" htmlFor="">
+              <MdMailOutline className="label__icon" />
+              <span>email</span>
+            </label>
+            <TextField
+              onChange={onChange}
+              value={formData.email}
+              id="email"
+              className="input"
+              name="email"
+              variant="outlined"
+              fullWidth
+              placeholder="i.e. example@example.com"
+              type="email"
+            />
+          </Fragment>
+          <Fragment>
+            {' '}
+            <label className="label" htmlFor="test">
+              <MdLockOutline className="label__icon" />
+              <span>password</span>
+            </label>
+            <TextField
+              onChange={onChange}
+              value={formData.password}
+              id="password"
+              className="input"
+              name="password"
+              variant="outlined"
+              fullWidth
+              placeholder="i.e. example@!%$5475347"
+              type="password"
+            />
+          </Fragment>
           <Button id="register-submit" variant="contained" type="submit">
             Agree & Join
           </Button>

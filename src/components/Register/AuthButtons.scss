@@ -1,0 +1,30 @@
+.register .auth-buttons {
+  > :first-child {
+    margin-bottom: 2rem;
+  }
+  .google-button {
+    padding: 1rem 2rem;
+    .MuiButton {
+    }
+    background-color: #fff;
+    border-color: #b2bac4;
+    &__icon {
+      margin-right: 1rem;
+      font-size: 1.4em;
+      margin-left: -1.7rem;
+      margin-top: -0.2rem;
+    }
+  }
+  .facebook-button {
+    padding: 1rem 2rem;
+    background-color: #3b5998;
+    color: #fff;
+    &__icon {
+      margin-right: 1rem;
+      font-size: 1.4em;
+      margin-top: -0.2rem;
+      margin-right: 1rem;
+      // font-size: 1.2em;
+    }
+  }
+}

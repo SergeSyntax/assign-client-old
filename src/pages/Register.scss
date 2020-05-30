@@ -6,6 +6,7 @@
 }
 
 .register {
+  color: #4a5568;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,28 +31,6 @@
     max-width: 46rem;
     padding: 2rem 4rem;
     background-color: #fff;
-    .auth-buttons {
-      > :first-child {
-        margin-bottom: 2rem;
-      }
-      .google-button {
-        background-color: #fff;
-        border-color: #b2bac4;
-        &__icon {
-          margin-right: 1rem;
-          font-size: 1.2em;
-          margin-left: -1.7rem;
-        }
-      }
-      .facebook-button {
-        background-color: #3b5998;
-        color: #fff;
-        &__icon {
-          margin-right: 1rem;
-          font-size: 1.2em;
-        }
-      }
-    }
   }
 
   &__form {
@@ -77,6 +56,8 @@
       margin-top: 2rem;
       background-color: #0073b1;
       color: #fff;
+      padding: 1rem 2rem;
+      text-transform: none;
     }
   }
 
