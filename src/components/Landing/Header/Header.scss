@@ -19,7 +19,8 @@
   position: relative;
   background-image: linear-gradient(rgba(#434343, 0.8), rgba(#000000, 0.8)),
     url('~assets/images/landing-logo-image.jpg');
-  background-size: cover;
+  
+    background-size: cover;
   padding: 3rem;
   ::selection {
     background-color: #fff;
