@@ -1,10 +1,3 @@
-@font-face {
-  font-family: 'Permanent Marker';
-  font-style: normal;
-  font-weight: normal;
-  src: url('~assets/fonts/PermanentMarker-Regular.ttf');
-}
-
 .register {
   color: #4a5568;
   display: flex;
@@ -13,55 +6,21 @@
   align-items: center;
   background: linear-gradient(-225deg, #473b7b 0%, #3584a7 70%, #30d2be 100%);
   min-height: 100vh;
-  &__header {
-    font-size: 2rem;
-    text-align: center;
-    margin: 0rem 0 2rem;
-    .logo {
-      font-size: 1.1em;
-    }
 
-    .subtitle {
-      color: #fff;
-      font-size: 0.65em;
-    }
-  }
-
-  &__actions {
+  &__options {
     max-width: 46rem;
     padding: 2rem 4rem;
     background-color: #fff;
   }
 
-  &__form {
-    display: flex;
-    flex-direction: column;
-    margin-top: 1.5rem;
-    .label {
-      text-transform: capitalize;
-      display: flex;
-      align-items: center;
-      font-size: 1.7rem;
-      padding: 0.5rem;
-      margin-top: 1.3rem;
-
-      &__icon {
-        margin-left: 1rem;
-        margin-right: 0.7rem;
-        font-size: 1.2em;
-      }
-    }
-
-    #register-submit {
-      margin-top: 2rem;
-      background-color: #0073b1;
-      color: #fff;
-      padding: 1rem 2rem;
-      text-transform: none;
-    }
-  }
-
   &__legal {
+    &__link {
+      &:first-child {
+        padding-right: 0.5rem;
+      }
+      padding-left: 0.5rem;
+    }
+
     margin-top: 1rem;
     // margin-left: 3rem;
     text-align: center;
@@ -75,12 +34,8 @@
     text-transform: capitalize;
 
     &__link {
+      padding-left: 0.5rem;
       font-weight: bold;
     }
-  }
-  &__copyright {
-    margin-top: 1.7rem;
-    font-size: 1.3rem;
-    color: #fff;
   }
 }

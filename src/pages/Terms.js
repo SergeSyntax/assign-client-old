@@ -88,7 +88,7 @@ const Terms = () => {
       <p>
         If a formal written agreement licenses one or more of the Assign Marks, unless the agreement
         provides other authorization, the use will be in accordance with the guidelines posted at:
-        <a href=""> https://www.Assign.com/brand/portal/guidelines.html.</a>
+        <a href="/#"> https://www.Assign.com/brand/portal/guidelines.html.</a>
       </p>
       <p>
         Assign does not object to the use of the Assign Marks (other than logos) to refer
