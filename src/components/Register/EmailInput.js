@@ -1,34 +1,37 @@
 import React, { Fragment } from 'react';
 import { MdMailOutline } from 'react-icons/md';
 import TextField from '@material-ui/core/TextField';
-import PropTypes from 'prop-types';
 import './EmailInput.scss';
+import { Field } from 'react-final-form';
 
-const EmailInput = ({ onChange, value }) => {
+const EmailInput = () => {
   return (
-    <Fragment>
-      <label className="label" htmlFor="">
-        <MdMailOutline className="label__icon" />
-        <span>email</span>
-      </label>
-      <TextField
-        onChange={onChange}
-        value={value}
-        id="email"
-        className="input"
-        name="email"
-        variant="outlined"
-        fullWidth
-        placeholder="i.e. example@example.com"
-        type="email"
-      />
-    </Fragment>
+    <Field name="email">
+      {({ input, meta: { touched, error } }) => (
+        <Fragment>
+          <label className="label" htmlFor={input.name}>
+            <MdMailOutline className="label__icon" />
+            <span>email</span>
+          </label>
+          <TextField
+            {...input}
+            id={input.name}
+            placeholder="i.e. example@example.com"
+            type="email"
+            className="input"
+            variant="outlined"
+            fullWidth
+            error={touched && error && true}
+          />
+          {touched && error ? (
+            <small className="register__form__error">{error}</small>
+          ) : (
+            <br className="register__form__error" />
+          )}
+        </Fragment>
+      )}
+    </Field>
   );
-};
-
-EmailInput.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
 };
 
 export default EmailInput;

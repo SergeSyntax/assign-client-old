@@ -3,7 +3,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
   typography: {
-    fontSize: 25,
+    fontSize: 22.4,
   },
   palette: {
     primary: {

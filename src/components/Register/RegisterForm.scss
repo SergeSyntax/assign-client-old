@@ -6,9 +6,10 @@
     text-transform: capitalize;
     display: flex;
     align-items: center;
-    font-size: 1.7rem;
+    justify-content: start;
+    font-size: 1.6rem;
     padding: 0.5rem;
-    margin-top: 1.3rem;
+    // margin-top: 1.3rem;
 
     &__icon {
       margin-left: 1rem;
@@ -18,10 +19,10 @@
   }
 
   &__error {
-   font-size: 1.3rem;
-    padding-top: .3rem;
-    color: red ;
-
+    font-size: 1.2rem;
+    padding-top: 0.3rem;
+    color: #f56565;
+    font-weight: 500;
   }
 
   #register-submit {
