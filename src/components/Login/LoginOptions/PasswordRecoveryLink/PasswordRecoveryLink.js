@@ -1,9 +1,8 @@
 import React from 'react'
-import './PasswordRecovery.scss'
 import Link from 'components/Auth/Link/Link'
-import './PasswordRecovery.scss'
+import './PasswordRecoveryLink.scss'
 
-export const PasswordRecovery = () => {
+export const PasswordRecoveryLink = () => {
   return (
     <div className="forget-password-link">
       <Link text="Forgot password?" to="/password-recovery" />

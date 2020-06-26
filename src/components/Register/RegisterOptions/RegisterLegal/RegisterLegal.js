@@ -6,9 +6,9 @@ export const RegisterLegal = () => {
   return (
     <p className="register__legal">
       you agree to the
-      <Link text="Privacy Policy" to="/privacy-policy" />
+      <Link text="Privacy Policy" to="/register" />
       and
-      <Link text="Terms of Use" to="/terms" />
+      <Link text="Terms of Use" to="/register" />
     </p>
   );
 };

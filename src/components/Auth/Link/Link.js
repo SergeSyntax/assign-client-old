@@ -2,7 +2,6 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import MaterialLink from '@material-ui/core/Link';
 import PropTypes from 'prop-types';
-import './Link.scss';
 
 const Link = ({ text, to }) => {
   return (

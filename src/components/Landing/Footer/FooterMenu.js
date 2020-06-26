@@ -3,9 +3,9 @@ import './FooterMenu.scss';
 import FooterMenuItem from './FooterMenuItem';
 
 const FOOTER_MENU_LIST = [
-  { title: 'contact us', path: '/contact-us' },
-  { title: 'terms', path: '/terms' },
-  { title: 'privacy policy', path: '/privacy-policy' },
+  { title: 'contact us', path: '/' },
+  { title: 'terms', path: '/' },
+  { title: 'privacy policy', path: '/' },
 ];
 
 const renderMenu = () =>

@@ -7,6 +7,7 @@ import ContactUs from 'pages/ContactUs';
 import Terms from 'pages/Terms';
 import PrivacyPolicy from 'pages/PrivacyPolicy';
 import Login from 'pages/Login/Login';
+import PasswordRecovery from 'pages/PasswordRecovery/PasswordRecovery';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Switch>
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
+        <Route path="/password-recovery" component={PasswordRecovery} />
         <Route path="/contact-us" component={ContactUs} />
         <Route path="/terms" component={Terms} />
         <Route path="/privacy-policy" component={PrivacyPolicy} />
