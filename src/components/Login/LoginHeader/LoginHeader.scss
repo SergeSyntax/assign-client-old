@@ -1,0 +1,31 @@
+.login__header {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  .logo {
+    // # → #
+    font-size: 1.1em;
+    color: transparent;
+    background: linear-gradient(-225deg, #5b86e5 0%, #36d1dc 70%);
+    background-clip: text;
+    &__icon {
+      color: #5fb8e6;
+    }
+  }
+
+  &__subtitle {
+    margin-top: 1rem;
+    font-size: 0.9em;
+    &__heading {
+      font-weight: 400;
+      margin-bottom: .7rem;
+    }
+    &__content {
+      font-size: 0.85em;
+      display: flex;
+      flex-direction: column;
+      color: #718096;
+    }
+  }
+}

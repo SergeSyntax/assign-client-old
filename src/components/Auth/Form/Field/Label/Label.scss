@@ -1,0 +1,14 @@
+.label {
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1.6rem;
+  padding: 0.5rem;
+
+  &__icon {
+    margin-left: 1rem;
+    margin-right: 0.7rem;
+    font-size: 1.2em;
+  }
+}

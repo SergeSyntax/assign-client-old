@@ -6,7 +6,7 @@ import './AuthButtons.scss';
 
 const AuthButtons = () => {
   return (
-    <div className="auth-buttons">
+    <div id="auth-buttons">
       <Button
         startIcon={<IoLogoGoogle className="google-button__icon" />}
         href={`https:localhost:5000/`}

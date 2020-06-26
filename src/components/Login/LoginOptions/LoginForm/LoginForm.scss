@@ -1,0 +1,17 @@
+.login__form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+
+  // .input {
+  //   background-color: #edf2f7;
+  //   &:active,
+  //   &:focus {
+  //     background-color: #fff;
+  //   }
+  // }
+
+  #register-submit {
+    filter: brightness(1.2);
+  }
+}

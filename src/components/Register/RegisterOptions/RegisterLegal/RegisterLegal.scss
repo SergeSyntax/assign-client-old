@@ -1,0 +1,12 @@
+.register__legal {
+  .link {
+    &:first-child {
+      padding-right: 0.5rem;
+    }
+    padding-left: 0.5rem;
+  }
+
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.3rem;
+}

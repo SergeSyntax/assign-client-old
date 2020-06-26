@@ -1,0 +1,10 @@
+.register__error_msg {
+  font-size: 1.19rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.5rem;
+  color: #f56565;
+  font-weight: 500;
+  &_hidden {
+    visibility: hidden;
+  }
+}

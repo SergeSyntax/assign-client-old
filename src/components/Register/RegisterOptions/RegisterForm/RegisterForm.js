@@ -1,14 +1,12 @@
-import React, { useReducer } from 'react';
-import Button from '@material-ui/core/Button';
-import NameInput from 'components/Register/NameInput';
-import EmailInput from 'components/Register/EmailInput';
-import PasswordInput from 'components/Register/PasswordInput';
-import PropTypes from 'prop-types';
-import _ from 'lodash';
-import { Form, Field } from 'react-final-form';
+import React from 'react';
+import NameInput from 'components/Auth/Form/NameInput';
+import EmailInput from 'components/Auth/Form/EmailInput';
+import PasswordInput from 'components/Auth/Form/PasswordInput/PasswordInput';
+import { Form } from 'react-final-form';
 import Joi from '@hapi/joi';
 import generateValidation from 'utils/generateValidation';
 import './RegisterForm.scss';
+import SubmitButton from '../../../Auth/Form/Submit/SubmitButton';
 
 const schema = Joi.object().keys({
   email: Joi.string().min(3).max(255).email({ tlds: false }).required(),
@@ -18,7 +16,7 @@ const schema = Joi.object().keys({
 
 const validate = generateValidation(schema);
 
-const RegisterForm = props => {
+const RegisterForm = () => {
   const onSubmit = values => {
     console.log(values);
   };
@@ -27,20 +25,16 @@ const RegisterForm = props => {
     <Form
       validate={validate}
       onSubmit={onSubmit}
-      render={({ handleSubmit, pristine, submitting }) => (
+      render={({ handleSubmit, submitting }) => (
         <form onSubmit={handleSubmit} className="register__form" noValidate>
           <NameInput />
           <EmailInput />
           <PasswordInput />
-          <Button disabled={submitting} id="register-submit" variant="contained" type="submit">
-            Agree & Join
-          </Button>
+          <SubmitButton submitting={submitting} value="Agree & Join" />
         </form>
       )}
     />
   );
 };
-
-RegisterForm.propTypes = {};
 
 export default RegisterForm;

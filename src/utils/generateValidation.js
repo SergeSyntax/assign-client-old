@@ -10,8 +10,6 @@ export default schema => values => {
   if (error) {
     return error.details.reduce((result, item) => {
       result[item.path[0]] = _.capitalize(item.message.replace(/"/g, ''));
-      console.log(item);
-
       return result;
     }, {});
   }
