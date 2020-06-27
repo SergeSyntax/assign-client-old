@@ -19,7 +19,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
 sagaMiddleware.run(rootSaga);
 
-axios.defaults.baseURL = process.env.REACT;
+axios.defaults.baseURL = process.env.REACT_APP_BASEURL;
 
 ReactDOM.render(
   // <React.StrictMode>

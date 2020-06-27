@@ -9,7 +9,7 @@ const FOOTER_MENU_LIST = [
 ];
 
 const renderMenu = () =>
-  FOOTER_MENU_LIST.map((item) => <FooterMenuItem key={item.path} item={item} />);
+  FOOTER_MENU_LIST.map(item => <FooterMenuItem key={item.title + item.path} item={item} />);
 
 const FooterMenu = () => <ul className="landing-footer__menu">{renderMenu()}</ul>;
 

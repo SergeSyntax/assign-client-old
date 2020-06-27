@@ -7,6 +7,8 @@ import Joi from '@hapi/joi';
 import generateValidation from 'utils/generateValidation';
 import './RegisterForm.scss';
 import SubmitButton from '../../../Auth/Form/Submit/SubmitButton';
+import { useDispatch } from 'react-redux';
+import { createUser } from 'actions/users';
 
 const schema = Joi.object().keys({
   email: Joi.string().min(3).max(255).email({ tlds: false }).required(),
@@ -17,8 +19,9 @@ const schema = Joi.object().keys({
 const validate = generateValidation(schema);
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
   const onSubmit = values => {
-    console.log(values);
+    dispatch(createUser(values));
   };
 
   return (

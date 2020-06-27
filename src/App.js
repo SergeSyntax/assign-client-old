@@ -8,6 +8,7 @@ import Terms from 'pages/Terms';
 import PrivacyPolicy from 'pages/PrivacyPolicy';
 import Login from 'pages/Login/Login';
 import PasswordRecovery from 'pages/PasswordRecovery/PasswordRecovery';
+import ServerError from 'components/shared/ServerError/ServerError';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/" component={Landing} />
       </Switch>
+      <ServerError />
     </Router>
   );
 }
