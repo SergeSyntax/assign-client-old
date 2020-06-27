@@ -6,6 +6,8 @@ import EmailInput from 'components/Auth/Form/EmailInput';
 import PasswordInput from 'components/Auth/Form/PasswordInput/PasswordInput';
 import SubmitButton from '../../../Auth/Form/Submit/SubmitButton';
 import './LoginForm.scss';
+import { useDispatch } from 'react-redux';
+import { userLogin } from 'actions/users';
 
 const schema = Joi.object().keys({
   email: Joi.string().min(3).max(255).email({ tlds: false }).required(),
@@ -14,11 +16,12 @@ const schema = Joi.object().keys({
 
 const validate = generateValidation(schema);
 
-const onSubmit = values => {
-  console.log(values);
-};
-
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const onSubmit = values => {
+    dispatch(userLogin(values));
+  };
+
   return (
     <Form
       validate={validate}
