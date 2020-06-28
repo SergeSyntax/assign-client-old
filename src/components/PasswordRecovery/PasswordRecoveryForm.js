@@ -3,10 +3,9 @@ import { Form } from 'react-final-form';
 import Joi from '@hapi/joi';
 import generateValidation from 'utils/generateValidation';
 import EmailInput from 'components/Auth/Form/EmailInput';
-import SubmitButton from 'components/Auth/Form/Submit/SubmitButton';
-import './PasswordRecoveryForm.scss';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import './PasswordRecoveryForm.scss';
 
 const schema = Joi.object().keys({
   email: Joi.string().min(3).max(255).email({ tlds: false }).required(),

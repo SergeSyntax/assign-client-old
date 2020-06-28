@@ -8,7 +8,6 @@ import rootReducer from 'reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootSaga from 'sagas';
 import { Provider } from 'react-redux';
-import axios from 'axios';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -19,18 +18,15 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
 sagaMiddleware.run(rootSaga);
 
-axios.defaults.baseURL = process.env.REACT_APP_BASEURL;
-
 ReactDOM.render(
   // <React.StrictMode>
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
-    </Provider>
+  <Provider store={store}>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
+  </Provider>,
   // {/* </React.StrictMode> */}
-  ,
   document.getElementById('root')
 );
 

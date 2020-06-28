@@ -1,5 +1,6 @@
 import axios from 'axios';
+import { authRequest, request } from 'utils/request';
 
-export const createUser = user => axios.post('/users', user);
-export const useLogin = user =>
-  axios.post('/users/login/', user, { headers: { 'Content-Type': 'application/json' } });
+export const createUser = user => request.post('/users', user);
+export const useLogin = user => request.post('/users/login/', user);
+export const fetchUser = token => authRequest.get('/users/me');

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import history from './history';
 import { Router, Switch, Route } from 'react-router-dom';
 import Landing from 'pages/Landing';
@@ -9,28 +9,39 @@ import PrivacyPolicy from 'pages/PrivacyPolicy';
 import Login from 'pages/Login/Login';
 import PasswordRecovery from 'pages/PasswordRecovery/PasswordRecovery';
 import ServerError from 'components/shared/ServerError/ServerError';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Loading from 'pages/Loading/Loading';
+import Dashboard from 'pages/Dashboard/Dashboard';
+import { fetchUser } from 'actions/users';
+import { Fragment } from 'react';
 
 function App() {
-  const state = useSelector(state => state.users);
-  console.log(state.loading);
+  const { loading, authenticated } = useSelector(state => state.users);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
 
   return (
     <Router history={history}>
-      {state.loading && false ? (
+      {loading ? (
         <Loading />
-      ) : state.authenticated || true ? (
-        <div>test</div>
       ) : (
         <Switch>
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
-          <Route path="/password-recovery" component={PasswordRecovery} />
-          <Route path="/contact-us" component={ContactUs} />
-          <Route path="/terms" component={Terms} />
-          <Route path="/privacy-policy" component={PrivacyPolicy} />
-          <Route path="/" component={Landing} />
+          {authenticated ? (
+            <Route path="/" component={Dashboard} />
+          ) : (
+            <Fragment>
+              <Route path="/register" component={Register} />
+              <Route path="/login" component={Login} />
+              <Route path="/password-recovery" component={PasswordRecovery} />
+              <Route path="/contact-us" component={ContactUs} />
+              <Route path="/terms" component={Terms} />
+              <Route path="/privacy-policy" component={PrivacyPolicy} />
+              <Route path="/" component={Landing} />
+            </Fragment>
+          )}
         </Switch>
       )}
 
