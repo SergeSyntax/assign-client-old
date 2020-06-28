@@ -39,7 +39,7 @@ const PasswordRecoveryForm = () => {
             </Button>
             <Button
               component={Link}
-              to="/login"
+              to="/password-recovery"
               // id="password-recovery-cancel-button"
               variant="contained"
               color="primary"

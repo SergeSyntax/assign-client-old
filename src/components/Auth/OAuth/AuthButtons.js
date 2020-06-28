@@ -9,7 +9,6 @@ const AuthButtons = () => {
     <div id="auth-buttons">
       <Button
         startIcon={<IoLogoGoogle className="google-button__icon" />}
-        href={`https:localhost:5000/`}
         variant="contained"
         color="default"
         fullWidth

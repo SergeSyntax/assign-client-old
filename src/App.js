@@ -28,11 +28,11 @@ function App() {
       {loading ? (
         <Loading />
       ) : (
-        <Switch>
+        <Fragment>
           {authenticated ? (
             <Route path="/" component={Dashboard} />
           ) : (
-            <Fragment>
+            <Switch>
               <Route path="/register" component={Register} />
               <Route path="/login" component={Login} />
               <Route path="/password-recovery" component={PasswordRecovery} />
@@ -40,9 +40,9 @@ function App() {
               <Route path="/terms" component={Terms} />
               <Route path="/privacy-policy" component={PrivacyPolicy} />
               <Route path="/" component={Landing} />
-            </Fragment>
+            </Switch>
           )}
-        </Switch>
+        </Fragment>
       )}
 
       <ServerError />
