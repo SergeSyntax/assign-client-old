@@ -3,16 +3,22 @@
   display: flex;
   flex-direction: column;
   .dashboard__header {
-    display: flex;
-    justify-content: space-around;
+    // display: flex;
+    // justify-content: space-around;
+    .dashboard__header__app-bar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+
     .logo {
-      font-size: 2.5rem;
-      color: transparent;
-      background: linear-gradient(-225deg, #5b86e5 0%, #36d1dc 70%);
-      background-clip: text;
-      &__icon {
-        color: #5fb8e6;
-      }
+      // font-size: 2.5rem;
+      // color: transparent;
+      // background: linear-gradient(-225deg, #5b86e5 0%, #36d1dc 70%);
+      // background-clip: text;
+      // &__icon {
+      //   color: #5fb8e6;
+      // }
     }
     .user-menu {
       display: flex;
@@ -32,7 +38,6 @@
     flex: 2;
     display: flex;
     justify-content: flex-end;
-    border-right: 0.7px solid #e2e8f0;
 
     .dashboard__navbar__menu {
       display: flex;
