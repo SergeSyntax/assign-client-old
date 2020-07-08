@@ -1,72 +1,94 @@
 import React from 'react';
-import { Button, Avatar, Divider, IconButton } from '@material-ui/core';
-import Cookies from 'js-cookie';
-import Logo from 'components/shared/Logo/Logo';
-import { NavLink } from 'react-router-dom';
-import { FiLogOut } from 'react-icons/fi';
-import { AiOutlineFolder } from 'react-icons/ai';
+import { Divider, makeStyles, Grid, Container } from '@material-ui/core';
 import './Dashboard.scss';
-import AppBar from '@material-ui/core/AppBar';
-import { MdAccountCircle } from 'react-icons/md';
-import Menu from '@material-ui/core/Menu';
+import './Dashboard.scss';
+import Header from '../../components/Dashboard/Header/Header';
+import DashboardContent from './DashboardContent';
+import DashboardNavbar from './DashboardNavbar';
 
+const useStyle = makeStyles(theme => ({
+  container: {
+    flex: 1,
+    display: 'flex',
+  },
+  gridRoot: {
+    flex: 1,
+  },
+  projectHeader: {
+    padding: theme.spacing(2),
+  },
+  projectTitle: {
+    fontWeight: 500,
+    fontSize: '2rem',
+    textTransform: 'capitalize',
+  },
+  content: {
+    padding: '0 2rem',
+  },
+}));
 
 const Dashboard = () => {
+  const classes = useStyle();
+
   return (
     <div className="dashboard">
-      <header className="dashboard__header">
-        <AppBar position="relative" className="dashboard__header__app-bar">
-          <Logo />
-          <div className="user-menu">
-            <Avatar className="user-menu__avatar">SK</Avatar>
-            <span>Sergway</span>
-          </div>
-
-          <IconButton
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={() => alert('test')}
-            color="inherit"
-          >
-            <MdAccountCircle />
-          </IconButton>
-        </AppBar>
-      </header>
-      <div className="container">
-        <nav className="dashboard__navbar">
-          <ul className="dashboard__navbar__menu">
-            <li className="dashboard__navbar__menu__item">
-              <NavLink
-                className="dashboard__navbar__menu__item__link"
-                activeClassName="dashboard__navbar__menu__item__link--active"
-                exact
-                to="/projects"
-              >
-                <AiOutlineFolder className="dashboard__navbar__menu__item__link__icon" />
-                <span className="dashboard__navbar__menu__item__link__text">Projects</span>
-              </NavLink>
-            </li>
-            <li className="dashboard__navbar__menu__item">
-              <a
-                className="dashboard__navbar__menu__item__link"
-                href="/logout"
-                onClick={e => {
-                  e.preventDefault();
-                  Cookies.remove('assign-auth-token');
-                  window.location.reload();
-                }}
-              >
-                <FiLogOut className="dashboard__navbar__menu__item__link__icon" />
-                <span className="dashboard__navbar__menu__item__link__text">Logout</span>
-              </a>
-            </li>
-          </ul>
+      <Header />
+      <Container className={classes.container} maxWidth="lg">
+        <Grid container alignItems="stretch" className={classes.gridRoot}>
+          <Grid item sm={3}>
+            <DashboardNavbar />
+          </Grid>
           <Divider orientation="vertical" />
-        </nav>
-        <div className="dashboard__content">project page</div>
-      </div>
+
+          <Grid className={classes.content} sm={6} item>
+            <DashboardContent />
+          </Grid>
+
+          <Divider orientation="vertical" />
+        </Grid>
+      </Container>
     </div>
+    // <Grid container direction="column">
+    //   <Grid item>
+    //     <AppBar position="relative">
+    //       <Toolbar className={classes.header}>
+    //         <Grid container justify="space-around" alignItems="center">
+    //           <Grid item>
+    //             <Logo />
+    //           </Grid>
+    //           <Grid item container alignItems="center" sm={3} className={classes.headerOptions}>
+
+    //           </Grid>
+    //         </Grid>
+    //       </Toolbar>
+    //     </AppBar>
+    //   </Grid>
+    //   <Grid item container>
+    //     <Container maxWidth="lg">
+    //       <Grid container>
+    //         <Grid item xs={false} sm={4}>
+    //           {' '}
+
+    //         </Grid>
+    //         <Grid item xs={12} sm={6}>
+    //           <Grid item container direction="row" alignItems="center" justify="space-between">
+
+    //           </Grid>
+    //         </Grid>
+    //         <Grid item xs={false} sm={1}></Grid>
+    //       </Grid>
+    //     </Container>
+    //   </Grid>
+    // </Grid>
+    // <div className="dashboard">
+    // <header className="dashboard__header">
+
+    // </header>
+    //   <div className="container">
+
+    //     <div className="dashboard__content">project page</div>
+    //   </div>
+    // </div>
   );
 };
 

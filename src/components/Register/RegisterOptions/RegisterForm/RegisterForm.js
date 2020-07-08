@@ -6,7 +6,7 @@ import { Form } from 'react-final-form';
 import Joi from '@hapi/joi';
 import generateValidation from 'utils/generateValidation';
 import './RegisterForm.scss';
-import SubmitButton from '../../../Auth/Form/Submit/SubmitButton';
+import SubmitButton from '../../../Auth/Form/SubmitButton';
 import { useDispatch } from 'react-redux';
 import { createUser } from 'actions/users';
 

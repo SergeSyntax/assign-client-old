@@ -8,7 +8,7 @@ import {
 const initialState = {
   loading: true,
   authenticated: false,
-  user: {},
+  user: { id: '', name: '', email: '' },
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -16,10 +16,10 @@ export default (state = initialState, { type, payload }) => {
     case FETCH_USER_SUCCESS:
     case CREATE_USER_SUCCESS:
     case USER_LOGIN_SUCCESS:
-      return { ...state, loading: false, authenticated: true, user: payload };
+      return { ...state, loading: false, authenticated: true, user: { ...state.user, ...payload } };
 
     case FETCH_USER_FAILURE:
-      return { loading: false, authenticated: false, user: {} };
+      return { loading: false, authenticated: false, user: { id: '', name: '', email: '' } };
     default:
       return state;
   }

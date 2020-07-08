@@ -4,7 +4,7 @@ import Joi from '@hapi/joi';
 import generateValidation from 'utils/generateValidation';
 import EmailInput from 'components/Auth/Form/EmailInput';
 import PasswordInput from 'components/Auth/Form/PasswordInput/PasswordInput';
-import SubmitButton from '../../../Auth/Form/Submit/SubmitButton';
+import SubmitButton from '../../../Auth/Form/SubmitButton';
 import './LoginForm.scss';
 import { useDispatch } from 'react-redux';
 import { userLogin } from 'actions/users';

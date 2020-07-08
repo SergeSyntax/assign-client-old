@@ -2,8 +2,8 @@ import React, { Fragment, useState } from 'react';
 import { MdLockOutline } from 'react-icons/md';
 import { Field } from 'react-final-form';
 import Label from '../Field/Label/Label';
-import ErrorMsg from '../Field/ErrorMsg/ErrorMsg';
-import FormInput from '../Field/FieldInput';
+import ErrorMsg from '../Field/ErrorMsg';
+import FieldInput from '../Field/FieldInput';
 import './PasswordInput.scss';
 
 const PasswordInput = () => {
@@ -19,7 +19,7 @@ const PasswordInput = () => {
               {passwordVisibility ? 'hide' : 'show'}
             </span>
           </Label>
-          <FormInput
+          <FieldInput
             input={input}
             meta={meta}
             type={passwordVisibility ? 'text' : 'password'}
