@@ -13,20 +13,25 @@ import theme from './theme';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import 'typeface-roboto';
 import './index.scss';
+import Axios from 'axios';
+
+Axios.defaults.baseURL = process.env.REACT_APP_BASEURL;
+Axios.defaults.withCredentials = true;
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
+
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
-    </Provider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <Provider store={store}>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
+  </Provider>,
+  // </React.StrictMode>
   document.getElementById('root')
 );
 

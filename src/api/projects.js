@@ -1,5 +1,5 @@
-import { authRequest } from 'utils/request';
+import Axios from 'axios';
 
-export const createProject = values => authRequest.post('/projects', values);
+export const createProject = values => Axios.post('/projects', values);
 
-export const fetchProjects = () => authRequest.get('/projects');
+export const fetchProjects = () => Axios.get('/projects');

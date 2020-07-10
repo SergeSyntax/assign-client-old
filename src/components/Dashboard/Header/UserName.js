@@ -21,7 +21,7 @@ const useStyle = makeStyles(theme => ({
 
 const UserName = () => {
   const classes = useStyle();
-  const user = useSelector(state => state.users.user.name);
+  const user = useSelector(state => state.users.userInfo.name);
 
   return (
     <Button className={classes.userButton}>

@@ -4,11 +4,13 @@ import {
   CREATE_USER_SUCCESS,
   USER_LOGIN_SUCCESS,
 } from 'actions/types';
+import AuthCookie from 'utils/AuthCookie';
 
 const initialState = {
   loading: true,
   authenticated: false,
-  user: { id: '', name: '', email: '' },
+  authToken: AuthCookie.get(),
+  userInfo: { id: '', name: '', email: '' },
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -16,10 +18,21 @@ export default (state = initialState, { type, payload }) => {
     case FETCH_USER_SUCCESS:
     case CREATE_USER_SUCCESS:
     case USER_LOGIN_SUCCESS:
-      return { ...state, loading: false, authenticated: true, user: { ...state.user, ...payload } };
+      return {
+        ...state,
+        loading: false,
+        authenticated: true,
+        authToken: payload.authToken,
+        userInfo: { ...state.userInfo, ...payload.userInfo },
+      };
 
     case FETCH_USER_FAILURE:
-      return { loading: false, authenticated: false, user: { id: '', name: '', email: '' } };
+      return {
+        loading: false,
+        authenticated: false,
+        authToken: null,
+        userInfo: { id: '', name: '', email: '' },
+      };
     default:
       return state;
   }

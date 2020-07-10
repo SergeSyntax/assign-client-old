@@ -1,4 +1,4 @@
-import { fork, call, takeLatest, put, delay, take } from 'redux-saga/effects';
+import { fork, call, takeLatest, put, delay, take, select } from 'redux-saga/effects';
 import Cookies from 'js-cookie';
 import history from '../history';
 import { requestFailure } from 'actions/errors';
@@ -8,19 +8,20 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   FETCH_USER_REQUEST,
-  FETCH_USER_SUCCESS,
-  FETCH_USER_FAILURE,
   CREATE_USER_SUCCESS,
   USER_LOGOUT_REQUEST,
+  FETCH_USER_SUCCESS,
+  FETCH_USER_FAILURE,
 } from 'actions/types';
+import Axios from 'axios';
+import AuthCookie from 'utils/AuthCookie';
 
-const AUTH_COOKIE = 'assign-auth-token';
-
-const createAuthCookie = token => Cookies.set(AUTH_COOKIE, token, { expires: 20 });
-
-const isAuth = () => Boolean(Cookies.get(AUTH_COOKIE));
-
-const clearAuthCookie = () => Cookies.remove(AUTH_COOKIE);
+const setDefaultHeaders = authToken => {
+  Axios.defaults.headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${authToken}`,
+  };
+};
 
 function* redirect(location = '/dashboard') {
   yield call(history.push, location);
@@ -28,10 +29,17 @@ function* redirect(location = '/dashboard') {
 
 function* createUser({ payload }) {
   try {
-    const { data, headers } = yield call(api.createUser, payload);
-    yield put({ type: CREATE_USER_SUCCESS, payload: data.user });
-    yield call(createAuthCookie, headers.authorization);
-    redirect();
+    const {
+      data: { user: userInfo },
+      headers: { authorization: authToken },
+    } = yield call(api.createUser, payload);
+    yield call(setDefaultHeaders, authToken);
+    yield call(AuthCookie.set, authToken);
+    yield put({
+      type: USER_LOGIN_SUCCESS,
+      payload: { userInfo, authToken },
+    });
+    yield call(redirect);
   } catch (err) {
     yield put(requestFailure(err));
   }
@@ -39,10 +47,17 @@ function* createUser({ payload }) {
 
 function* useLogin({ payload }) {
   try {
-    const { data, headers } = yield call(api.useLogin, payload);
-    yield put({ type: USER_LOGIN_SUCCESS, payload: data.user });
-    yield call(createAuthCookie, headers.authorization);
-    redirect();
+    const {
+      data: { user: userInfo },
+      headers: { authorization: authToken },
+    } = yield call(api.useLogin, payload);
+    yield call(setDefaultHeaders, authToken);
+    yield call(AuthCookie.set, authToken);
+    yield put({
+      type: USER_LOGIN_SUCCESS,
+      payload: { userInfo, authToken },
+    });
+    yield call(redirect);
   } catch (err) {
     yield put(requestFailure(err));
   }
@@ -50,19 +65,25 @@ function* useLogin({ payload }) {
 
 function* fetchUser() {
   try {
-    if (isAuth()) {
-      const { data } = yield call(api.fetchUser);
-      yield delay(1000);
-      yield put({ type: FETCH_USER_SUCCESS, payload: data.user });
+    const authToken = yield select(state => state.users.authToken);
+
+    if (authToken) {
+      yield call(setDefaultHeaders, authToken);
+
+      const {
+        data: { user: userInfo },
+      } = yield call(api.fetchUser);
+
+      yield put({ type: FETCH_USER_SUCCESS, payload: { userInfo, authToken } });
     } else yield put({ type: FETCH_USER_FAILURE });
   } catch (err) {
-    yield call(clearAuthCookie);
+    yield call(AuthCookie.clear);
     yield put({ type: FETCH_USER_FAILURE });
   }
 }
 
 function* userLogout() {
-  yield call(clearAuthCookie);
+  yield call(AuthCookie.clear);
   window.location.href = '/';
 }
 
