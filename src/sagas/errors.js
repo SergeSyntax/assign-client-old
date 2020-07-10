@@ -3,13 +3,10 @@ import { REQUEST_FAILURE } from 'actions/types';
 import { requestFailureAlert } from 'actions/errors';
 
 function* failureAlert({ type, payload }) {
-  const { response } = payload;
-  // if there no network
-  if (!response) yield put(requestFailureAlert('Network error.'));
-  // server generated error
-  else if (/^4/.test(response.status)) yield put(requestFailureAlert(response.data.message));
-  // server unexpected error
-  else yield put(requestFailureAlert('Internal Server Error.'));
+  const { response, name, message } = payload;
+
+  if (/[45]\d\d/.test(message)) yield put(requestFailureAlert(response.data.message));
+  else if (name && message) yield put(requestFailureAlert(`${name}: ${message}`));
 }
 
 function* watchErrors() {
