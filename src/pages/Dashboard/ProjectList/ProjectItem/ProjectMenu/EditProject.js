@@ -1,10 +1,12 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { createProject } from 'actions/projects';
-import ProjectFormDialog from './ProjectFormDialog/ProjectFormDialog';
-import CreateProjectButton from './CreateProjectButton';
+import { editProject } from 'actions/projects';
+import ProjectFormDialog from 'pages/Dashboard/ProjectFormDialog/ProjectFormDialog';
 import { useDispatch, useSelector } from 'react-redux';
+import EditProjectButton from './EditProjectButton';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
 
-const CreateProject = () => {
+const EditProject = ({ project }) => {
   const dispatch = useDispatch();
   const savingInProgress = useSelector(state => state.projects.savingInProgress);
   const [open, setOpen] = useState(false);
@@ -24,22 +26,27 @@ const CreateProject = () => {
   }, [savingInProgress, submitStatus]);
 
   const onSubmit = values => {
-    dispatch(createProject(values));
+    dispatch(editProject({ id: project.id, values }));
     setSubmitStatus(true);
   };
-  
+
   return (
     <Fragment>
-      <CreateProjectButton handleClickOpen={handleClickOpen} />
+      <EditProjectButton handleClickOpen={handleClickOpen} />
       <ProjectFormDialog
         open={open}
         handleClose={handleClose}
         onSubmit={onSubmit}
         savingInProgress={savingInProgress}
-        title="Create a new project"
+        title={project.title}
+        initialValues={_.pick(project, ['title', 'accessibility'])}
       />
     </Fragment>
   );
 };
 
-export default CreateProject;
+EditProject.prototype = {
+  project: PropTypes.object.isRequired,
+};
+
+export default EditProject;

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { makeStyles, Grid, Typography, Divider, TextField, IconButton } from '@material-ui/core';
 import { FiSearch, FiSettings } from 'react-icons/fi';
 import CreateProject from './CreateProject';
-import ProjectList from './ProjectList';
+import ProjectList from './ProjectList/ProjectList';
 
 const useStyle = makeStyles(theme => ({
   container: {

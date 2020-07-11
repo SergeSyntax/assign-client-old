@@ -24,13 +24,14 @@ const useStyle = makeStyles(theme => ({
   },
 }));
 
-const ProjectForm = ({ onSubmit, handleClose, savingInProgress }) => {
+const ProjectForm = ({ onSubmit, handleClose, savingInProgress, initialValues = {} }) => {
   const classes = useStyle();
 
   return (
     <Form
       validate={validate}
       onSubmit={onSubmit}
+      initialValues={initialValues}
       render={({ handleSubmit }) => (
         <form autoComplete="off" className={classes.container} onSubmit={handleSubmit} noValidate>
           <TitleInput />
@@ -46,6 +47,7 @@ ProjectForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
   savingInProgress: PropTypes.bool.isRequired,
+  initialValues: PropTypes.object,
 };
 
 export default ProjectForm;
