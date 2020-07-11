@@ -7,6 +7,9 @@ import {
   CREATE_PROJECT_FAILURE,
   FETCH_PROJECT_REQUEST,
   FETCH_PROJECT_SUCCESS,
+  EDIT_PROJECT_REQUEST,
+  EDIT_PROJECT_FAILURE,
+  EDIT_PROJECT_SUCCESS,
 } from 'actions/types';
 import _ from 'lodash';
 
@@ -26,6 +29,7 @@ export default (state = initialState, { type, payload }) => {
     case FETCH_PROJECTS_FAILURE:
       return { ...state, loadingProjects: false };
     case CREATE_PROJECT_REQUEST:
+    case EDIT_PROJECT_REQUEST:
       return { ...state, savingInProgress: true };
     case CREATE_PROJECT_SUCCESS:
       return {
@@ -34,6 +38,7 @@ export default (state = initialState, { type, payload }) => {
         projectList: { [payload.id]: payload, ...state.projectList },
       };
     case CREATE_PROJECT_FAILURE:
+    case EDIT_PROJECT_FAILURE:
       return { ...state, savingInProgress: false };
     case FETCH_PROJECT_REQUEST:
       return { ...state, loadingProject: true };
@@ -42,6 +47,12 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         loadingProject: false,
         projectList: payload ? { [payload.id]: payload, ...state.projectList } : state.projectList,
+      };
+    case EDIT_PROJECT_SUCCESS:
+      return {
+        ...state,
+        savingInProgress: false,
+        projectList: { ...state.projectList, [payload.id]: payload },
       };
     default:
       return state;

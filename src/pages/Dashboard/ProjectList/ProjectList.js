@@ -4,6 +4,7 @@ import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { fetchProjects } from 'actions/projects';
 import ProjectSkeleton from './ProjectSkeleton';
 import ProjectItem from './ProjectItem/ProjectItem';
+// import EditProjectButton from './EditProjectButton';
 
 const ProjectList = () => {
   const dispatch = useDispatch();

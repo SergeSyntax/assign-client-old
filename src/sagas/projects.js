@@ -8,6 +8,9 @@ import {
   CREATE_PROJECT_FAILURE,
   FETCH_PROJECT_REQUEST,
   FETCH_PROJECT_SUCCESS,
+  EDIT_PROJECT_REQUEST,
+  EDIT_PROJECT_SUCCESS,
+  EDIT_PROJECT_FAILURE,
 } from 'actions/types';
 import { requestFailure } from 'actions/errors';
 import * as api from 'api/projects';
@@ -48,6 +51,18 @@ function* fetchProject({ payload: id }) {
   }
 }
 
+function* editProject({ payload: { id, values } }) {
+  try {
+    const {
+      data: { project },
+    } = yield call(api.editProject, id, values);
+    yield put({ type: EDIT_PROJECT_SUCCESS, payload: project });
+  } catch (err) {
+    yield put({ type: EDIT_PROJECT_FAILURE });
+    yield put(requestFailure(err));
+  }
+}
+
 function* watchCreateProjectRequest() {
   yield takeLatest(CREATE_PROJECT_REQUEST, createProject);
 }
@@ -60,8 +75,13 @@ function* watchFetchProjectRequest() {
   yield takeEvery(FETCH_PROJECT_REQUEST, fetchProject);
 }
 
+function* watchEditProjectRequest() {
+  yield takeLatest(EDIT_PROJECT_REQUEST, editProject);
+}
+
 export default [
   fork(watchCreateProjectRequest),
   fork(watchFetchProjectsRequest),
   fork(watchFetchProjectRequest),
+  fork(watchEditProjectRequest),
 ];
