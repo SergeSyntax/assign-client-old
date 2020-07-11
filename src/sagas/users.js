@@ -1,5 +1,4 @@
-import { fork, call, takeLatest, put, delay, take, select } from 'redux-saga/effects';
-import Cookies from 'js-cookie';
+import { fork, call, takeLatest, put, take, select } from 'redux-saga/effects';
 import history from '../history';
 import { requestFailure } from 'actions/errors';
 import * as api from '../api/users';
@@ -36,7 +35,7 @@ function* createUser({ payload }) {
     yield call(setDefaultHeaders, authToken);
     yield call(AuthCookie.set, authToken);
     yield put({
-      type: USER_LOGIN_SUCCESS,
+      type: CREATE_USER_SUCCESS,
       payload: { userInfo, authToken },
     });
     yield call(redirect);

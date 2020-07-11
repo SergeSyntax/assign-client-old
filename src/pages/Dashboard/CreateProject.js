@@ -19,7 +19,7 @@ const CreateProject = () => {
       <IconButton onClick={handleClickOpen} color="primary">
         <FiFolderPlus />
       </IconButton>{' '}
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Create a new project</DialogTitle>
 
         <DialogContent>

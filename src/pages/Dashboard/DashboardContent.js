@@ -1,17 +1,7 @@
 import React, { Fragment } from 'react';
-import {
-  makeStyles,
-  Grid,
-  Typography,
-  Divider,
-  TextField,
-  IconButton,
-  Card,
-  CardHeader,
-} from '@material-ui/core';
+import { makeStyles, Grid, Typography, Divider, TextField, IconButton } from '@material-ui/core';
 import { FiSearch, FiSettings } from 'react-icons/fi';
 import CreateProject from './CreateProject';
-import { GoKebabVertical } from 'react-icons/go';
 import ProjectList from './ProjectList';
 
 const useStyle = makeStyles(theme => ({

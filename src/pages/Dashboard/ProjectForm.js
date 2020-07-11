@@ -1,15 +1,16 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import { Form, Field } from 'react-final-form';
 import Joi from '@hapi/joi';
 import generateValidation from 'utils/generateValidation';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Label from 'components/Auth/Form/Field/Label/Label';
 import ErrorMsg from 'components/Auth/Form/Field/ErrorMsg';
 import FieldInput from 'components/Auth/Form/Field/FieldInput';
 import { MenuItem, DialogActions, Button, makeStyles, Select } from '@material-ui/core';
 import { GoTag } from 'react-icons/go';
 import { createProject } from 'actions/projects';
+import SubmitProject from './SubmitProject';
 
 const schema = Joi.object().keys({
   title: Joi.string().min(1).max(255).required(),
@@ -28,11 +29,16 @@ const useStyle = makeStyles(theme => ({
 }));
 
 const ProjectForm = ({ handleClose }) => {
+  const createInProgress = useSelector(state => state.projects.createInProgress);
+  const [submitting, setSubmitting] = useState(false);
+
+  if (submitting && !createInProgress) handleClose();
+  if (!submitting && createInProgress) setSubmitting(true);
+
   const classes = useStyle();
   const dispatch = useDispatch();
   const onSubmit = values => {
     dispatch(createProject(values));
-    handleClose();
   };
 
   return (
@@ -71,9 +77,7 @@ const ProjectForm = ({ handleClose }) => {
             <Button onClick={handleClose} color="primary">
               Cancel
             </Button>
-            <Button type="submit" variant="contained" color="primary">
-              Create
-            </Button>
+            <SubmitProject submitting={submitting} createInProgress={createInProgress} />
           </DialogActions>
         </form>
       )}
