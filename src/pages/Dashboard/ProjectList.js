@@ -50,7 +50,7 @@ const ProjectList = () => {
           {' '}
           {Object.values(projects).map(project => (
             <Grid item key={project.id}>
-              <Card component={Link} className={classes.root}>
+              <Card component={Link} to={`/project/${project.id}`} className={classes.root}>
                 <CardActionArea>
                   <CardHeader
                     title={project.title}

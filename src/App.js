@@ -14,6 +14,7 @@ import Loading from 'pages/Loading/Loading';
 import Dashboard from 'pages/Dashboard/Dashboard';
 import { fetchUser } from 'actions/users';
 import { Fragment } from 'react';
+import Project from 'pages/Project/Project';
 
 function App() {
   const { loading, authenticated } = useSelector(state => state.users);
@@ -30,7 +31,10 @@ function App() {
       ) : (
         <Fragment>
           {authenticated ? (
-            <Route path="/" component={Dashboard} />
+            <Switch>
+              <Route path="/project/:id" component={Project} />
+              <Route path="/" component={Dashboard} />
+            </Switch>
           ) : (
             <Switch>
               <Route path="/register" component={Register} />
