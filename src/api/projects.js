@@ -13,6 +13,8 @@ export const fetchProjects = (
     }, '')}`
   );
 
+export const fetchProject = id => Axios.get(`/projects/${id}`);
+
 // export const test = (
 //   paginationSettings = { page: 0, limit: 0, order: [{ col: 'createdAt', direction: 'DESC' }] }
 // ) =>

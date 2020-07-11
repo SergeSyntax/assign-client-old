@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import ProjectBackground from './ProjectBackground';
 import {
   Grid,
@@ -9,14 +9,16 @@ import {
   Breadcrumbs,
   Chip,
   emphasize,
+  CircularProgress,
 } from '@material-ui/core';
 import Logo from 'components/shared/Logo/Logo';
-import { TiThMenu, TiPlus } from 'react-icons/ti';
+import { TiThMenu } from 'react-icons/ti';
 import { GoHome } from 'react-icons/go';
 import { AiOutlineFolder, AiOutlineFolderOpen } from 'react-icons/ai';
 import { MdExpandMore } from 'react-icons/md';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetchProject } from 'actions/projects';
 
 const useStyle = makeStyles(theme => ({
   header: {
@@ -32,11 +34,11 @@ const useStyle = makeStyles(theme => ({
   breadcrumbs: {
     color: '#fff',
   },
-  root: {
+  chip: {
     backgroundColor: 'rgba(0%,0%,50%,.1)',
     height: theme.spacing(3),
     fontWeight: theme.typography.fontWeightMedium,
-    color:'inherit',
+    color: 'inherit',
     '&:hover, &:focus': {
       backgroundColor: 'rgba(0%,0%,50%,.2)',
     },
@@ -49,6 +51,9 @@ const useStyle = makeStyles(theme => ({
     color: 'inherit',
     display: 'inline',
   },
+  loadProjectSpinner: {
+    marginLeft: '1rem',
+  },
 }));
 
 const Project = ({
@@ -56,9 +61,14 @@ const Project = ({
     params: { id },
   },
 }) => {
-  const project = useSelector(state => state.projects.projects[id]);
+  const project = useSelector(state => state.projects.projectList[id]);
+  console.log(project);
+  const loadingProject = useSelector(state => state.projects.loadingProject);
 
-  console.log(id, project);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchProject(id));
+  }, [dispatch, id]);
   const classes = useStyle();
 
   return (
@@ -78,25 +88,29 @@ const Project = ({
                 <Breadcrumbs className={classes.breadcrumbs} aria-label="breadcrumb">
                   <Chip
                     component={Link}
-                    className={classes.root}
+                    className={classes.chip}
                     to="/"
                     label="Dashboard"
                     icon={<GoHome className={classes.icon} />}
                   />
                   <Chip
                     component={Link}
-                    className={classes.root}
+                    className={classes.chip}
                     to="/projects"
                     label="Projects"
                     icon={<AiOutlineFolder className={classes.icon} />}
                   />
-                  <Chip
-                    className={classes.root}
-                    label={project ? project.title : 'test'}
-                    icon={<AiOutlineFolderOpen className={classes.icon} />}
-                    deleteIcon={<MdExpandMore className={classes.icon} />}
-                    onDelete={alert}
-                  />
+                  {loadingProject ? (
+                    <CircularProgress color="inherit" size={15} className={classes.loadProjectSpinner} />
+                  ) : (
+                    <Chip
+                      className={classes.chip}
+                      label={project ? project.title : ''}
+                      icon={<AiOutlineFolderOpen className={classes.icon} />}
+                      deleteIcon={<MdExpandMore className={classes.icon} />}
+                      onDelete={alert}
+                    />
+                  )}
                 </Breadcrumbs>
               </Grid>
             </Grid>

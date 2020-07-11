@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 const ProjectList = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const projects = useSelector(state => state.projects.projects, shallowEqual);
+  const projects = useSelector(state => state.projects.projectList, shallowEqual);
   const loadingProjects = useSelector(state => state.projects.loadingProjects);
 
   useEffect(() => {
