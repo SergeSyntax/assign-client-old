@@ -20,17 +20,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SubmitProject = ({ createInProgress }) => {
+const SubmitProject = ({ savingInProgress }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.wrapper}>
       <div className={classes.root}>
         <div className={classes.wrapper}>
-          <Button variant="contained" color="primary" type="submit" disabled={createInProgress}>
+          <Button variant="contained" color="primary" type="submit" disabled={savingInProgress}>
             Create
           </Button>
-          {createInProgress && <CircularProgress size={24} className={classes.buttonProgress} />}
+          {savingInProgress && <CircularProgress size={24} className={classes.buttonProgress} />}
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ import _ from 'lodash';
 
 const initialState = {
   loadingProjects: false,
-  createInProgress: false,
+  savingInProgress: false,
   loadingProject: false,
   projectList: [],
 };
@@ -26,15 +26,15 @@ export default (state = initialState, { type, payload }) => {
     case FETCH_PROJECTS_FAILURE:
       return { ...state, loadingProjects: false };
     case CREATE_PROJECT_REQUEST:
-      return { ...state, createInProgress: true };
+      return { ...state, savingInProgress: true };
     case CREATE_PROJECT_SUCCESS:
       return {
         ...state,
-        createInProgress: false,
+        savingInProgress: false,
         projectList: { [payload.id]: payload, ...state.projectList },
       };
     case CREATE_PROJECT_FAILURE:
-      return { ...state, createInProgress: false };
+      return { ...state, savingInProgress: false };
     case FETCH_PROJECT_REQUEST:
       return { ...state, loadingProject: true };
     case FETCH_PROJECT_SUCCESS:

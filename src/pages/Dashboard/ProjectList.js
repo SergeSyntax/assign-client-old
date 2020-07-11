@@ -1,6 +1,16 @@
 import React, { useEffect, Fragment } from 'react';
-import { Grid, CardHeader, IconButton, Card, CardActionArea, makeStyles } from '@material-ui/core';
-import { GoKebabVertical } from 'react-icons/go';
+import {
+  Grid,
+  CardHeader,
+  IconButton,
+  Card,
+  CardActionArea,
+  makeStyles,
+  Menu,
+  MenuItem,
+  ListItemIcon,
+} from '@material-ui/core';
+import { GoKebabVertical, GoPencil, GoX } from 'react-icons/go';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { fetchProjects } from 'actions/projects';
 import { Link } from 'react-router-dom';
@@ -24,6 +34,11 @@ const useStyles = makeStyles(theme => ({
     height: '10rem',
     margin: '8px',
   },
+  dropDownMenuButton: {
+    color: '#fff',
+    fontSize: '3rem',
+    padding: theme.spacing(1),
+  },
 }));
 
 const ProjectList = () => {
@@ -31,6 +46,15 @@ const ProjectList = () => {
   const dispatch = useDispatch();
   const projects = useSelector(state => state.projects.projectList, shallowEqual);
   const loadingProjects = useSelector(state => state.projects.loadingProjects);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   useEffect(() => {
     dispatch(fetchProjects());
@@ -50,17 +74,44 @@ const ProjectList = () => {
           {' '}
           {Object.values(projects).map(project => (
             <Grid item key={project.id}>
-              <Card component={Link} to={`/project/${project.id}`} className={classes.root}>
-                <CardActionArea>
+              <Card className={classes.root}>
+                <CardActionArea component={Link} to={`/project/${project.id}`}>
                   <CardHeader
                     title={project.title}
                     subheader={project.accessibility ? 'public' : 'private'}
                   />
                 </CardActionArea>
                 <div className={classes.menu}>
-                  <IconButton>
+                  <IconButton onClick={handleClick}>
                     <GoKebabVertical />
                   </IconButton>
+                  <Menu
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                  >
+                    <MenuItem
+                      onClick={e => {
+                        e.preventDefault();
+                      }}
+                    >
+                      <ListItemIcon style={{ width: '3rem' }}>
+                        <GoPencil />
+                      </ListItemIcon>{' '}
+                      Edit
+                    </MenuItem>
+                    <MenuItem
+                      onClick={e => {
+                        e.preventDefault();
+                      }}
+                    >
+                      <ListItemIcon style={{ width: '3rem' }}>
+                        <GoX />
+                      </ListItemIcon>{' '}
+                      Delete
+                    </MenuItem>
+                  </Menu>
                 </div>
               </Card>
             </Grid>

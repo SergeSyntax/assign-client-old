@@ -29,7 +29,7 @@ const RegisterForm = () => {
       validate={validate}
       onSubmit={onSubmit}
       render={({ handleSubmit, submitting }) => (
-        <form onSubmit={handleSubmit} className="register__form" noValidate>
+        <form autoComplete="off" onSubmit={handleSubmit} className="register__form" noValidate>
           <NameInput />
           <EmailInput />
           <PasswordInput />
