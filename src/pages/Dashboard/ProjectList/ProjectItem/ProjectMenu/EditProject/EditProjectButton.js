@@ -8,7 +8,7 @@ const EditProjectButton = ({ handleClickOpen }) => {
     <MenuItem onClick={handleClickOpen}>
       <ListItemIcon>
         <GoPencil />
-      </ListItemIcon>{' '}
+      </ListItemIcon>
       Edit
     </MenuItem>
   );

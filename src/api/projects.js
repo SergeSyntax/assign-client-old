@@ -16,9 +16,3 @@ export const fetchProjects = (
 export const fetchProject = id => Axios.get(`/projects/${id}`);
 
 export const editProject = (id, values) => Axios.put(`/projects/${id}`, values);
-// export const test = (
-//   paginationSettings = { page: 0, limit: 0, order: [{ col: 'createdAt', direction: 'DESC' }] }
-// ) =>
-//   ;
-
-// console.log(test());
