@@ -10,6 +10,8 @@ import {
   EDIT_PROJECT_REQUEST,
   EDIT_PROJECT_FAILURE,
   EDIT_PROJECT_SUCCESS,
+  DELETE_PROJECT_REQUEST,
+  DELETE_PROJECT_SUCCESS,
 } from 'actions/types';
 import _ from 'lodash';
 
@@ -53,6 +55,15 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         savingInProgress: false,
         projectList: { ...state.projectList, [payload.id]: payload },
+      };
+
+    case DELETE_PROJECT_REQUEST:
+      return { ...state, loadingProject: true };
+    case DELETE_PROJECT_SUCCESS:
+      return {
+        ...state,
+        savingInProgress: false,
+        projectList: _.omit(state.projectList, payload),
       };
     default:
       return state;

@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MenuItem, Menu, ListItemIcon, makeStyles } from '@material-ui/core';
+import { Menu, makeStyles } from '@material-ui/core';
 import EditProject from 'pages/Dashboard/ProjectList/ProjectItem/ProjectMenu/EditProject/EditProject';
-import { GoX } from 'react-icons/go';
 import ProjectMenuButton from './ProjectMenuButton';
 import DeleteProject from './DeleteProject';
 
@@ -31,7 +30,7 @@ const ProjectMenu = ({ project }) => {
   return (
     <div className={classes.menu}>
       <ProjectMenuButton handleClick={handleClick} />
-      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+      <Menu autoFocus anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <DeleteProject project={project} />
         <EditProject project={project} />
       </Menu>

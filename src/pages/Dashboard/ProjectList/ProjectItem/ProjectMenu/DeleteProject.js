@@ -4,14 +4,14 @@ import {
   MenuItem,
   ListItemIcon,
   Dialog,
-  DialogContent,
-  DialogTitle,
   makeStyles,
   TextField,
   Button,
   IconButton,
 } from '@material-ui/core';
-import { GoX, GoAlert } from 'react-icons/go';
+import { GoX } from 'react-icons/go';
+import { useDispatch } from 'react-redux';
+import { deleteProject } from 'actions/projects';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -29,6 +29,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DeleteProject = forwardRef(({ project }, ref) => {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
   const classes = useStyles();
@@ -39,6 +40,11 @@ const DeleteProject = forwardRef(({ project }, ref) => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    dispatch(deleteProject(project.id));
   };
 
   return (
@@ -70,7 +76,7 @@ const DeleteProject = forwardRef(({ project }, ref) => {
         </p>
         <div className={classes.content}>
           <p style={{ paddingBottom: '1rem' }}>
-            This action <strong>cannot</strong> be undone. This will permanently delete the
+            This action <strong>cannot</strong> be undone. This will permanently delete the{' '}
             <strong>{project.title}</strong> project, lists, tasks, and activity, and remove all
             collaborator associations.
           </p>
@@ -81,13 +87,7 @@ const DeleteProject = forwardRef(({ project }, ref) => {
             nothing will be lost.
           </p>
         </div>
-        <form
-          className={classes.form}
-          onSubmit={e => {
-            e.preventDefault();
-            alert('wrok');
-          }}
-        >
+        <form className={classes.form} onSubmit={onSubmit}>
           <label style={{ display: 'block', marginBottom: '1rem' }} htmlFor="">
             Please type <strong>{project.title}</strong> to confirm.
           </label>
@@ -97,6 +97,7 @@ const DeleteProject = forwardRef(({ project }, ref) => {
             variant="outlined"
             size="small"
             fullWidth
+            autoFocus
           />
           <Button
             disabled={project.title !== value}
@@ -115,6 +116,8 @@ const DeleteProject = forwardRef(({ project }, ref) => {
   );
 });
 
-DeleteProject.propTypes = {};
+DeleteProject.propTypes = {
+  project: PropTypes.object.isRequired,
+};
 
 export default DeleteProject;

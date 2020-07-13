@@ -11,6 +11,9 @@ import {
   EDIT_PROJECT_REQUEST,
   EDIT_PROJECT_SUCCESS,
   EDIT_PROJECT_FAILURE,
+  DELETE_PROJECT_REQUEST,
+  DELETE_PROJECT_SUCCESS,
+  DELETE_PROJECT_FAILURE,
 } from 'actions/types';
 import { requestFailure } from 'actions/errors';
 import * as api from 'api/projects';
@@ -63,6 +66,16 @@ function* editProject({ payload: { id, values } }) {
   }
 }
 
+function* deleteProject({ payload }) {
+  try {
+    yield call(api.deleteProject, payload);
+    yield put({ type: DELETE_PROJECT_SUCCESS, payload: payload });
+  } catch (err) {
+    yield put({ type: DELETE_PROJECT_FAILURE });
+    yield put(requestFailure(err));
+  }
+}
+
 function* watchCreateProjectRequest() {
   yield takeLatest(CREATE_PROJECT_REQUEST, createProject);
 }
@@ -79,9 +92,14 @@ function* watchEditProjectRequest() {
   yield takeLatest(EDIT_PROJECT_REQUEST, editProject);
 }
 
+function* watchDeleteProjectRequest() {
+  yield takeLatest(DELETE_PROJECT_REQUEST, deleteProject);
+}
+
 export default [
   fork(watchCreateProjectRequest),
   fork(watchFetchProjectsRequest),
   fork(watchFetchProjectRequest),
   fork(watchEditProjectRequest),
+  fork(watchDeleteProjectRequest),
 ];

@@ -16,3 +16,5 @@ export const fetchProjects = (
 export const fetchProject = id => Axios.get(`/projects/${id}`);
 
 export const editProject = (id, values) => Axios.put(`/projects/${id}`, values);
+
+export const deleteProject = id => Axios.delete(`/projects/${id}`);
