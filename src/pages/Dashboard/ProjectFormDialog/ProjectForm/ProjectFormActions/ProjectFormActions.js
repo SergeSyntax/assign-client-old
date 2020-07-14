@@ -4,18 +4,18 @@ import { DialogActions } from '@material-ui/core';
 import CancelProject from './CancelProject';
 import SubmitProject from './SubmitProject';
 
-const ProjectFormActions = ({ handleClose, savingInProgress }) => {
+const ProjectFormActions = ({ handleClose, submitLabel }) => {
   return (
     <DialogActions>
       <CancelProject handleClose={handleClose} />
-      <SubmitProject savingInProgress={savingInProgress} />
+      <SubmitProject text={submitLabel} />
     </DialogActions>
   );
 };
 
 ProjectFormActions.propTypes = {
   handleClose: PropTypes.func.isRequired,
-  savingInProgress: PropTypes.bool.isRequired,
+  submitLabel: PropTypes.string.isRequired,
 };
 
 export default ProjectFormActions;

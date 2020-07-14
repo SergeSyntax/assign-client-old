@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 import ProjectForm from './ProjectForm/ProjectForm';
 
-const ProjectDialog = ({ title, open, handleClose, onSubmit, savingInProgress, initialValues }) => {
+const ProjectDialog = ({
+  title,
+  open,
+  handleClose,
+  onSubmit,
+  initialValues,
+  submitLabel,
+}) => {
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>{title}</DialogTitle>
@@ -12,7 +19,7 @@ const ProjectDialog = ({ title, open, handleClose, onSubmit, savingInProgress, i
           initialValues={initialValues}
           onSubmit={onSubmit}
           handleClose={handleClose}
-          savingInProgress={savingInProgress}
+          submitLabel={submitLabel}
         />
       </DialogContent>
     </Dialog>
@@ -24,8 +31,8 @@ ProjectDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  savingInProgress: PropTypes.bool.isRequired,
   initialValues: PropTypes.object,
+  submitLabel: PropTypes.string.isRequired,
 };
 
 export default ProjectDialog;

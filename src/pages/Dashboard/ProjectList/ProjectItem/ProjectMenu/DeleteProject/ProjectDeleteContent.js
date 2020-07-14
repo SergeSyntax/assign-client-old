@@ -13,9 +13,12 @@ const useStyles = makeStyles(theme => ({
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
   },
+  firstParagraph: {
+    paddingBottom: '1rem',
+  },
 }));
 
-const DeleteContent = ({ project }) => {
+const ProjectDeleteContent = ({ project }) => {
   const classes = useStyles();
 
   return (
@@ -24,7 +27,7 @@ const DeleteContent = ({ project }) => {
         Unexpected bad things will happen if you don’t read this!
       </p>
       <div className={classes.content}>
-        <p style={{ paddingBottom: '1rem' }}>
+        <p className={classes.firstParagraph}>
           This action <strong>cannot</strong> be undone. This will permanently delete the{' '}
           <strong>{project.title}</strong> project, lists, tasks, and activity, and remove all
           collaborator associations.
@@ -40,8 +43,8 @@ const DeleteContent = ({ project }) => {
   );
 };
 
-DeleteContent.propTypes = {
+ProjectDeleteContent.propTypes = {
   project: PropTypes.object.isRequired,
 };
 
-export default DeleteContent;
+export default ProjectDeleteContent;

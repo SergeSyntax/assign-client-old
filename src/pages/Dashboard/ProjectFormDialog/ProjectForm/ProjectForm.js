@@ -24,7 +24,7 @@ const useStyle = makeStyles(theme => ({
   },
 }));
 
-const ProjectForm = ({ onSubmit, handleClose, savingInProgress, initialValues = {} }) => {
+const ProjectForm = ({ onSubmit, handleClose, initialValues = {}, submitLabel }) => {
   const classes = useStyle();
 
   return (
@@ -36,7 +36,7 @@ const ProjectForm = ({ onSubmit, handleClose, savingInProgress, initialValues = 
         <form autoComplete="off" className={classes.container} onSubmit={handleSubmit} noValidate>
           <TitleInput />
           <AccessibilitySelect />
-          <ProjectFormActions handleClose={handleClose} savingInProgress={savingInProgress} />
+          <ProjectFormActions submitLabel={submitLabel} handleClose={handleClose} />
         </form>
       )}
     />
@@ -46,8 +46,8 @@ const ProjectForm = ({ onSubmit, handleClose, savingInProgress, initialValues = 
 ProjectForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
-  savingInProgress: PropTypes.bool.isRequired,
   initialValues: PropTypes.object,
+  submitLabel: PropTypes.string.isRequired,
 };
 
 export default ProjectForm;

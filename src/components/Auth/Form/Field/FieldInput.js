@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
-const FieldInput = ({ input, meta: { touched, error }, placeholder, type }) => {
+const FieldInput = ({ input, meta: { touched, error }, placeholder, type, autoFocus }) => {
   return (
     <TextField
       {...input}
@@ -13,6 +13,7 @@ const FieldInput = ({ input, meta: { touched, error }, placeholder, type }) => {
       type={type}
       className="input"
       variant="outlined"
+      autoFocus={autoFocus}
     />
   );
 };
@@ -22,6 +23,7 @@ FieldInput.propTypes = {
   meta: PropTypes.object.isRequired,
   placeholder: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  autoFocus: PropTypes.bool,
 };
 
 export default FieldInput;

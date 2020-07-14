@@ -11,7 +11,13 @@ const TitleInput = () => {
       {({ input, meta }) => (
         <Fragment>
           <Label name={input.name} icon={GoTag} />
-          <FieldInput input={input} meta={meta} type="text" placeholder="i.e. SkyNet Project" />
+          <FieldInput
+            autoFocus
+            input={input}
+            meta={meta}
+            type="text"
+            placeholder="i.e. SkyNet Project"
+          />
           <ErrorMsg meta={meta} />
         </Fragment>
       )}

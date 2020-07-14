@@ -3,16 +3,18 @@ import PropTypes from 'prop-types';
 import { TextField, Button, makeStyles } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { deleteProject } from 'actions/projects';
+import ProjectDeleteFormButton from './ProjectDeleteFormButton';
 
 const useStyles = makeStyles(theme => ({
   form: { backgroundColor: '#f6f8fa', padding: theme.spacing(2) },
+  label: { display: 'block', marginBottom: '1rem' },
   // backdrop: {
   //   zIndex: theme.zIndex.drawer + 1,
   //   color: '#fff',
   // },
 }));
 
-const DeleteProjectForm = ({ project }) => {
+const ProjectDeleteForm = ({ project }) => {
   const [value, setValue] = useState('');
 
   const classes = useStyles();
@@ -26,10 +28,11 @@ const DeleteProjectForm = ({ project }) => {
 
   return (
     <form className={classes.form} onSubmit={onSubmit}>
-      <label style={{ display: 'block', marginBottom: '1rem' }} htmlFor="">
+      <label className={classes.label} htmlFor="project-title">
         Please type <strong>{project.title}</strong> to confirm.
       </label>
       <TextField
+        id="project-title"
         value={value}
         onChange={e => setValue(e.target.value)}
         variant="outlined"
@@ -37,23 +40,13 @@ const DeleteProjectForm = ({ project }) => {
         fullWidth
         autoFocus
       />
-      <Button
-        disabled={project.title !== value}
-        style={{ marginTop: '1rem', textTransform: 'capitalize' }}
-        fullWidth
-        size="small"
-        color="secondary"
-        variant="contained"
-        type="submit"
-      >
-        I understand the consequences, delete this project
-      </Button>
+      <ProjectDeleteFormButton disabled={project.title !== value} />
     </form>
   );
 };
 
-DeleteProjectForm.propTypes = {
+ProjectDeleteForm.propTypes = {
   project: PropTypes.object.isRequired,
 };
 
-export default DeleteProjectForm;
+export default ProjectDeleteForm;

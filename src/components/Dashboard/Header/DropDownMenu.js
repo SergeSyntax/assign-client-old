@@ -1,9 +1,7 @@
 import React, { Fragment } from 'react';
 import { IconButton, MenuItem, Menu, ListItemIcon, makeStyles } from '@material-ui/core';
 import { MdArrowDropDown } from 'react-icons/md';
-import { FiLogOut } from 'react-icons/fi';
-import { useDispatch } from 'react-redux';
-import { userLogout } from 'actions/users';
+import Logout from './Logout';
 
 const DropDownMenu = () => {
   const useStyle = makeStyles(theme => ({
@@ -15,7 +13,6 @@ const DropDownMenu = () => {
   }));
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const dispatch = useDispatch();
   const classes = useStyle();
 
   const handleClick = event => {
@@ -39,17 +36,7 @@ const DropDownMenu = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem
-          onClick={e => {
-            e.preventDefault();
-            dispatch(userLogout());
-          }}
-        >
-          <ListItemIcon style={{ width: 'auto' }}>
-            <FiLogOut />
-          </ListItemIcon>{' '}
-          Logout
-        </MenuItem>
+        <Logout />
       </Menu>
     </Fragment>
   );

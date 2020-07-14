@@ -1,18 +1,13 @@
-import React, { Fragment, useState, useEffect, forwardRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Menu, makeStyles, Dialog } from '@material-ui/core';
+import { Menu, makeStyles } from '@material-ui/core';
 import ProjectMenuButton from './ProjectMenuButton';
-import { editProject } from 'actions/projects';
-import ProjectFormDialog from 'pages/Dashboard/ProjectFormDialog/ProjectFormDialog';
-import { useDispatch, useSelector } from 'react-redux';
-import { MenuItem, ListItemIcon } from '@material-ui/core';
-import { GoPencil, GoX } from 'react-icons/go';
 
-import _ from 'lodash';
+// import _ from 'lodash';
 import EditProjectButton from './EditProject/EditProjectButton';
 import EditProject from './EditProject/EditProject';
 import DeleteButton from './DeleteProject/DeleteButton';
-import DeleteProject from './DeleteProject/DeleteProject';
+import ProjectDelete from './DeleteProject/ProjectDelete';
 
 const useStyles = makeStyles(theme => ({
   menu: {
@@ -36,7 +31,7 @@ const ProjectMenu = ({ project }) => {
   const closeMenu = () => {
     setAnchorEl(null);
   };
-  
+
   // Edit dialog state
   const [openEdit, setOpenEdit] = useState(false);
   const openEditDialog = () => {
@@ -59,7 +54,7 @@ const ProjectMenu = ({ project }) => {
         <DeleteButton onClick={openDeleteDialog} />
       </Menu>
       <EditProject open={openEdit} setOpen={setOpenEdit} project={project} />
-      <DeleteProject project={project} open={openDelete} setOpen={setOpenDelete} />
+      <ProjectDelete project={project} open={openDelete} setOpen={setOpenDelete} />
     </div>
   );
 };

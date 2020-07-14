@@ -1,10 +1,9 @@
 import React from 'react';
-import { FaRegHandshake } from 'react-icons/fa';
-import { GiSunglasses, GiCompass } from 'react-icons/gi';
+
 import Feature from './Feature';
 import FeaturesBackground from './FeaturesBackground';
 import './Features.scss';
-import { AiOutlineTeam, AiOutlineSend, AiOutlineFundView, AiOutlineFilter } from 'react-icons/ai';
+import { AiOutlineTeam, AiOutlineFundView, AiOutlineFilter } from 'react-icons/ai';
 
 const FEATURES = [
   {

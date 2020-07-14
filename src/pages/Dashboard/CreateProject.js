@@ -6,28 +6,25 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const CreateProject = () => {
   const dispatch = useDispatch();
-  const savingInProgress = useSelector(state => state.projects.savingInProgress);
+  const savingFinished = useSelector(state => state.projects.savingFinished);
   const [open, setOpen] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
   };
 
+  useEffect(() => {
+    if (savingFinished) handleClose();
+  }, [savingFinished]);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  useEffect(() => {
-    if (savingInProgress) setSubmitStatus(true);
-    else if (!savingInProgress && submitStatus) handleClose();
-  }, [savingInProgress, submitStatus]);
-
   const onSubmit = values => {
     dispatch(createProject(values));
-    setSubmitStatus(true);
   };
-  
+
   return (
     <Fragment>
       <CreateProjectButton handleClickOpen={handleClickOpen} />
@@ -35,8 +32,8 @@ const CreateProject = () => {
         open={open}
         handleClose={handleClose}
         onSubmit={onSubmit}
-        savingInProgress={savingInProgress}
         title="Create a new project"
+        submitLabel="Create"
       />
     </Fragment>
   );
