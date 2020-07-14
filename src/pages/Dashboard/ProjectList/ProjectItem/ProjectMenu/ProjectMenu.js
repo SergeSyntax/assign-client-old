@@ -27,6 +27,8 @@ const useStyles = makeStyles(theme => ({
 
 const ProjectMenu = ({ project }) => {
   const classes = useStyles();
+
+  // Menu state
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -34,16 +36,16 @@ const ProjectMenu = ({ project }) => {
   const closeMenu = () => {
     setAnchorEl(null);
   };
-
+  
+  // Edit dialog state
   const [openEdit, setOpenEdit] = useState(false);
-
   const openEditDialog = () => {
     setAnchorEl(null);
     setOpenEdit(true);
   };
 
+  // Delete dialog state
   const [openDelete, setOpenDelete] = useState(false);
-
   const openDeleteDialog = () => {
     setAnchorEl(null);
     setOpenDelete(true);
@@ -52,13 +54,7 @@ const ProjectMenu = ({ project }) => {
   return (
     <div className={classes.menu}>
       <ProjectMenuButton handleClick={openMenu} />
-      <Menu
-        autoFocus
-        disableEnforceFocus
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={closeMenu}
-      >
+      <Menu autoFocus anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={closeMenu}>
         <EditProjectButton onClick={openEditDialog} />
         <DeleteButton onClick={openDeleteDialog} />
       </Menu>

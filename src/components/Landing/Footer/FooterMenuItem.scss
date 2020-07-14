@@ -1,6 +1,6 @@
 .landing-footer__menu__item {
   &:not(:last-child) {
-    margin-right: 3rem;
+    margin-right: 5rem;
   }
 
   &__link {
@@ -8,7 +8,9 @@
     &:visited {
       background-color: #333;
       text-decoration: none;
-      text-transform: uppercase;
+      text-transform: capitalize;
+      font-size: 1.5rem;
+      font-weight: 500;
       display: inline-block;
       transition: all 0.2s;
     }

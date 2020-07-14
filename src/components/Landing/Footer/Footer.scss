@@ -7,7 +7,7 @@
 
 .landing-footer {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background-color: #333;
   color: #fff;
   clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 100%);
@@ -18,7 +18,7 @@
   padding-top: 5rem;
 
   .logo {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   ::selection {
