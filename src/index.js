@@ -16,7 +16,6 @@ import './index.scss';
 import Axios from 'axios';
 
 Axios.defaults.baseURL = process.env.REACT_APP_BASEURL;
-Axios.defaults.withCredentials = true;
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
