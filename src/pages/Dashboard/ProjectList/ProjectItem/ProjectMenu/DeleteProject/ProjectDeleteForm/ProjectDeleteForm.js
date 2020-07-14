@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { TextField, Button, makeStyles } from '@material-ui/core';
+import { TextField, makeStyles } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { deleteProject } from 'actions/projects';
 import ProjectDeleteFormButton from './ProjectDeleteFormButton';
 
-const useStyles = makeStyles(theme => ({
+const useStyle = makeStyles(theme => ({
   form: { backgroundColor: '#f6f8fa', padding: theme.spacing(2) },
   label: { display: 'block', marginBottom: '1rem' },
   // backdrop: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 const ProjectDeleteForm = ({ project }) => {
   const [value, setValue] = useState('');
 
-  const classes = useStyles();
+  const classes = useStyle();
 
   const dispatch = useDispatch();
 

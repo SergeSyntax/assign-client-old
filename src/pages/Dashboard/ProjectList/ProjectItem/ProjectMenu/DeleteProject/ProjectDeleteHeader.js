@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { IconButton, makeStyles } from '@material-ui/core';
 import { GoX } from 'react-icons/go';
 
-const useStyles = makeStyles(theme => ({
+const useStyle = makeStyles(theme => ({
   container: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ProjectDeleteHeader = ({ handleClose }) => {
-  const classes = useStyles();
+  const classes = useStyle();
   return (
     <div className={classes.container}>
       <h2 className={classes.title}> Are you absolutely sure?</h2>

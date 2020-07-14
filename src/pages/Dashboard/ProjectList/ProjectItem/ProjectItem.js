@@ -4,14 +4,14 @@ import { Card, CardActionArea, CardHeader, Grid, makeStyles } from '@material-ui
 import { Link } from 'react-router-dom';
 import ProjectMenu from './ProjectMenu/ProjectMenu';
 
-const useStyles = makeStyles(theme => ({
+const useStyle = makeStyles(theme => ({
   root: {
     display: 'flex',
   },
 }));
 
 const ProjectItem = ({ project }) => {
-  const classes = useStyles();
+  const classes = useStyle();
 
   return (
     <Grid item key={project.id}>

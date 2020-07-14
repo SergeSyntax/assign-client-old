@@ -3,7 +3,7 @@ import { makeStyles, Button, CircularProgress } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const useStyles = makeStyles(theme => ({
+const useStyle = makeStyles(theme => ({
   wrapper: {
     position: 'relative',
   },
@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ProjectDeleteFormButton = ({ disabled }) => {
-  const classes = useStyles();
+  const classes = useStyle();
   const savingInProgress = useSelector(state => state.projects.savingInProgress);
   return (
     <div className={classes.wrapper}>

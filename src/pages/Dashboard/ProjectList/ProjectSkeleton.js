@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyle = makeStyles(theme => ({
   loading: {
     height: '10rem',
     margin: '8px',
@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ProjectSkeleton = () => {
-  const classes = useStyles();
+  const classes = useStyle();
 
   return (
     <Fragment>

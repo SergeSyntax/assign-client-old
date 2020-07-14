@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { IconButton, MenuItem, Menu, ListItemIcon, makeStyles } from '@material-ui/core';
+import { IconButton, Menu, makeStyles } from '@material-ui/core';
 import { MdArrowDropDown } from 'react-icons/md';
 import Logout from './Logout';
 

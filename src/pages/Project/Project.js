@@ -1,58 +1,86 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import ProjectBackground from './ProjectBackground';
-import {
-  Grid,
-  AppBar,
-  Toolbar,
-  makeStyles,
-  IconButton,
-  Breadcrumbs,
-  Chip,
-  emphasize,
-  CircularProgress,
-} from '@material-ui/core';
-import Logo from 'components/shared/Logo/Logo';
-import { TiThMenu } from 'react-icons/ti';
-import { GoHome } from 'react-icons/go';
-import { AiOutlineFolder, AiOutlineFolderOpen } from 'react-icons/ai';
-import { MdExpandMore } from 'react-icons/md';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { fetchProject } from 'actions/projects';
+import { Grid, makeStyles, Card, IconButton, Typography } from '@material-ui/core';
+import './Project.scss';
+
+import ProjectNavbar from './ProjectNavbar';
+import { GoKebabHorizontal } from 'react-icons/go';
 
 const useStyle = makeStyles(theme => ({
-  header: {
-    backgroundColor: 'hsla(0,0%,100%,.24)',
+  root: {
+    height: '100vh',
   },
-  headerToolBar: {
+  content: {
+    height: '87%',
+  },
+  container: {
+    height: '100%',
+    '&::-webkit-scrollbar': {
+      height: '12px',
+      width: '12px',
+    },
+    '&::-webkit-scrollbar-button': {
+      display: 'block',
+      height: '4px',
+      width: '4px',
+    },
+    '&::-webkit-scrollbar-track-piece': {
+      background: 'rgba(0,0,0,.1)',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      background: 'rgba(253, 253, 253)',
+    },
+
+    // // }
+
+    // background: 'red',
+    overflowX: 'auto',
+    // margin: '0 1rem 1rem',
+    margin: '2rem 1rem',
+  },
+
+  section: {
+    padding: '.3rem',
+    minWidth: '25rem',
+    height: '100%',
+    background: '#EBECF0',
+  },
+
+  sectionHeader: {
+    padding: '.5rem',
     display: 'flex',
-    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingBottom: '.4rem',
   },
-  breadcrumbs: {
-    color: '#fff',
+  sectionTitle: {
+    fontWeight: 'bold',
   },
-  chip: {
-    backgroundColor: 'rgba(0%,0%,50%,.1)',
-    height: theme.spacing(3),
-    fontWeight: theme.typography.fontWeightMedium,
-    color: 'inherit',
-    '&:hover, &:focus': {
-      backgroundColor: 'rgba(0%,0%,50%,.2)',
+  sectionMenuButton: {
+    padding: '.6rem',
+    borderRadius: '.6rem',
+  },
+  sectionContent: {
+    height: '100%',
+    overflowY: 'auto',
+    '&::-webkit-scrollbar': {
+      height: '8px',
+      width: '8px',
     },
-    '&:active': {
-      boxShadow: theme.shadows[1],
-      backgroundColor: emphasize('rgba(0%,0%,50%,.2)', 0.12),
+    '&::-webkit-scrollbar-button': {
+      display: 'block',
+      height: '4px',
+      width: '4px',
+    },
+    '&::-webkit-scrollbar-track-piece': {
+      background: 'rgba(9,30,66,.08)',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      background: '#BFC2CE',
     },
   },
-  icon: {
-    color: 'inherit',
-    display: 'inline',
-  },
-  loadProjectSpinner: {
-    marginLeft: '1rem',
+  task: {
+    display: 'flex',
+    margin:'1rem'
   },
 }));
 
@@ -61,61 +89,59 @@ const Project = ({
     params: { id },
   },
 }) => {
-  const project = useSelector(state => state.projects.projectList[id]);
-  console.log(project);
-  const loadingProject = useSelector(state => state.projects.loadingProject);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchProject(id));
-  }, [dispatch, id]);
   const classes = useStyle();
 
   return (
     <Fragment>
       <ProjectBackground />
-      <Grid container>
-        <AppBar className={classes.header} position="relative">
-          <Toolbar>
-            <Grid container direction="column">
-              <Grid className={classes.headerToolBar} container>
-                <Logo />
-                <IconButton>
-                  <TiThMenu />
+      <Grid direction="column" wrap="nowrap" className={classes.root} container>
+        <Grid item>
+          <ProjectNavbar projectId={id} />
+        </Grid>
+        <Grid item container wrap="nowrap" className={classes.content}>
+          <Grid
+            direction="row"
+            justify="flex-start"
+            alignItems="stretch"
+            wrap="nowrap"
+            container
+            className={classes.container}
+          >
+            <Grid component={Card} className={classes.section} item>
+              <div className={classes.sectionHeader}>
+                <Typography className={classes.sectionTitle}>Backlog </Typography>
+                <IconButton className={classes.sectionMenuButton} size="small">
+                  <GoKebabHorizontal />
                 </IconButton>
-              </Grid>
-              <Grid className={classes.headerToolBar} container>
-                <Breadcrumbs className={classes.breadcrumbs} aria-label="breadcrumb">
-                  <Chip
-                    component={Link}
-                    className={classes.chip}
-                    to="/"
-                    label="Dashboard"
-                    icon={<GoHome className={classes.icon} />}
-                  />
-                  <Chip
-                    component={Link}
-                    className={classes.chip}
-                    to="/projects"
-                    label="Projects"
-                    icon={<AiOutlineFolder className={classes.icon} />}
-                  />
-                  {loadingProject ? (
-                    <CircularProgress color="inherit" size={15} className={classes.loadProjectSpinner} />
-                  ) : (
-                    <Chip
-                      className={classes.chip}
-                      label={project ? project.title : ''}
-                      icon={<AiOutlineFolderOpen className={classes.icon} />}
-                      deleteIcon={<MdExpandMore className={classes.icon} />}
-                      onDelete={alert}
-                    />
-                  )}
-                </Breadcrumbs>
+              </div>
+              <Grid wrap="nowrap" container direction="column" className={classes.sectionContent}>
+                <Card className={classes.task}>test</Card>
+                <Card className={classes.task}>test</Card>
+                <Card className={classes.task}>test</Card>
+                <Card className={classes.task}>test</Card>
+                <Card className={classes.task}>test</Card>
+                <Card className={classes.task}>test</Card>
+                <Card className={classes.task}>test</Card>
+                <Card className={classes.task}>test</Card>
+                <Card className={classes.task}>test</Card>{' '}
+                <Card className={classes.task}>test</Card>
+                <Card className={classes.task}>test</Card>{' '}
+                <Card className={classes.task}>test</Card>
+                <Card className={classes.task}>test</Card>{' '}
+                <Card className={classes.task}>test</Card>
+                <Card className={classes.task}>test</Card>{' '}
+                <Card className={classes.task}>test</Card>
+                <Card className={classes.task}>test</Card>{' '}
+                <Card className={classes.task}>test</Card>
+                <Card className={classes.task}>test</Card>{' '}
+                <Card className={classes.task}>test</Card>
+                <Card className={classes.task}>test</Card>{' '}
+                <Card className={classes.task}>test</Card>
+                <Card className={classes.task}>test</Card>
               </Grid>
             </Grid>
-          </Toolbar>
-        </AppBar>
+          </Grid>
+        </Grid>
       </Grid>
     </Fragment>
   );
