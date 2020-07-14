@@ -1,21 +1,21 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { MenuItem, ListItemIcon } from '@material-ui/core';
-import { GoPencil } from 'react-icons/go';
+import { GoX } from 'react-icons/go';
 
-const EditProjectButton = forwardRef((props, ref) => {
+const DeleteButton = forwardRef((props, ref) => {
   return (
     <MenuItem {...props} innerRef={ref}>
       <ListItemIcon>
-        <GoPencil />
+        <GoX />
       </ListItemIcon>
-      Edit
+      Delete
     </MenuItem>
   );
 });
 
-EditProjectButton.propTypes = {
+DeleteButton.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export default EditProjectButton;
+export default DeleteButton;

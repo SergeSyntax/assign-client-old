@@ -30,7 +30,15 @@ const DropDownMenu = () => {
       <IconButton onClick={handleClick} className={classes.dropDownMenuButton}>
         <MdArrowDropDown />
       </IconButton>
-      <Menu anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
+      <Menu
+        anchorEl={anchorEl}
+        getContentAnchorEl={null}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
         <MenuItem
           onClick={e => {
             e.preventDefault();
