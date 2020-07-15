@@ -67,51 +67,45 @@ const ProjectNavbar = ({ projectId }) => {
   const classes = useStyle();
 
   return (
-    <AppBar className={classes.header} position="relative">
-      <Toolbar>
-        <Grid container direction="column">
-          <Grid className={classes.headerToolBar} container>
-            <Logo />
-            <IconButton>
-              <TiThMenu />
-            </IconButton>
-          </Grid>
-          <Grid className={classes.headerToolBar} container>
-            <Breadcrumbs className={classes.breadcrumbs} aria-label="breadcrumb">
-              <Chip
-                component={Link}
-                className={classes.chip}
-                to="/"
-                label="Dashboard"
-                icon={<GoHome className={classes.icon} />}
-              />
-              <Chip
-                component={Link}
-                className={classes.chip}
-                to="/projects"
-                label="Projects"
-                icon={<AiOutlineFolder className={classes.icon} />}
-              />
-              {loadingProject ? (
-                <CircularProgress
-                  color="inherit"
-                  size={15}
-                  className={classes.loadProjectSpinner}
-                />
-              ) : (
-                <Chip
-                  className={classes.chip}
-                  label={project ? project.title : ''}
-                  icon={<AiOutlineFolderOpen className={classes.icon} />}
-                  deleteIcon={<MdExpandMore className={classes.icon} />}
-                  onDelete={alert}
-                />
-              )}
-            </Breadcrumbs>
-          </Grid>
+    <Grid component={AppBar} item className={classes.header} position="static">
+      <Grid component={Toolbar} container direction="column">
+        <Grid className={classes.headerToolBar} container>
+          <Logo />
+          <IconButton>
+            <TiThMenu />
+          </IconButton>
         </Grid>
-      </Toolbar>
-    </AppBar>
+        <Grid className={classes.headerToolBar} container>
+          <Breadcrumbs className={classes.breadcrumbs} aria-label="breadcrumb">
+            <Chip
+              component={Link}
+              className={classes.chip}
+              to="/"
+              label="Dashboard"
+              icon={<GoHome className={classes.icon} />}
+            />
+            <Chip
+              component={Link}
+              className={classes.chip}
+              to="/projects"
+              label="Projects"
+              icon={<AiOutlineFolder className={classes.icon} />}
+            />
+            {loadingProject ? (
+              <CircularProgress color="inherit" size={15} className={classes.loadProjectSpinner} />
+            ) : (
+              <Chip
+                className={classes.chip}
+                label={project ? project.title : ''}
+                icon={<AiOutlineFolderOpen className={classes.icon} />}
+                deleteIcon={<MdExpandMore className={classes.icon} />}
+                onDelete={alert}
+              />
+            )}
+          </Breadcrumbs>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 
