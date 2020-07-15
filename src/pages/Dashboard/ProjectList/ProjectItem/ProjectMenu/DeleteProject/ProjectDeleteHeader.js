@@ -24,7 +24,7 @@ const ProjectDeleteHeader = ({ handleClose }) => {
     <div className={classes.container}>
       <h2 className={classes.title}> Are you absolutely sure?</h2>
       <IconButton onClick={handleClose} className={classes.closeButton}>
-        <GoX style={classes.closeButtonIcon} />
+        <GoX className={classes.closeButtonIcon} />
       </IconButton>
     </div>
   );
