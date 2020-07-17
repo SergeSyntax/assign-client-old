@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import ProjectBackground from './ProjectBackground';
 import {
   Grid,
@@ -17,6 +17,8 @@ import _ from 'lodash';
 import ProjectNavbar from './ProjectNavbar';
 import { GoKebabHorizontal } from 'react-icons/go';
 import SectionCreate from './SectionCreate/SectionCreate';
+import { useDispatch } from 'react-redux';
+import { fetchSections } from 'actions/sections';
 
 const useStyles = makeStyles(theme => ({
   projectPage: {
@@ -112,6 +114,10 @@ const Project = ({
     params: { id },
   },
 }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchSections(id));
+  }, [dispatch]);
   const classes = useStyles();
 
   return (
