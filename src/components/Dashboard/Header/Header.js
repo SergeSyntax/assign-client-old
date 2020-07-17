@@ -4,7 +4,7 @@ import Logo from 'components/shared/Logo/Logo';
 import UserName from './UserName';
 import DropDownMenu from './DropDownMenu';
 
-const useStyle = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   header: {
     display: 'flex',
     flexDirection: 'row',
@@ -14,7 +14,7 @@ const useStyle = makeStyles(theme => ({
 }));
 
 const Header = () => {
-  const classes = useStyle();
+  const classes = useStyles();
 
   return (
     <AppBar position="relative">

@@ -15,7 +15,7 @@ const schema = Joi.object().keys({
 
 const validate = generateValidation(schema);
 
-const useStyle = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   container: {
     flex: 1,
     display: 'flex',
@@ -25,7 +25,7 @@ const useStyle = makeStyles(theme => ({
 }));
 
 const ProjectForm = ({ onSubmit, handleClose, initialValues = {}, submitLabel }) => {
-  const classes = useStyle();
+  const classes = useStyles();
 
   return (
     <Form

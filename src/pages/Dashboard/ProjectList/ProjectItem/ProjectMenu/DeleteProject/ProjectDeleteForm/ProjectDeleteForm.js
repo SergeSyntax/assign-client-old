@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { deleteProject } from 'actions/projects';
 import ProjectDeleteFormButton from './ProjectDeleteFormButton';
 
-const useStyle = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   form: { backgroundColor: '#f6f8fa', padding: theme.spacing(2) },
   label: { display: 'block', marginBottom: '1rem' },
   // backdrop: {
@@ -17,7 +17,7 @@ const useStyle = makeStyles(theme => ({
 const ProjectDeleteForm = ({ project }) => {
   const [value, setValue] = useState('');
 
-  const classes = useStyle();
+  const classes = useStyles();
 
   const dispatch = useDispatch();
 

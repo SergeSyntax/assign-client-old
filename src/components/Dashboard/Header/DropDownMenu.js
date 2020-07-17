@@ -4,7 +4,7 @@ import { MdArrowDropDown } from 'react-icons/md';
 import Logout from './Logout';
 
 const DropDownMenu = () => {
-  const useStyle = makeStyles(theme => ({
+  const useStyles = makeStyles(theme => ({
     dropDownMenuButton: {
       color: '#fff',
       fontSize: '3rem',
@@ -13,7 +13,7 @@ const DropDownMenu = () => {
   }));
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const classes = useStyle();
+  const classes = useStyles();
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -32,7 +32,6 @@ const DropDownMenu = () => {
         getContentAnchorEl={null}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-        keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >

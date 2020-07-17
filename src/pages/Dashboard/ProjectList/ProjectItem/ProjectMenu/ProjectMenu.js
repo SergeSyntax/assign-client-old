@@ -9,7 +9,7 @@ import EditProject from './EditProject/EditProject';
 import DeleteButton from './DeleteProject/DeleteButton';
 import ProjectDelete from './DeleteProject/ProjectDelete';
 
-const useStyle = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   menu: {
     display: 'flex',
     justifyContent: 'center',
@@ -21,7 +21,7 @@ const useStyle = makeStyles(theme => ({
 }));
 
 const ProjectMenu = ({ project }) => {
-  const classes = useStyle();
+  const classes = useStyles();
 
   // Menu state
   const [anchorEl, setAnchorEl] = React.useState(null);

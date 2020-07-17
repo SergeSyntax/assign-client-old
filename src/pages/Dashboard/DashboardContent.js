@@ -4,7 +4,7 @@ import { FiSearch, FiSettings } from 'react-icons/fi';
 import CreateProject from './CreateProject';
 import ProjectList from './ProjectList/ProjectList';
 
-const useStyle = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   container: {
     flex: 1,
     display: 'flex',
@@ -23,7 +23,7 @@ const useStyle = makeStyles(theme => ({
 }));
 
 const DashboardContent = () => {
-  const classes = useStyle();
+  const classes = useStyles();
 
   return (
     <Fragment>

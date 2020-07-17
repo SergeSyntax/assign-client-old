@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
 
-const useStyle = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   alertMessage: {
     fontSize: '1.4rem',
     padding: theme.spacing(2),
@@ -19,7 +19,7 @@ const useStyle = makeStyles(theme => ({
 }));
 
 const ProjectDeleteContent = ({ project }) => {
-  const classes = useStyle();
+  const classes = useStyles();
 
   return (
     <Fragment>

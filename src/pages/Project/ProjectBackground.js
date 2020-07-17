@@ -2,7 +2,7 @@ import React from 'react';
 import Particles from 'react-particles-js';
 import { makeStyles } from '@material-ui/core';
 
-const useStyle = makeStyles({
+const useStyles = makeStyles({
   root: {
     background: 'radial-gradient( #89f7fe, #66a6ff) #66a6ff',
     position: 'fixed',
@@ -14,7 +14,7 @@ const useStyle = makeStyles({
 });
 
 const ProjectBackground = () => {
-  const classes = useStyle();
+  const classes = useStyles();
   const particlesParams = {
     particles: {
       number: {

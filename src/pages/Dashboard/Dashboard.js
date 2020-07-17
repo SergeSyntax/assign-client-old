@@ -6,7 +6,7 @@ import Header from '../../components/Dashboard/Header/Header';
 import DashboardContent from './DashboardContent';
 import DashboardNavbar from './DashboardNavbar';
 
-const useStyle = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   container: {
     flex: 1,
     display: 'flex',
@@ -28,7 +28,7 @@ const useStyle = makeStyles(theme => ({
 }));
 
 const Dashboard = () => {
-  const classes = useStyle();
+  const classes = useStyles();
 
   return (
     <div className="dashboard">

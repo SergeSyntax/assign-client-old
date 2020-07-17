@@ -16,8 +16,9 @@ import _ from 'lodash';
 
 import ProjectNavbar from './ProjectNavbar';
 import { GoKebabHorizontal } from 'react-icons/go';
+import SectionCreate from './SectionCreate/SectionCreate';
 
-const useStyle = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   projectPage: {
     height: '100vh',
   },
@@ -111,7 +112,7 @@ const Project = ({
     params: { id },
   },
 }) => {
-  const classes = useStyle();
+  const classes = useStyles();
 
   return (
     <Fragment>
@@ -127,8 +128,9 @@ const Project = ({
             wrap="nowrap"
             className={classes.sectionList}
           >
-            {_.times(10, i => (
+            {_.times(3, i => (
               <Grid
+                key={i}
                 container
                 wrap="nowrap"
                 direction="column"
@@ -150,7 +152,7 @@ const Project = ({
 
                 <Grid className={classes.taskList}>
                   {_.times(i % 2 === 0 ? 1 : 30, j => (
-                    <Card elevation={4} style={{ margin: '1rem' }}>
+                    <Card key={j} elevation={4} style={{ margin: '1rem' }}>
                       <CardActionArea>
                         <CardContent>{`Task ${j + 1}`}</CardContent>
                       </CardActionArea>
@@ -170,9 +172,7 @@ const Project = ({
                 </Grid>
               </Grid>
             ))}
-            <Button variant="contained" className={classes.createSectionButton}>
-              create section
-            </Button>
+            <SectionCreate projectId={id} />
           </Grid>
         </Container>
       </Grid>

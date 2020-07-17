@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom';
 import { fetchProject } from 'actions/projects';
 import PropTypes from 'prop-types';
 
-const useStyle = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   header: {
     backgroundColor: 'hsla(0,0%,100%,.24)',
   },
@@ -64,7 +64,7 @@ const ProjectNavbar = ({ projectId }) => {
   useEffect(() => {
     dispatch(fetchProject(projectId));
   }, [dispatch, projectId]);
-  const classes = useStyle();
+  const classes = useStyles();
 
   return (
     <Grid component={AppBar} item className={classes.header} position="static">

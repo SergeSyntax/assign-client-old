@@ -7,15 +7,15 @@ import _ from 'lodash';
 
 const EditProject = ({ project, open, setOpen }) => {
   const dispatch = useDispatch();
-  const savingFinished = useSelector(state => state.projects.savingFinished);
+  const savingInProgress = useSelector(state => state.projects.savingInProgress);
 
   const closeDialog = useCallback(() => {
     setOpen(false);
   }, [setOpen]);
 
   useEffect(() => {
-    if (savingFinished) closeDialog(false);
-  }, [savingFinished, closeDialog]);
+    if (!savingInProgress) closeDialog(false);
+  }, [savingInProgress, closeDialog]);
 
   const onSubmit = values => {
     dispatch(editProject({ id: project.id, values }));

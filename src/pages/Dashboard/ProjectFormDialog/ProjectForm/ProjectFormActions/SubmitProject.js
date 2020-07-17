@@ -3,7 +3,7 @@ import { CircularProgress, Button, makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
-const useStyle = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -23,7 +23,7 @@ const useStyle = makeStyles(theme => ({
 }));
 
 const SubmitProject = ({ text }) => {
-  const classes = useStyle();
+  const classes = useStyles();
   const savingInProgress = useSelector(state => state.projects.savingInProgress);
 
   return (

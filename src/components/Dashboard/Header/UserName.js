@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Avatar, Typography, makeStyles } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 
-const useStyle = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   userIcon: {
     color: theme.palette.primary.main,
     backgroundColor: '#fff',
@@ -20,7 +20,7 @@ const useStyle = makeStyles(theme => ({
 }));
 
 const UserName = () => {
-  const classes = useStyle();
+  const classes = useStyles();
   const user = useSelector(state => state.users.userInfo.name);
 
   return (

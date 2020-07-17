@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, Typography } from '@material-ui/core';
 
-const useStyle = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   errorMessage: {
     color: theme.palette.error.dark,
     paddingTop: '.2rem',
@@ -14,7 +14,7 @@ const useStyle = makeStyles(theme => ({
 }));
 
 const ErrorMsg = ({ meta }) => {
-  const classes = useStyle(meta);
+  const classes = useStyles(meta);
   return (
     <Typography className={classes.errorMessage} variant="caption">
       {meta.error || 'empty'}

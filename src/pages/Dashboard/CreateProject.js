@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const CreateProject = () => {
   const dispatch = useDispatch();
-  const savingFinished = useSelector(state => state.projects.savingFinished);
+  const savingInProgress = useSelector(state => state.projects.savingInProgress);
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -14,8 +14,8 @@ const CreateProject = () => {
   };
 
   useEffect(() => {
-    if (savingFinished) handleClose();
-  }, [savingFinished]);
+    if (!savingInProgress) handleClose();
+  }, [savingInProgress]);
 
   const handleClickOpen = () => {
     setOpen(true);

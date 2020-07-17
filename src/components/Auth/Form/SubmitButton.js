@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core';
 
-const useStyle = makeStyles({
+const useStyles = makeStyles({
   submitButton: {
     '&, &:hover': {
       color: '#fff',
@@ -16,7 +16,7 @@ const useStyle = makeStyles({
 });
 
 const SubmitButton = ({ submitting, value }) => {
-  const classes = useStyle();
+  const classes = useStyles();
 
   return (
     <Button
