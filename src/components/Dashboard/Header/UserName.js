@@ -22,7 +22,9 @@ const useStyles = makeStyles(theme => ({
 const UserName = () => {
   const classes = useStyles();
   const user = useSelector(state => state.users.userInfo.name);
+  const userLetter = user.match(/[A-Z]/g);
 
+  console.log(userLetter);
   return (
     <Button className={classes.userButton}>
       <Avatar className={classes.userIcon}>SK</Avatar>

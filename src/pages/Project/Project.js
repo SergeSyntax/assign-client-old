@@ -1,26 +1,9 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import ProjectBackground from './ProjectBackground';
-import {
-  Grid,
-  makeStyles,
-  Card,
-  IconButton,
-  Typography,
-  CardActionArea,
-  CardContent,
-  Button,
-  Container,
-} from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
+import ProjectNavbar from './ProjectNavbar/ProjectNavbar';
+import ProjectContent from './ProjectContent/ProjectContent';
 import './Project.scss';
-import _ from 'lodash';
-
-import ProjectNavbar from './ProjectNavbar';
-import { GoKebabHorizontal } from 'react-icons/go';
-import SectionCreate from './SectionCreate/SectionCreate';
-import { useDispatch } from 'react-redux';
-import { fetchSections } from 'actions/sections';
-import SectionList from './SectionList';
-import ProjectContent from './ProjectContent';
 
 const useStyles = makeStyles(theme => ({
   projectPage: {

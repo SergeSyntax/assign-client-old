@@ -27,7 +27,6 @@ function* fetchSections({ payload }) {
     const {
       data: { sections },
     } = yield call(api.fetchSections, payload);
-    console.log(sections);
     yield put({ type: FETCH_SECTIONS_SUCCESS, payload: sections });
   } catch (err) {
     yield put({ type: FETCH_SECTIONS_FAILURE });

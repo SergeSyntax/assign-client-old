@@ -33,7 +33,6 @@ const SmallSubmitButton = () => {
             color="primary"
             type="submit"
             variant="contained"
-            style={{ marginRight: '1rem' }}
             disabled={savingInProgress}
           >
             Create

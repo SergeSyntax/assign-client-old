@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Grid, makeStyles } from '@material-ui/core';
-import SectionList from './SectionList';
+import SectionList from './SectionList/SectionList';
 import SectionCreate from './SectionCreate/SectionCreate';
+import { useSelector, useDispatch } from 'react-redux';
+import SectionListSkeleton from './SectionList/SectionListSkeleton';
+import { fetchSections } from 'actions/sections';
 
 const useStyles = makeStyles(theme => ({
   projectContent: {
     padding: '1rem',
     flex: 1,
     display: 'flex',
+    flexDirection: 'column',
+    overflowY: 'hidden',
   },
   sectionList: {
     flex: 1,
     overflowX: 'auto',
+    overflowY: 'hidden',
+
     '&::-webkit-scrollbar': {
       height: '12px',
       width: '12px',
@@ -29,6 +36,12 @@ const useStyles = makeStyles(theme => ({
 
 const ProjectContent = ({ id }) => {
   const classes = useStyles();
+  const loadingSections = useSelector(state => state.sections.loadingSections);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchSections(id));
+  }, [dispatch, id]);
 
   return (
     <Container maxWidth={false} className={classes.projectContent}>
@@ -40,13 +53,21 @@ const ProjectContent = ({ id }) => {
         wrap="nowrap"
         className={classes.sectionList}
       >
-        <SectionList projectId={id} />
-        <SectionCreate projectId={id} />
+        {loadingSections ? (
+          <SectionListSkeleton />
+        ) : (
+          <Fragment>
+            <SectionList projectId={id} />
+            <SectionCreate projectId={id} />
+          </Fragment>
+        )}
       </Grid>
     </Container>
   );
 };
 
-ProjectContent.propTypes = {};
+ProjectContent.propTypes = {
+  id: PropTypes.string.isRequired,
+};
 
 export default ProjectContent;

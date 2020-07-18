@@ -1,11 +1,11 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import CreateSectionButton from './CreateSectionButton';
-import SectionCreatePopover from './SectionCreatePopover';
+import SectionCreatePopover from './SectionCreatePopover/SectionCreatePopover';
 import { useState } from 'react';
-import { Box } from '@material-ui/core';
+import { Box, Grid } from '@material-ui/core';
 
 const SectionCreate = ({ projectId }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -26,7 +26,7 @@ const SectionCreate = ({ projectId }) => {
   const open = Boolean(anchorEl);
 
   return (
-    <Box>
+    <Grid item xs={2}>
       <CreateSectionButton handleClick={handleClick} open={open} />
       <SectionCreatePopover
         open={open}
@@ -34,7 +34,7 @@ const SectionCreate = ({ projectId }) => {
         handleClose={handleClose}
         projectId={projectId}
       />
-    </Box>
+    </Grid>
   );
 };
 
