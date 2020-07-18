@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import {
   Grid,
@@ -12,13 +12,16 @@ import {
   TextField,
   FormHelperText,
   Hidden,
+  ClickAwayListener,
 } from '@material-ui/core';
 import { GoKebabHorizontal, GoTag } from 'react-icons/go';
 import TaskList from './TaskList';
-import { Form } from 'react-final-form';
+import { Form, Field } from 'react-final-form';
 import InputTitleSmall from '../../SectionCreate/SectionCreatePopover/SectionCreateForm/InputTitleSmall';
 import SectionCreateActions from '../../SectionCreate/SectionCreatePopover/SectionCreateForm/SectionCreateActions/SectionCreateActions';
 import Label from 'components/Auth/Form/Field/Label/Label';
+import FieldInput from 'components/Auth/Form/Field/FieldInput';
+import ErrorMsg from 'components/Auth/Form/Field/ErrorMsg';
 
 const useStyles = makeStyles(theme => ({
   section: {
@@ -70,6 +73,15 @@ const useStyles = makeStyles(theme => ({
 
 const Section = ({ section }) => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <Grid
@@ -100,51 +112,52 @@ const Section = ({ section }) => {
 
       <Grid container wrap="nowrap" direction="column" className={classes.taskList}>
         <TaskList />
-        <Card style={{ margin: '1rem', flexShrink: '0', padding: '0 1rem' }}>
-          <CardContent style={{ padding: '1rem' }}>
-            {' '}
-            <Form
-              validate={() => {}}
-              onSubmit={() => {}}
-              render={({ handleSubmit }) => (
-                <form autoComplete="off" onSubmit={handleSubmit} noValidate>
-                  <Grid
-                    item
-                    container
-                    wrap="nowrap"
-                    direction="row"
-                    spacing={1}
-                    alignItems="center"
-                  >
-                    <Grid item>
-                      <GoTag style={{ fontSize: '2rem' }} />
-                    </Grid>
-                    <Grid item>
-                      <TextField variant="standard" label="Task's Title" />
-                      <FormHelperText
-                        // style={{ visibility: 'hidden' }}
-                        error={true}
-                        color="secondary"
-                        id="component-error-text"
-                      >
-                        Error
-                      </FormHelperText>
-                    </Grid>
-                  </Grid>
+        {open && (
+          <ClickAwayListener onClickAway={handleClose}>
+            <Card style={{ margin: '1rem', flexShrink: '0', padding: '0 1rem' }}>
+              <CardContent style={{ padding: '1rem' }}>
+                <Form
+                  validate={() => {}}
+                  onSubmit={values => {
+                    console.log(values);
+                  }}
+                  render={({ handleSubmit }) => (
+                    <form autoComplete="off" onSubmit={handleSubmit} noValidate>
+                      <Field name="title">
+                        {({ input, meta }) => (
+                          <Fragment>
+                            <FieldInput
+                              autoFocus
+                              input={input}
+                              meta={meta}
+                              name="title"
+                              type="text"
+                              variant="standard"
+                              label="Task's Title"
+                            />
+                            <ErrorMsg meta={meta} />
+                          </Fragment>
+                        )}
+                      </Field>
 
-                  <SectionCreateActions handleClose={() => {}} />
-                </form>
-              )}
-            />
-          </CardContent>
-        </Card>
+                      {/* <TextField  /> */}
+                      <SectionCreateActions handleClose={handleClose} />
+                    </form>
+                  )}
+                />
+              </CardContent>
+            </Card>
+          </ClickAwayListener>
+        )}
       </Grid>
 
-      <Grid container justify="center" alignItems="center" className={classes.sectionActions}>
-        <Button fullWidth size="small">
-          + Create Task
-        </Button>
-      </Grid>
+      {!open && (
+        <Grid container justify="center" alignItems="center" className={classes.sectionActions}>
+          <Button onClick={handleOpen} fullWidth size="small">
+            + Create Task
+          </Button>
+        </Grid>
+      )}
     </Grid>
   );
 };
