@@ -44,7 +44,6 @@ const SectionCreatePopover = ({ open, anchorEl, handleClose, projectId }) => {
 
 SectionCreatePopover.propTypes = {
   open: PropTypes.bool.isRequired,
-  anchorEl: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
   projectId: PropTypes.string.isRequired,
 };

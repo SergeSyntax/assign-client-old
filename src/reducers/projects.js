@@ -20,7 +20,7 @@ const initialState = {
   loadingProjects: false,
   savingInProgress: false,
   loadingProject: false,
-  projectList: [],
+  projectList: {},
 };
 
 export default (state = initialState, { type, payload }) => {
