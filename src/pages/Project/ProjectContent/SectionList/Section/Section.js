@@ -22,6 +22,8 @@ import SectionCreateActions from '../../SectionCreate/SectionCreatePopover/Secti
 import Label from 'components/shared/Field/Label/Label';
 import FieldInput from 'components/shared/Field/FieldInput';
 import ErrorMsg from 'components/shared/Field/ErrorMsg';
+import { useDispatch } from 'react-redux';
+import { createTask } from 'actions/tasks';
 
 const useStyles = makeStyles(theme => ({
   section: {
@@ -72,6 +74,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Section = ({ section }) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -119,7 +122,7 @@ const Section = ({ section }) => {
                 <Form
                   validate={() => {}}
                   onSubmit={values => {
-                    console.log(values);
+                    dispatch(createTask({ ...values, sectionId: section.id }));
                   }}
                   render={({ handleSubmit }) => (
                     <form autoComplete="off" onSubmit={handleSubmit} noValidate>
@@ -139,8 +142,6 @@ const Section = ({ section }) => {
                           </Fragment>
                         )}
                       </Field>
-
-                      {/* <TextField  /> */}
                       <SectionCreateActions handleClose={handleClose} />
                     </form>
                   )}
