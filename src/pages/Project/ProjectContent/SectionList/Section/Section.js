@@ -19,9 +19,9 @@ import TaskList from './TaskList';
 import { Form, Field } from 'react-final-form';
 import InputTitleSmall from '../../SectionCreate/SectionCreatePopover/SectionCreateForm/InputTitleSmall';
 import SectionCreateActions from '../../SectionCreate/SectionCreatePopover/SectionCreateForm/SectionCreateActions/SectionCreateActions';
-import Label from 'components/Auth/Form/Field/Label/Label';
-import FieldInput from 'components/Auth/Form/Field/FieldInput';
-import ErrorMsg from 'components/Auth/Form/Field/ErrorMsg';
+import Label from 'components/shared/Field/Label/Label';
+import FieldInput from 'components/shared/Field/FieldInput';
+import ErrorMsg from 'components/shared/Field/ErrorMsg';
 
 const useStyles = makeStyles(theme => ({
   section: {

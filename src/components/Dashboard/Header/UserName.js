@@ -22,12 +22,15 @@ const useStyles = makeStyles(theme => ({
 const UserName = () => {
   const classes = useStyles();
   const user = useSelector(state => state.users.userInfo.name);
-  const userLetter = user.match(/[A-Z]/g);
-
-  console.log(userLetter);
+  const nameLetter = user.match(/[A-Z]/g);
+  const email = useSelector(state => state.users.userInfo.email).toUpperCase();
+  const userLetter =
+    nameLetter && nameLetter[0] && nameLetter[1]
+      ? `${nameLetter[0]}${nameLetter[1]}`
+      : email.substring(0, 1);
   return (
     <Button className={classes.userButton}>
-      <Avatar className={classes.userIcon}>SK</Avatar>
+      <Avatar className={classes.userIcon}>{`${userLetter}`}</Avatar>
       <Typography className={classes.userName}>{user}</Typography>
     </Button>
   );

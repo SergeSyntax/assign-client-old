@@ -8,10 +8,6 @@ import ProjectDeleteFormButton from './ProjectDeleteFormButton';
 const useStyles = makeStyles(theme => ({
   form: { backgroundColor: '#f6f8fa', padding: theme.spacing(2) },
   label: { display: 'block', marginBottom: '1rem' },
-  // backdrop: {
-  //   zIndex: theme.zIndex.drawer + 1,
-  //   color: '#fff',
-  // },
 }));
 
 const ProjectDeleteForm = ({ project }) => {

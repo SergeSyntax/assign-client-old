@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from 'react';
 import { MdLockOutline } from 'react-icons/md';
 import { Field } from 'react-final-form';
-import Label from '../Field/Label/Label';
-import ErrorMsg from '../Field/ErrorMsg';
-import FieldInput from '../Field/FieldInput';
+import Label from '../../../shared/Field/Label/Label';
+import ErrorMsg from '../../../shared/Field/ErrorMsg';
+import FieldInput from '../../../shared/Field/FieldInput';
 import './PasswordInput.scss';
 
 const PasswordInput = () => {
