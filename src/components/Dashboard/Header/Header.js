@@ -1,8 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, makeStyles } from '@material-ui/core';
 import Logo from 'components/shared/Logo/Logo';
-import UserName from './UserName';
-import DropDownMenu from './DropDownMenu';
+import NavbarMenu from '../../shared/NavbarMenu/NavbarMenu';
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -20,10 +19,7 @@ const Header = () => {
     <AppBar position="relative">
       <Toolbar className={classes.header}>
         <Logo />
-        <div>
-          <UserName />
-          <DropDownMenu />
-        </div>
+        <NavbarMenu />
       </Toolbar>
     </AppBar>
   );

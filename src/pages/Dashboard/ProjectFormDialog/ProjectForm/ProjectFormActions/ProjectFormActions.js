@@ -8,7 +8,7 @@ const ProjectFormActions = ({ handleClose, submitLabel }) => {
   return (
     <DialogActions>
       <CancelProject handleClose={handleClose} />
-      <SubmitProject text={submitLabel} />
+      <SubmitProject newProp={5} text={submitLabel} />
     </DialogActions>
   );
 };

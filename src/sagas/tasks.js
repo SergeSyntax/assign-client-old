@@ -1,22 +1,22 @@
 import { CREATE_TASK_SUCCESS, CREATE_TASK_FAILURE, CREATE_TASK_REQUEST } from 'actions/types';
 import { fork, takeLatest, call, put } from 'redux-saga/effects';
 import { requestFailure } from 'actions/errors';
-import * as api from 'api/sections';
+import * as api from 'api/tasks';
 
-function* createSection({ payload }) {
+function* createTask({ payload }) {
   try {
     const {
-      data: { section },
+      data: { task },
     } = yield call(api.createTask, payload);
-    yield put({ type: CREATE_TASK_SUCCESS, payload: section });
+    yield put({ type: CREATE_TASK_SUCCESS, payload: task });
   } catch (err) {
     yield put({ type: CREATE_TASK_FAILURE });
     yield put(requestFailure(err));
   }
 }
 
-function* watchCreateSectionRequest() {
-  yield takeLatest(CREATE_TASK_REQUEST, createSection);
+function* watchCreateTaskRequest() {
+  yield takeLatest(CREATE_TASK_REQUEST, createTask);
 }
 
-export default [fork(watchCreateSectionRequest)];
+export default [fork(watchCreateTaskRequest)];

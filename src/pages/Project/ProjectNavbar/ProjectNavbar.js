@@ -19,8 +19,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchProject } from 'actions/projects';
 import PropTypes from 'prop-types';
-import UserName from 'components/Dashboard/Header/UserName';
-import DropDownMenu from 'components/Dashboard/Header/DropDownMenu';
+import NavbarMenu from 'components/shared/NavbarMenu/NavbarMenu';
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -73,10 +72,7 @@ const ProjectNavbar = ({ projectId }) => {
       <Grid component={Toolbar} container direction="column">
         <Grid className={classes.headerToolBar} container>
           <Logo />
-          <div>
-          <UserName />
-          <DropDownMenu />
-        </div>
+          <NavbarMenu />{' '}
         </Grid>
         <Grid className={classes.headerToolBar} container>
           <Breadcrumbs className={classes.breadcrumbs} aria-label="breadcrumb">

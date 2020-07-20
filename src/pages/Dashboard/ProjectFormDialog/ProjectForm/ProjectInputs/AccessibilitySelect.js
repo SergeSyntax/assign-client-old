@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Field } from 'react-final-form'
-import Label from 'components/shared/Field/Label/Label'
+import Label from 'components/shared/Field/Label'
 import { GoTag } from 'react-icons/go'
 import { Select, MenuItem } from '@material-ui/core'
 import ErrorMsg from 'components/shared/Field/ErrorMsg'

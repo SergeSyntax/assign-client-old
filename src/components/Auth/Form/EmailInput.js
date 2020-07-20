@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { MdMailOutline } from 'react-icons/md';
 import { Field } from 'react-final-form';
-import Label from '../../shared/Field/Label/Label';
+import Label from '../../shared/Field/Label';
 import ErrorMsg from '../../shared/Field/ErrorMsg';
 import FieldInput from '../../shared/Field/FieldInput';
 

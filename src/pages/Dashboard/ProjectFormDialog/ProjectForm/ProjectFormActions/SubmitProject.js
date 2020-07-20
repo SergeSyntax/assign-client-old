@@ -4,38 +4,40 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    alignItems: 'center',
+  button: {
+    '&:disabled': {
+      backgroundColor: 'inherit',
+    },
   },
   wrapper: {
-    margin: theme.spacing(1),
     position: 'relative',
+    display: 'inline-block',
   },
-  buttonProgress: {
-    color: theme.palette.primary.main,
+  buttonWrapper: {
     position: 'absolute',
     top: '50%',
     left: '50%',
-    marginTop: -12,
-    marginLeft: -12,
+    transform: 'translate(-50%, -39%)',
+  },
+  buttonProgress: {
+    color: theme.palette.primary.main,
   },
 }));
 
-const SubmitProject = ({ text }) => {
+const SubmitProject = ({ text, ...rest }) => {
   const classes = useStyles();
   const savingInProgress = useSelector(state => state.projects.savingInProgress);
 
   return (
     <div className={classes.wrapper}>
-      <div className={classes.root}>
-        <div className={classes.wrapper}>
-          <Button variant="contained" color="primary" type="submit" disabled={savingInProgress}>
-            {text}
-          </Button>
-          {savingInProgress && <CircularProgress size={24} className={classes.buttonProgress} />}
-        </div>
-      </div>
+      <Button variant="contained" color="primary" type="submit" disabled={savingInProgress}>
+        <div style={{ visibility: savingInProgress ? 'hidden' : 'visible' }}>{text}</div>
+        {savingInProgress && (
+          <span className={classes.buttonWrapper}>
+            <CircularProgress size={24} className={classes.buttonProgress} />
+          </span>
+        )}
+      </Button>
     </div>
   );
 };
