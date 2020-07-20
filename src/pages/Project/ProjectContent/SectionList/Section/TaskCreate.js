@@ -1,16 +1,34 @@
-import React, { Fragment, useRef } from 'react';
-import { ClickAwayListener, Card, CardContent } from '@material-ui/core';
+import React, { Fragment, useRef, useEffect } from 'react';
+import { ClickAwayListener, Card, CardContent, TextField } from '@material-ui/core';
 import { Form, Field } from 'react-final-form';
 import ErrorMsg from 'components/shared/Field/ErrorMsg';
 import SectionCreateActions from '../../SectionCreate/SectionCreatePopover/SectionCreateForm/SectionCreateActions/SectionCreateActions';
-import FieldInput from 'components/shared/Field/FieldInput';
 import { useDispatch } from 'react-redux';
 import { createTask } from 'actions/tasks';
+import { createRef } from 'react';
 
 const TaskCreate = ({ sectionId, handleClose }) => {
   const dispatch = useDispatch();
   const ref = useRef();
 
+  const TextInput = ({ input, meta: { touched, error }, ...rest }) => {
+    return (
+      <TextField
+        multiline
+        {...input}
+        id={input.name}
+        fullWidth
+        error={touched && error && true}
+        className="input"
+        variant="outlined"
+        {...rest}
+      />
+    );
+  };
+
+  useEffect(() => {
+    ref.current.scrollIntoView({ behavior: 'smooth' });
+  }, []);
 
   return (
     <ClickAwayListener onClickAway={handleClose}>
@@ -26,8 +44,8 @@ const TaskCreate = ({ sectionId, handleClose }) => {
                 <Field name="title">
                   {({ input, meta }) => (
                     <Fragment>
-                      <FieldInput
-                        // autoFocus
+                      <TextInput
+                        autoFocus
                         input={input}
                         meta={meta}
                         name="title"

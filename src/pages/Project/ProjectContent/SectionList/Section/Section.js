@@ -1,10 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Typography, IconButton, Button, makeStyles, Card } from '@material-ui/core';
 import { GoKebabHorizontal, GoPlus } from 'react-icons/go';
 import TaskList from './TaskList';
 
 import TaskCreate from './TaskCreate';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   section: {
@@ -57,14 +58,19 @@ const useStyles = makeStyles(theme => ({
 const Section = ({ section }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const savingInProgress = useSelector(state => state.sections.savingInProgress);
   const ref = useRef();
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  useEffect(() => {
+    if (!savingInProgress) handleClose(null);
+  }, [savingInProgress]);
+
+  const handleOpen = () => {
+    setOpen(true);
   };
 
   return (
