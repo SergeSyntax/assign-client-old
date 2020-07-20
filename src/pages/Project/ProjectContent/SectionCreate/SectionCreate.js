@@ -26,7 +26,7 @@ const SectionCreate = ({ projectId }) => {
   const open = Boolean(anchorEl);
 
   return (
-    <Grid item xs={2}>
+    <Grid item xs={11} sm={4} md={3} lg={2}>
       <CreateSectionButton handleClick={handleClick} open={open} />
       <SectionCreatePopover
         open={open}

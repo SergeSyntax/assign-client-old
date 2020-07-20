@@ -6,7 +6,6 @@ import { forwardRef } from 'react';
 const useStyles = makeStyles(theme => ({
   createSectionButton: {
     margin: '1rem 0',
-    width: '20rem',
     minWidth: '20rem',
 
     fontSize: '1.6rem',
@@ -30,6 +29,7 @@ const CreateSectionButton = forwardRef(({ open, handleClick }, ref) => {
   return (
     <Fade in={!open}>
       <Button
+        fullWidth
         innerRef={ref}
         onClick={handleClick}
         variant="contained"

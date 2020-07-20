@@ -22,6 +22,10 @@ const useStyles = makeStyles(theme => ({
   },
   sectionTitle: {
     fontWeight: 'bold',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    // width: '100%',
   },
   sectionMenuButton: {
     padding: '.6rem',

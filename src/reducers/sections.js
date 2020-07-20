@@ -7,6 +7,7 @@ import {
   FETCH_SECTIONS_SUCCESS,
   CREATE_TASK_REQUEST,
   CREATE_TASK_SUCCESS,
+  CREATE_TASK_FAILURE,
 } from 'actions/types';
 import _ from 'lodash';
 
@@ -36,6 +37,7 @@ export default (state = initialState, { type, payload }) => {
     case CREATE_TASK_REQUEST:
       return { ...state, savingInProgress: true };
     case CREATE_PROJECT_FAILURE:
+    case CREATE_TASK_FAILURE:
       return { ...state, savingInProgress: false };
     case CREATE_SECTION_SUCCESS:
       return {
