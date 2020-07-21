@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, makeStyles, Grid, Container } from '@material-ui/core';
+import { Divider, makeStyles, Grid, Container, Hidden } from '@material-ui/core';
 import './Dashboard.scss';
 import './Dashboard.scss';
 import Header from '../../components/Dashboard/Header/Header';
@@ -24,6 +24,9 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     padding: '0 2rem',
+    [theme.breakpoints.down('md')]: {
+      margin: '0 auto',
+    },
   },
 }));
 
@@ -35,16 +38,19 @@ const Dashboard = () => {
       <Header />
       <Container className={classes.container} maxWidth="lg">
         <Grid container alignItems="stretch" className={classes.gridRoot}>
-          <Grid item sm={3}>
-            <DashboardNavbar />
-          </Grid>
-          <Divider orientation="vertical" />
+          <Hidden mdDown>
+            <Grid item lg={3}>
+              <DashboardNavbar />
+            </Grid>
+            <Divider orientation="vertical" />
+          </Hidden>
 
-          <Grid className={classes.content} sm={6} item>
+          <Grid className={classes.content} sm={11} md={8} lg={6} item>
             <DashboardContent />
           </Grid>
-
-          <Divider orientation="vertical" />
+          <Hidden mdDown>
+            <Divider orientation="vertical" />
+          </Hidden>
         </Grid>
       </Container>
     </div>

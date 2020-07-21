@@ -13,10 +13,6 @@ const useStyles = makeStyles(theme => ({
 const calculateProjectSkeletonUnits = () =>
   Math.abs(Number.parseInt((window.innerHeight - 369) / 138)) + 2;
 
-console.log(calculateProjectSkeletonUnits());
-
-console.log(window.innerHeight);
-
 const ProjectSkeleton = () => {
   const classes = useStyles();
 
