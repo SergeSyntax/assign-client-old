@@ -1,7 +1,6 @@
 import React from 'react';
 import { CircularProgress, Button, makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -24,15 +23,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SubmitProject = ({ text, ...rest }) => {
+const SubmitButton = ({ text = 'Submit', inProgress, ...rest }) => {
   const classes = useStyles();
-  const savingInProgress = useSelector(state => state.projects.savingInProgress);
 
   return (
     <div className={classes.wrapper}>
-      <Button variant="contained" color="primary" type="submit" disabled={savingInProgress}>
-        <div style={{ visibility: savingInProgress ? 'hidden' : 'visible' }}>{text}</div>
-        {savingInProgress && (
+      <Button type="submit" disabled={inProgress} {...rest}>
+        <div style={{ visibility: inProgress ? 'hidden' : 'visible' }}>{text}</div>
+        {inProgress && (
           <span className={classes.buttonWrapper}>
             <CircularProgress size={24} className={classes.buttonProgress} />
           </span>
@@ -42,8 +40,9 @@ const SubmitProject = ({ text, ...rest }) => {
   );
 };
 
-SubmitProject.prototype = {
+SubmitButton.prototype = {
   text: PropTypes.string.isRequired,
+  inProgress: PropTypes.bool.isRequired,
 };
 
-export default SubmitProject;
+export default SubmitButton;

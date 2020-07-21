@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardActionArea, CardContent } from '@material-ui/core';
-import _ from 'lodash';
 import { useSelector } from 'react-redux';
 
 const TaskList = ({ sectionId }) => {

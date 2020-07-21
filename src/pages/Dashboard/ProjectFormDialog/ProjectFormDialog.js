@@ -10,6 +10,7 @@ const ProjectDialog = ({
   onSubmit,
   initialValues,
   submitLabel,
+  savingInProgress,
 }) => {
   return (
     <Dialog open={open} onClose={handleClose}>
@@ -20,6 +21,7 @@ const ProjectDialog = ({
           onSubmit={onSubmit}
           handleClose={handleClose}
           submitLabel={submitLabel}
+          savingInProgress={savingInProgress}
         />
       </DialogContent>
     </Dialog>
@@ -33,6 +35,7 @@ ProjectDialog.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
   submitLabel: PropTypes.string.isRequired,
+  savingInProgress: PropTypes.bool.isRequired,
 };
 
 export default ProjectDialog;

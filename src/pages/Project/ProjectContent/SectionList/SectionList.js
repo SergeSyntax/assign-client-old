@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchSections } from 'actions/sections';
+import { useSelector } from 'react-redux';
 import Section from './Section/Section';
-import SectionListSkeleton from './SectionListSkeleton';
 
 const SectionList = () => {
   const sectionsList = useSelector(state => state.sections.sectionsList);

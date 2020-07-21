@@ -14,7 +14,7 @@ const schema = Joi.object().keys({
 
 const validate = generateValidation(schema);
 
-const SectionCreateForm = ({ handleClose, projectId }) => {
+const SectionCreateForm = ({ handleClose, projectId, savingInProgress }) => {
   const dispatch = useDispatch();
 
   const onSubmit = values => {
@@ -28,7 +28,7 @@ const SectionCreateForm = ({ handleClose, projectId }) => {
       render={({ handleSubmit }) => (
         <form autoComplete="off" onSubmit={handleSubmit} noValidate>
           <InputTitleSmall />
-          <SectionCreateActions handleClose={handleClose} />
+          <SectionCreateActions handleClose={handleClose} savingInProgress={savingInProgress} />
         </form>
       )}
     />
@@ -38,6 +38,7 @@ const SectionCreateForm = ({ handleClose, projectId }) => {
 SectionCreateForm.propTypes = {
   projectId: PropTypes.string.isRequired,
   handleClose: PropTypes.func.isRequired,
+  savingInProgress: PropTypes.bool.isRequired,
 };
 
 export default SectionCreateForm;

@@ -2,7 +2,6 @@ import React from 'react';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { Grid, makeStyles, Card } from '@material-ui/core';
 import _ from 'lodash';
-import { v4 as uuidv4 } from 'uuid';
 
 const useStyles = makeStyles(theme => ({
   section: {

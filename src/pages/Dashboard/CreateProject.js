@@ -34,6 +34,7 @@ const CreateProject = () => {
         onSubmit={onSubmit}
         title="Create a new project"
         submitLabel="Create"
+        savingInProgress={savingInProgress}
       />
     </Fragment>
   );

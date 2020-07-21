@@ -5,8 +5,8 @@ import SectionCreateForm from './SectionCreateForm/SectionCreateForm';
 
 const useStyles = makeStyles(theme => ({
   createSectionCard: {
-    width: '20rem',
-    minWidth: '20rem',
+    width: '25rem',
+    minWidth: '25rem',
     background: '#EBECF0',
   },
   createSectionMenu: {
@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     width: 'inherit',
   },
 }));
-const SectionCreatePopover = ({ open, anchorEl, handleClose, projectId }) => {
+const SectionCreatePopover = ({ open, anchorEl, handleClose, projectId, savingInProgress }) => {
   const classes = useStyles();
 
   return (
@@ -35,7 +35,11 @@ const SectionCreatePopover = ({ open, anchorEl, handleClose, projectId }) => {
     >
       <Card className={classes.createSectionCard} elevation={4}>
         <CardContent>
-          <SectionCreateForm projectId={projectId} handleClose={handleClose} />
+          <SectionCreateForm
+            projectId={projectId}
+            handleClose={handleClose}
+            savingInProgress={savingInProgress}
+          />
         </CardContent>
       </Card>
     </Popover>
@@ -46,6 +50,7 @@ SectionCreatePopover.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
   projectId: PropTypes.string.isRequired,
+  savingInProgress: PropTypes.bool.isRequired,
 };
 
 export default SectionCreatePopover;

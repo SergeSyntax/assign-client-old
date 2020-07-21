@@ -6,7 +6,8 @@ import { forwardRef } from 'react';
 const useStyles = makeStyles(theme => ({
   createSectionButton: {
     margin: '1rem 0',
-    minWidth: '20rem',
+    width: '25rem',
+    minWidth: '25rem',
 
     fontSize: '1.6rem',
     backgroundColor: 'hsla(0,0%,100%,.14)',

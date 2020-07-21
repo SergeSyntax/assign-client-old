@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Typography, IconButton, Button, makeStyles, Card } from '@material-ui/core';
 import { GoKebabHorizontal, GoPlus } from 'react-icons/go';
@@ -63,7 +63,6 @@ const Section = ({ section }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const savingInProgress = useSelector(state => state.sections.savingInProgress);
-  const ref = useRef();
 
   const handleClose = () => {
     setOpen(false);

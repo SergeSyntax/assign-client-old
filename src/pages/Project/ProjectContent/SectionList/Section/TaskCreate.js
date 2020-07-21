@@ -5,7 +5,6 @@ import ErrorMsg from 'components/shared/Field/ErrorMsg';
 import SectionCreateActions from '../../SectionCreate/SectionCreatePopover/SectionCreateForm/SectionCreateActions/SectionCreateActions';
 import { useDispatch } from 'react-redux';
 import { createTask } from 'actions/tasks';
-import { createRef } from 'react';
 
 const TaskCreate = ({ sectionId, handleClose }) => {
   const dispatch = useDispatch();

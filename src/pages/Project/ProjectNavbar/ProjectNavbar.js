@@ -4,14 +4,12 @@ import {
   AppBar,
   Toolbar,
   makeStyles,
-  IconButton,
   Breadcrumbs,
   Chip,
   emphasize,
   CircularProgress,
 } from '@material-ui/core';
 import Logo from 'components/shared/Logo/Logo';
-import { TiThMenu } from 'react-icons/ti';
 import { GoHome } from 'react-icons/go';
 import { AiOutlineFolder, AiOutlineFolderOpen } from 'react-icons/ai';
 import { MdExpandMore } from 'react-icons/md';

@@ -29,6 +29,7 @@ const EditProject = ({ project, open, setOpen }) => {
       title={project.title}
       initialValues={_.pick(project, ['title', 'accessibility'])}
       submitLabel="Update"
+      savingInProgress={savingInProgress}
     />
   );
 };
