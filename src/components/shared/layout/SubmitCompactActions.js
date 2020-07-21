@@ -1,11 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
-import CancelIconButton from './CancelIconButton';
+import CancelIconButton from '../Buttons/CancelIconButton';
 import PropTypes from 'prop-types';
 import SubmitButton from 'components/shared/Buttons/SubmitButton';
 
 const useStyles = makeStyles(theme => ({
-  sectionCreateActions: {
+  submitCompactActions: {
     marginTop: '1rem',
     display: 'flex',
     justifyContent: 'flex-end',
@@ -15,11 +15,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SectionCreateActions = ({ handleClose, savingInProgress }) => {
+
+
+const SubmitCompactActions = ({ handleClose, savingInProgress }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.sectionCreateActions}>
+    <div className={classes.submitCompactActions}>
       <div className={classes.cancelIconButton}>
         <CancelIconButton handleClose={handleClose} />
       </div>
@@ -34,9 +36,9 @@ const SectionCreateActions = ({ handleClose, savingInProgress }) => {
   );
 };
 
-SectionCreateActions.prototype = {
+SubmitCompactActions.prototype = {
   handleClose: PropTypes.func.isRequired,
   savingInProgress: PropTypes.bool.isRequired,
 };
 
-export default SectionCreateActions;
+export default SubmitCompactActions;

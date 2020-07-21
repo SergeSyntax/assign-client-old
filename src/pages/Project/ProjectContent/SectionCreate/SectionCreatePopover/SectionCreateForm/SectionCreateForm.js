@@ -5,7 +5,7 @@ import generateValidation from 'utils/generateValidation';
 import { useDispatch } from 'react-redux';
 import { createSection } from 'actions/sections';
 import InputTitleSmall from './InputTitleSmall';
-import SectionCreateActions from './SectionCreateActions/SectionCreateActions';
+import SubmitCompactActions from '../../../../../../components/shared/layout/SubmitCompactActions';
 import { Form } from 'react-final-form';
 
 const schema = Joi.object().keys({
@@ -28,7 +28,7 @@ const SectionCreateForm = ({ handleClose, projectId, savingInProgress }) => {
       render={({ handleSubmit }) => (
         <form autoComplete="off" onSubmit={handleSubmit} noValidate>
           <InputTitleSmall />
-          <SectionCreateActions handleClose={handleClose} savingInProgress={savingInProgress} />
+          <SubmitCompactActions handleClose={handleClose} savingInProgress={savingInProgress} />
         </form>
       )}
     />
