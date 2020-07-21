@@ -18,7 +18,7 @@ const ProjectList = () => {
 
   return (
     <Grid item container direction="column" spacing={2}>
-      {true ? (
+      {loadingProjects ? (
         <ProjectSkeleton />
       ) : (
         <Fragment>
