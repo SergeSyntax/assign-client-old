@@ -49,7 +49,13 @@ const SectionContent = ({ section }) => {
     <Fragment>
       <Grid container wrap="nowrap" direction="column" className={classes.taskList}>
         <TaskList sectionId={section.id} />
-        {open && <TaskCreate sectionId={section.id} handleClose={handleClose} />}
+        {open && (
+          <TaskCreate
+            savingInProgress={savingInProgress}
+            sectionId={section.id}
+            handleClose={handleClose}
+          />
+        )}
       </Grid>
 
       <SectionActions open={open} handleOpen={handleOpen} />

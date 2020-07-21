@@ -23,8 +23,6 @@ const SectionCreate = ({ projectId }) => {
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
     ref.current.scrollIntoView();
-
-    window.ref = ref.current;
   };
 
   const open = Boolean(anchorEl);

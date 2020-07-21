@@ -3,15 +3,15 @@ import { IconButton, Menu, makeStyles } from '@material-ui/core';
 import { MdArrowDropDown } from 'react-icons/md';
 import Logout from './Logout';
 
-const DropDownMenu = () => {
-  const useStyles = makeStyles(theme => ({
-    dropDownMenuButton: {
-      color: '#fff',
-      fontSize: '3rem',
-      padding: theme.spacing(1),
-    },
-  }));
+const useStyles = makeStyles(theme => ({
+  dropDownMenuButton: {
+    color: '#fff',
+    fontSize: '3rem',
+    padding: theme.spacing(1),
+  },
+}));
 
+const DropDownMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const classes = useStyles();
 

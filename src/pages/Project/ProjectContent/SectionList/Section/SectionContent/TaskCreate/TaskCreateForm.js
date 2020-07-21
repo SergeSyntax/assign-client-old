@@ -15,7 +15,7 @@ const schema = Joi.object().keys({
 
 const validate = generateValidation(schema);
 
-const TaskCreateForm = forwardRef(({ sectionId, handleClose }, ref) => {
+const TaskCreateForm = forwardRef(({ sectionId, handleClose, savingInProgress }, ref) => {
   const dispatch = useDispatch();
 
   return (
@@ -44,7 +44,7 @@ const TaskCreateForm = forwardRef(({ sectionId, handleClose }, ref) => {
               </Fragment>
             )}
           </Field>
-          <SubmitCompactActions handleClose={handleClose} />
+          <SubmitCompactActions handleClose={handleClose} savingInProgress={savingInProgress} />
         </form>
       )}
     />
@@ -54,6 +54,7 @@ const TaskCreateForm = forwardRef(({ sectionId, handleClose }, ref) => {
 TaskCreateForm.propTypes = {
   sectionId: PropTypes.string.isRequired,
   handleClose: PropTypes.func.isRequired,
+  savingInProgress: PropTypes.bool.isRequired,
 };
 
 export default TaskCreateForm;
