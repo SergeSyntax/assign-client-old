@@ -19,8 +19,8 @@
   position: relative;
   background-image: linear-gradient(rgba(#434343, 0.8), rgba(#000000, 0.8)),
     url('~assets/images/landing-logo-image.jpg');
-  
-    background-size: cover;
+
+  background-size: cover;
   padding: 3rem;
   ::selection {
     background-color: #fff;
@@ -39,4 +39,20 @@
     }
     text-align: center;
   }
+  @media only screen and (max-width: 1920px) {
+    background-image: linear-gradient(rgba(#434343, 0.8), rgba(#000000, 0.8)),
+      url('~assets/images/landing-logo-image-1920.jpg');
+  }
+  @media only screen and (max-width: 1366px) {
+    background-image: linear-gradient(rgba(#434343, 0.8), rgba(#000000, 0.8)),
+      url('~assets/images/landing-logo-image-1366.jpg');
+  }
+  @media only screen and (max-width: 800px) {
+    background-image: linear-gradient(rgba(#434343, 0.8), rgba(#000000, 0.8)),
+      url('~assets/images/landing-logo-image-800.jpg');
+  }
+  // @media only screen and (max-width: 480px) {
+  //   background-image: linear-gradient(rgba(#434343, 0.8), rgba(#000000, 0.8)),
+  //     url('~assets/images/landing-logo-image-480.jpg');
+  // }
 }

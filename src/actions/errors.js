@@ -13,3 +13,4 @@ export const requestFailureAlert = payload => ({
 export const clearFailureAlert = () => ({
   type: CLEAR_FAILURE_ALERT,
 });
+
