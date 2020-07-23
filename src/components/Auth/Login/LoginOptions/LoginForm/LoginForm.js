@@ -4,7 +4,7 @@ import Joi from '@hapi/joi';
 import generateValidation from 'utils/generateValidation';
 import EmailInput from 'components/Auth/Form/EmailInput';
 import PasswordInput from 'components/Auth/Form/PasswordInput';
-import SubmitButton from '../../../Form/SubmitButton';
+import UserSubmitButton from '../../../Form/UserSubmitButton';
 import './LoginForm.scss';
 import { useDispatch } from 'react-redux';
 import { userLogin } from 'actions/users';
@@ -30,7 +30,7 @@ const LoginForm = () => {
         <form autoComplete="off" onSubmit={handleSubmit} className="login__form" noValidate>
           <EmailInput />
           <PasswordInput />
-          <SubmitButton submitting={submitting} value="Sign In" />
+          <UserSubmitButton submitting={submitting} value="Sign In" />
         </form>
       )}
     />

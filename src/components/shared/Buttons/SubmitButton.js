@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(theme => ({
   button: {
+    textTransform: 'capitalize',
     '&:disabled': {
-      backgroundColor: 'inherit',
+      backgroundColor: theme.palette.primary.main,
     },
   },
   wrapper: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     transform: 'translate(-50%, -39%)',
   },
   buttonProgress: {
-    color: theme.palette.primary.main,
+    color: '#fff',
   },
 }));
 
@@ -28,7 +29,7 @@ const SubmitButton = ({ text = 'Submit', inProgress, ...rest }) => {
 
   return (
     <div className={classes.wrapper}>
-      <Button type="submit" disabled={inProgress} {...rest}>
+      <Button className={classes.button} type="submit" disabled={inProgress} {...rest}>
         <div style={{ visibility: inProgress ? 'hidden' : 'visible' }}>{text}</div>
         {inProgress && (
           <span className={classes.buttonWrapper}>

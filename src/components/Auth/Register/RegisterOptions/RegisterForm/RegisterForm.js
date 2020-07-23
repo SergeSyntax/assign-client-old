@@ -6,7 +6,7 @@ import { Form } from 'react-final-form';
 import Joi from '@hapi/joi';
 import generateValidation from 'utils/generateValidation';
 import './RegisterForm.scss';
-import SubmitButton from '../../../Form/SubmitButton';
+import UserSubmitButton from '../../../Form/UserSubmitButton';
 import { useDispatch } from 'react-redux';
 import { createUser } from 'actions/users';
 
@@ -33,7 +33,7 @@ const RegisterForm = () => {
           <NameInput />
           <EmailInput />
           <PasswordInput />
-          <SubmitButton submitting={submitting} value="Agree & Join" />
+          <UserSubmitButton submitting={submitting} value="Agree & Join" />
         </form>
       )}
     />
