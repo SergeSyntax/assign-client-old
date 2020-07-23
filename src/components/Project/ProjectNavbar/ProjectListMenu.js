@@ -8,15 +8,20 @@ const useStyles = makeStyles(theme => ({
   menu: {
     '& .MuiPaper-root': {
       marginTop: '.6rem',
-      backgroundColor: 'hsla(206, 100%, 79%,.64)',
-      color: '#fff',
+      backgroundColor: '#EBECF0',
+      fontWeight: 100,
+    },
+  },
+  menuItem: {
+    '&:hover': {
+      backgroundColor: 'hsla(206, 100%, 79%,.3)',
     },
   },
   loading: {
     background: 'transparent',
     height: 2,
     '& .MuiLinearProgress-barColorPrimary': {
-      background: '#fff',
+      background: '#000',
     },
   },
 }));
@@ -41,6 +46,7 @@ const ProjectListMenu = ({ anchorEl, closeMenu, projectId }) => {
 
       {Object.values(projects).map(project => (
         <MenuItem
+          className={classes.menuItem}
           style={{ visibility: loadingProjects ? 'hidden' : 'visible' }}
           onClick={closeMenu}
           component={Link}

@@ -1,6 +1,6 @@
 import React from 'react';
 import './LoginRegisterOffer.scss';
-import Link from 'components/Auth/Link/Link';
+import Link from 'components/shared/Link/Link';
 
 const LoginRegisterOffer = () => {
   return (

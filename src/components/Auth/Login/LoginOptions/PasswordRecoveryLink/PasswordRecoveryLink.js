@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from 'components/Auth/Link/Link'
+import Link from 'components/shared/Link/Link'
 import './PasswordRecoveryLink.scss'
 
 export const PasswordRecoveryLink = () => {
