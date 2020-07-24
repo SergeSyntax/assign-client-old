@@ -5,6 +5,8 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGIN_REQUEST,
   CREATE_USER_REQUEST,
+  CREATE_USER_FAILURE,
+  USER_LOGIN_FAILURE,
 } from 'actions/types';
 import AuthCookie from 'utils/AuthCookie';
 
@@ -33,6 +35,8 @@ export default (state = initialState, { type, payload }) => {
         userInfo: { ...state.userInfo, ...payload.userInfo },
       };
 
+    case CREATE_USER_FAILURE:
+    case USER_LOGIN_FAILURE:
     case FETCH_USER_FAILURE:
       return {
         loading: false,

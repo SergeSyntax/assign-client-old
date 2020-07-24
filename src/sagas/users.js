@@ -11,6 +11,8 @@ import {
   USER_LOGOUT_REQUEST,
   FETCH_USER_SUCCESS,
   FETCH_USER_FAILURE,
+  CREATE_USER_FAILURE,
+  USER_LOGIN_FAILURE,
 } from 'actions/types';
 import Axios from 'axios';
 import AuthCookie from 'utils/AuthCookie';
@@ -40,6 +42,8 @@ function* createUser({ payload }) {
     });
     yield call(redirect);
   } catch (err) {
+    yield put({ type: CREATE_USER_FAILURE });
+
     yield put(requestFailure(err));
   }
 }
@@ -58,6 +62,8 @@ function* useLogin({ payload }) {
     });
     yield call(redirect);
   } catch (err) {
+    yield put({ type: USER_LOGIN_FAILURE });
+
     yield put(requestFailure(err));
   }
 }
