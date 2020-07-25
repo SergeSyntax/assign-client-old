@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ProjectContent = ({ id }) => {
+const ProjectContent = ({ projectId }) => {
   const classes = useStyles();
   const loadingSections = useSelector(state => state.sections.loadingSections);
 
@@ -51,8 +51,8 @@ const ProjectContent = ({ id }) => {
           <SectionListSkeleton />
         ) : (
           <Fragment>
-            <SectionList projectId={id} />
-            <SectionCreate projectId={id} />
+            <SectionList projectId={projectId} />
+            <SectionCreate projectId={projectId} />
           </Fragment>
         )}
       </Grid>
@@ -61,7 +61,7 @@ const ProjectContent = ({ id }) => {
 };
 
 ProjectContent.propTypes = {
-  id: PropTypes.string.isRequired,
+  projectId: PropTypes.string.isRequired,
 };
 
 export default ProjectContent;

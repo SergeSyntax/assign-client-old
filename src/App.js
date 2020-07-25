@@ -13,7 +13,7 @@ import Loading from 'pages/Loading/Loading';
 import Dashboard from 'pages/Dashboard/Dashboard';
 import { fetchUser } from 'actions/users';
 import { Fragment } from 'react';
-import Project from 'pages/Project';
+import Project from 'pages/Board/Project';
 import Register from 'pages/Auth/Register';
 
 function App() {

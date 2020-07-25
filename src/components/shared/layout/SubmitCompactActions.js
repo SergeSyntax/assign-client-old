@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-end',
   },
   cancelIconButton: {
-    marginRight: '1rem',
+    margin: '1rem',
   },
 }));
 

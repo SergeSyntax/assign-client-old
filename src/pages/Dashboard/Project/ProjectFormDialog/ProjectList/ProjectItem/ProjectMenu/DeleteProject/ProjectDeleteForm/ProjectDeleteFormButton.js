@@ -38,20 +38,6 @@ const ProjectDeleteFormButton = ({ disabled }) => {
   const classes = useStyles();
   const savingInProgress = useSelector(state => state.projects.savingInProgress);
   return (
-    // <div className={classes.wrapper}>
-    //   <Button
-    //     className={classes.button}
-    //     fullWidth
-    //     size="small"
-    //     color="secondary"
-    //     variant="contained"
-
-    //   >
-
-    //   </Button>
-    //   {savingInProgress && <CircularProgress size={25} className={classes.buttonProgress} />}
-    // </div>
-
     <div className={classes.wrapper}>
       <Button
         className={classes.button}

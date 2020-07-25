@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { IconButton, makeStyles } from '@material-ui/core';
-import { GoX } from 'react-icons/go';
+import { makeStyles } from '@material-ui/core';
+import CancelIconButton from 'components/shared/Buttons/CancelIconButton';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -9,6 +9,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#f6f8fa',
+    paddingRight: '1rem',
   },
   title: {
     fontSize: '1.5rem',
@@ -23,9 +24,7 @@ const ProjectDeleteHeader = ({ handleClose }) => {
   return (
     <div className={classes.container}>
       <h2 className={classes.title}> Are you absolutely sure?</h2>
-      <IconButton onClick={handleClose} className={classes.closeButton}>
-        <GoX className={classes.closeButtonIcon} />
-      </IconButton>
+      <CancelIconButton handleClose={handleClose} />
     </div>
   );
 };

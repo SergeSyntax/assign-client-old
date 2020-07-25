@@ -14,6 +14,7 @@ import {
   DELETE_PROJECT_REQUEST,
   DELETE_PROJECT_SUCCESS,
   DELETE_PROJECT_FAILURE,
+  FETCH_PROJECT_DATA_FAILURE,
 } from 'actions/types';
 import { requestAlert } from 'actions/alerts';
 import * as api from 'api/projects';
@@ -43,10 +44,16 @@ function* fetchProjects() {
 }
 
 function* fetchProjectData({ payload: id }) {
-  const {
-    data: { project },
-  } = yield call(api.fetchProjectData, id);
-  yield put({ type: FETCH_PROJECT_DATA_SUCCESS, payload: project });
+  try {
+    const {
+      data: { project },
+    } = yield call(api.fetchProjectData, id);
+    yield put({ type: FETCH_PROJECT_DATA_SUCCESS, payload: project });
+  } catch (err) {
+    yield put({ type: FETCH_PROJECT_DATA_FAILURE });
+    // yield put(requestAlert(err));
+    // need to create error page
+  }
 }
 
 function* editProject({ payload: { id, values } }) {

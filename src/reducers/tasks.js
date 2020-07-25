@@ -3,10 +3,13 @@ import {
   CREATE_TASK_REQUEST,
   CREATE_TASK_FAILURE,
   CREATE_TASK_SUCCESS,
+  FETCH_PROJECT_DATA_REQUEST,
+  FETCH_PROJECT_DATA_FAILURE,
 } from 'actions/types';
 import _ from 'lodash';
 
 const initialState = {
+  loadingTasks: false,
   savingInProgress: false,
   taskList: {},
   taskIds: [],
@@ -24,9 +27,13 @@ const getTasksList = projectData =>
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     // set the tasks data for the current project
+    case FETCH_PROJECT_DATA_REQUEST:
+      return { ...state, loadingTasks: true };
+    case FETCH_PROJECT_DATA_FAILURE:
+      return { ...state, loadingTasks: false };
     case FETCH_PROJECT_DATA_SUCCESS: {
       const taskList = _.mapKeys(getTasksList(payload), 'id');
-      return { ...state, taskList, taskIds: Object.keys(taskList) };
+      return { ...state, loadingTasks: false, taskList, taskIds: Object.keys(taskList) };
     }
     // creating a new task
     case CREATE_TASK_REQUEST:

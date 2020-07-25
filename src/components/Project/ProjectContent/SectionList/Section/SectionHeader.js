@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Typography, IconButton, makeStyles } from '@material-ui/core';
-import { GoKebabHorizontal } from 'react-icons/go';
+import { Grid, Typography, makeStyles } from '@material-ui/core';
 import { useSelector } from 'react-redux';
+import MenuIconButton from 'components/shared/Buttons/MenuIconButton';
 
 const useStyles = makeStyles(theme => ({
   sectionHeader: {
@@ -38,9 +38,12 @@ const SectionHeader = ({ sectionId }) => {
       className={classes.sectionHeader}
     >
       <Typography className={classes.sectionTitle}>{sectionTitle} </Typography>
-      <IconButton className={classes.sectionMenuButton} size="small">
-        <GoKebabHorizontal className={classes.sectionMenuButtonIcon} />
-      </IconButton>
+      <MenuIconButton
+        iconClassName={classes.sectionMenuButtonIcon}
+        handleClose={() => {
+          console.log('not working');
+        }}
+      />
     </Grid>
   );
 };
