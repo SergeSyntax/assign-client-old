@@ -1,4 +1,4 @@
-import { takeLatest, fork, put, call, takeEvery, select } from 'redux-saga/effects';
+import { takeLatest, fork, put, call, takeEvery } from 'redux-saga/effects';
 import {
   CREATE_PROJECT_REQUEST,
   FETCH_PROJECTS_REQUEST,

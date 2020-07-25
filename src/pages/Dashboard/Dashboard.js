@@ -54,47 +54,6 @@ const Dashboard = () => {
         </Grid>
       </Container>
     </div>
-    // <Grid container direction="column">
-    //   <Grid item>
-    //     <AppBar position="relative">
-    //       <Toolbar className={classes.header}>
-    //         <Grid container justify="space-around" alignItems="center">
-    //           <Grid item>
-    //             <Logo />
-    //           </Grid>
-    //           <Grid item container alignItems="center" sm={3} className={classes.headerOptions}>
-
-    //           </Grid>
-    //         </Grid>
-    //       </Toolbar>
-    //     </AppBar>
-    //   </Grid>
-    //   <Grid item container>
-    //     <Container maxWidth="lg">
-    //       <Grid container>
-    //         <Grid item xs={false} sm={4}>
-    //           {' '}
-
-    //         </Grid>
-    //         <Grid item xs={12} sm={6}>
-    //           <Grid item container direction="row" alignItems="center" justify="space-between">
-
-    //           </Grid>
-    //         </Grid>
-    //         <Grid item xs={false} sm={1}></Grid>
-    //       </Grid>
-    //     </Container>
-    //   </Grid>
-    // </Grid>
-    // <div className="dashboard">
-    // <header className="dashboard__header">
-
-    // </header>
-    //   <div className="container">
-
-    //     <div className="dashboard__content">project page</div>
-    //   </div>
-    // </div>
   );
 };
 

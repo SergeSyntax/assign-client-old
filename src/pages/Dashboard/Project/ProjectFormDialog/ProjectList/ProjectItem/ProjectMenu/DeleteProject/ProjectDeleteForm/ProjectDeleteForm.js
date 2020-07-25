@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { TextField, makeStyles } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteProject } from 'actions/projects';
 import ProjectDeleteFormButton from './ProjectDeleteFormButton';
 
@@ -10,22 +10,21 @@ const useStyles = makeStyles(theme => ({
   label: { display: 'block', marginBottom: '1rem' },
 }));
 
-const ProjectDeleteForm = ({ project }) => {
-  const [value, setValue] = useState('');
-
-  const classes = useStyles();
-
+const ProjectDeleteForm = ({ projectId }) => {
+  const projectTitle = useSelector(state => state.projects.projectList[projectId].title);
   const dispatch = useDispatch();
+  const [value, setValue] = useState('');
+  const classes = useStyles();
 
   const onSubmit = e => {
     e.preventDefault();
-    dispatch(deleteProject(project.id));
+    dispatch(deleteProject(projectId));
   };
 
   return (
-    <form className={classes.form} onSubmit={onSubmit}>
+    <form autoComplete="off" noValidate className={classes.form} onSubmit={onSubmit}>
       <label className={classes.label} htmlFor="project-title">
-        Please type <strong>{project.title}</strong> to confirm.
+        Please type <strong>{projectTitle}</strong> to confirm.
       </label>
       <TextField
         id="project-title"
@@ -36,13 +35,13 @@ const ProjectDeleteForm = ({ project }) => {
         fullWidth
         autoFocus
       />
-      <ProjectDeleteFormButton disabled={project.title !== value} />
+      <ProjectDeleteFormButton disabled={projectTitle !== value} />
     </form>
   );
 };
 
 ProjectDeleteForm.propTypes = {
-  project: PropTypes.object.isRequired,
+  projectId: PropTypes.string.isRequired,
 };
 
 export default ProjectDeleteForm;

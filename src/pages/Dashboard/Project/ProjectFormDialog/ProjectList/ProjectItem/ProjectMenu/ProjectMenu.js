@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ProjectMenu = ({ project }) => {
+const ProjectMenu = ({ projectId }) => {
   const classes = useStyles();
 
   // Menu state
@@ -53,14 +53,14 @@ const ProjectMenu = ({ project }) => {
         <EditProjectButton onClick={openEditDialog} />
         <DeleteButton onClick={openDeleteDialog} />
       </Menu>
-      <EditProject open={openEdit} setOpen={setOpenEdit} project={project} />
-      <ProjectDelete project={project} open={openDelete} setOpen={setOpenDelete} />
+      <EditProject open={openEdit} setOpen={setOpenEdit} projectId={projectId} />
+      <ProjectDelete projectId={projectId} open={openDelete} setOpen={setOpenDelete} />
     </div>
   );
 };
 
 ProjectMenu.propTypes = {
-  project: PropTypes.object.isRequired,
+  projectId: PropTypes.string.isRequired,
 };
 
 export default ProjectMenu;

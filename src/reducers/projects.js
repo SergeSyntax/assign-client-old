@@ -21,6 +21,7 @@ const initialState = {
   savingInProgress: false,
   loadingProject: false,
   projectList: {},
+  projectIds: [],
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -31,8 +32,16 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, loadingProjects: true };
     case FETCH_PROJECTS_FAILURE:
       return { ...state, loadingProjects: false };
-    case FETCH_PROJECTS_SUCCESS:
-      return { ...state, loadingProjects: false, projectList: _.mapKeys(payload, 'id') };
+    case FETCH_PROJECTS_SUCCESS: {
+      const projectList = _.mapKeys(payload, 'id');
+      return {
+        ...state,
+        loadingProjects: false,
+        projectList,
+        projectIds: Object.keys(projectList),
+      };
+    }
+
     // saving in progress: edit / delete / create
     case CREATE_PROJECT_REQUEST:
     case EDIT_PROJECT_REQUEST:
@@ -48,6 +57,7 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         savingInProgress: false,
         projectList: { [payload.id]: payload, ...state.projectList },
+        projectIds: [payload.id, ...state.projectIds],
       };
     // fetch project and it's associated data
     case FETCH_PROJECT_DATA_SUCCESS:
@@ -55,6 +65,7 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         loadingProject: false,
         projectList: { [payload.id]: _.omit(payload, 'Sections'), ...state.projectList },
+        projectIds: [payload.id, ...state.projectIds],
       };
     // edit an existing project
     case EDIT_PROJECT_SUCCESS:
@@ -69,6 +80,7 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         savingInProgress: false,
         projectList: _.omit(state.projectList, payload),
+        projectIds: state.projectIds.filter(projectId => projectId !== payload),
       };
     default:
       return state;

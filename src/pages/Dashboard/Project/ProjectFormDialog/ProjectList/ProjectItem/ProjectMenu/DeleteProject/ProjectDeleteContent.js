@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   alertMessage: {
@@ -18,8 +19,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ProjectDeleteContent = ({ project }) => {
+const ProjectDeleteContent = ({ projectId }) => {
   const classes = useStyles();
+  const projectTitle = useSelector(state => state.projects.projectList[projectId].title)
 
   return (
     <Fragment>
@@ -29,7 +31,7 @@ const ProjectDeleteContent = ({ project }) => {
       <div className={classes.content}>
         <p className={classes.firstParagraph}>
           This action <strong>cannot</strong> be undone. This will permanently delete the{' '}
-          <strong>{project.title}</strong> project, lists, tasks, and activity, and remove all
+          <strong>{projectTitle}</strong> project, lists, tasks, and activity, and remove all
           collaborator associations.
         </p>
         <p>
@@ -44,7 +46,7 @@ const ProjectDeleteContent = ({ project }) => {
 };
 
 ProjectDeleteContent.propTypes = {
-  project: PropTypes.object.isRequired,
+  projectId: PropTypes.string.isRequired,
 };
 
 export default ProjectDeleteContent;

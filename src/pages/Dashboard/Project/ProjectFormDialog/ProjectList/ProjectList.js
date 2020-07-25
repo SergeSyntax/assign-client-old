@@ -1,6 +1,6 @@
 import React, { useEffect, Fragment } from 'react';
 import { Grid } from '@material-ui/core';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchProjects } from 'actions/projects';
 import ProjectSkeleton from './ProjectSkeleton';
 import ProjectItem from './ProjectItem/ProjectItem';
@@ -8,8 +8,7 @@ import ProjectItem from './ProjectItem/ProjectItem';
 
 const ProjectList = () => {
   const dispatch = useDispatch();
-  const projects = useSelector(state => state.projects.projectList, shallowEqual);
-  const projectList = Object.values(projects);
+  const projectIds = useSelector(state => state.projects.projectIds);
   const loadingProjects = useSelector(state => state.projects.loadingProjects);
 
   useEffect(() => {
@@ -22,8 +21,8 @@ const ProjectList = () => {
         <ProjectSkeleton />
       ) : (
         <Fragment>
-          {projectList.map(project => (
-            <ProjectItem key={project.id} project={project} />
+          {projectIds.map(projectId => (
+            <ProjectItem key={projectId} projectId={projectId} />
           ))}
         </Fragment>
       )}

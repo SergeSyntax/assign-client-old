@@ -3,11 +3,11 @@ import { editProject } from 'actions/projects';
 import ProjectFormDialog from 'pages/Dashboard/Project/ProjectFormDialog/ProjectFormDialog';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
-const EditProject = ({ project, open, setOpen }) => {
+const EditProject = ({ projectId, open, setOpen }) => {
   const dispatch = useDispatch();
   const savingInProgress = useSelector(state => state.projects.savingInProgress);
+  const { title, accessibility } = useSelector(state => state.projects.projectList[projectId]);
 
   const closeDialog = useCallback(() => {
     setOpen(false);
@@ -18,7 +18,7 @@ const EditProject = ({ project, open, setOpen }) => {
   }, [savingInProgress, closeDialog]);
 
   const onSubmit = values => {
-    dispatch(editProject({ id: project.id, values }));
+    dispatch(editProject({ id: projectId, values }));
   };
 
   return (
@@ -26,8 +26,8 @@ const EditProject = ({ project, open, setOpen }) => {
       open={open}
       handleClose={closeDialog}
       onSubmit={onSubmit}
-      title={project.title}
-      initialValues={_.pick(project, ['title', 'accessibility'])}
+      title={title}
+      initialValues={{ title, accessibility }}
       submitLabel="Update"
       savingInProgress={savingInProgress}
     />
