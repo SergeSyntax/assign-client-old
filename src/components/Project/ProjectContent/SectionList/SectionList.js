@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import Section from './Section/Section';
 
 const SectionList = () => {
-  const sectionsList = useSelector(state => state.sections.sectionsList);
+  const sectionIds = useSelector(state => state.sections.sectionIds);
 
-  return Object.values(sectionsList).map(section => <Section section={section} key={section.id} />);
+  return sectionIds.map(sectionId => <Section sectionId={sectionId} key={sectionId} />);
 };
 
 SectionList.propTypes = {

@@ -20,7 +20,7 @@ const ServerAlert = () => {
       autoHideDuration={6000}
       onClose={handleClose}
     >
-      <MuiAlert elevation={6} variant="filled" severity="error" onClose={handleClose}>
+      <MuiAlert elevation={4} variant="filled" severity="error" onClose={handleClose}>
         {message}
       </MuiAlert>
     </Snackbar>

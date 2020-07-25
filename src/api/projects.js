@@ -3,11 +3,10 @@ import queryHandler from 'utils/queryHandler';
 
 export const createProject = values => Axios.post('/projects', values);
 
-
 export const fetchProjects = paginationSettings =>
   Axios.get(`/projects/${queryHandler(paginationSettings)}`);
 
-export const fetchProject = id => Axios.get(`/projects/${id}`);
+export const fetchProjectData = id => Axios.get(`/projects/${id}`);
 
 export const editProject = (id, values) => Axios.put(`/projects/${id}`, values);
 

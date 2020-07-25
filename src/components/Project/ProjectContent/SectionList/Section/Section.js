@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Grid, makeStyles, Card } from '@material-ui/core';
 import SectionHeader from './SectionHeader';
 import SectionContent from './SectionContent/SectionContent';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   section: {
@@ -16,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Section = ({ section }) => {
+const Section = ({ sectionId }) => {
   const classes = useStyles();
 
   return (
@@ -32,12 +33,12 @@ const Section = ({ section }) => {
       component={Card}
       className={classes.section}
     >
-      <SectionHeader section={section} />
-      <SectionContent section={section} />
+      <SectionHeader sectionId={sectionId} />
+      <SectionContent sectionId={sectionId} />
     </Grid>
   );
 };
 
-Section.propTypes = { section: PropTypes.object.isRequired };
+Section.propTypes = { sectionId: PropTypes.string.isRequired };
 
 export default Section;

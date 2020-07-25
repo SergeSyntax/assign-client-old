@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Typography, IconButton, makeStyles } from '@material-ui/core';
 import { GoKebabHorizontal } from 'react-icons/go';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   sectionHeader: {
@@ -22,7 +23,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SectionHeader = ({ section }) => {
+const SectionHeader = ({ sectionId }) => {
+  const sectionTitle = useSelector(state => state.sections.sectionList[sectionId].title);
+
   const classes = useStyles();
 
   return (
@@ -34,7 +37,7 @@ const SectionHeader = ({ section }) => {
       wrap="nowrap"
       className={classes.sectionHeader}
     >
-      <Typography className={classes.sectionTitle}>{`${section.title}`} </Typography>
+      <Typography className={classes.sectionTitle}>{sectionTitle} </Typography>
       <IconButton className={classes.sectionMenuButton} size="small">
         <GoKebabHorizontal className={classes.sectionMenuButtonIcon} />
       </IconButton>
@@ -43,7 +46,7 @@ const SectionHeader = ({ section }) => {
 };
 
 SectionHeader.propTypes = {
-  section: PropTypes.object.isRequired,
+  sectionId: PropTypes.string.isRequired,
 };
 
 export default SectionHeader;

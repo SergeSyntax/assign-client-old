@@ -6,8 +6,8 @@ import {
   FETCH_PROJECTS_SUCCESS,
   FETCH_PROJECTS_FAILURE,
   CREATE_PROJECT_FAILURE,
-  FETCH_PROJECT_REQUEST,
-  FETCH_PROJECT_SUCCESS,
+  FETCH_PROJECT_DATA_REQUEST,
+  FETCH_PROJECT_DATA_SUCCESS,
   EDIT_PROJECT_REQUEST,
   EDIT_PROJECT_SUCCESS,
   EDIT_PROJECT_FAILURE,
@@ -42,16 +42,11 @@ function* fetchProjects() {
   }
 }
 
-function* fetchProject({ payload: id }) {
-  const project = yield select(state => state.projects.projectList[id]);
-  if (!project) {
-    const {
-      data: { project },
-    } = yield call(api.fetchProject, id);
-    yield put({ type: FETCH_PROJECT_SUCCESS, payload: project });
-  } else {
-    yield put({ type: FETCH_PROJECT_SUCCESS });
-  }
+function* fetchProjectData({ payload: id }) {
+  const {
+    data: { project },
+  } = yield call(api.fetchProjectData, id);
+  yield put({ type: FETCH_PROJECT_DATA_SUCCESS, payload: project });
 }
 
 function* editProject({ payload: { id, values } }) {
@@ -84,8 +79,8 @@ function* watchFetchProjectsRequest() {
   yield takeEvery(FETCH_PROJECTS_REQUEST, fetchProjects);
 }
 
-function* watchFetchProjectRequest() {
-  yield takeEvery(FETCH_PROJECT_REQUEST, fetchProject);
+function* watchFetchProjectDataRequest() {
+  yield takeEvery(FETCH_PROJECT_DATA_REQUEST, fetchProjectData);
 }
 
 function* watchEditProjectRequest() {
@@ -99,7 +94,7 @@ function* watchDeleteProjectRequest() {
 export default [
   fork(watchCreateProjectRequest),
   fork(watchFetchProjectsRequest),
-  fork(watchFetchProjectRequest),
+  fork(watchFetchProjectDataRequest),
   fork(watchEditProjectRequest),
   fork(watchDeleteProjectRequest),
 ];

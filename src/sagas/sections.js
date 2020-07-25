@@ -3,9 +3,6 @@ import {
   CREATE_SECTION_REQUEST,
   CREATE_SECTION_SUCCESS,
   CREATE_SECTION_FAILURE,
-  FETCH_SECTIONS_REQUEST,
-  FETCH_SECTIONS_FAILURE,
-  FETCH_SECTIONS_SUCCESS,
 } from 'actions/types';
 import * as api from 'api/sections';
 import { requestAlert } from 'actions/alerts';
@@ -22,24 +19,8 @@ function* createSection({ payload }) {
   }
 }
 
-function* fetchSections({ payload }) {
-  try {
-    const {
-      data: { sections },
-    } = yield call(api.fetchSections, payload);
-    yield put({ type: FETCH_SECTIONS_SUCCESS, payload: sections });
-  } catch (err) {
-    yield put({ type: FETCH_SECTIONS_FAILURE });
-    yield put(requestAlert(err));
-  }
-}
-
 function* watchCreateSectionRequest() {
   yield takeLatest(CREATE_SECTION_REQUEST, createSection);
 }
 
-function* watchFetchSectionsRequest() {
-  yield takeLatest(FETCH_SECTIONS_REQUEST, fetchSections);
-}
-
-export default [fork(watchCreateSectionRequest), fork(watchFetchSectionsRequest)];
+export default [fork(watchCreateSectionRequest)];

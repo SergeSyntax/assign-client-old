@@ -28,10 +28,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SectionContent = ({ section }) => {
+const SectionContent = ({ sectionId }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const savingInProgress = useSelector(state => state.sections.savingInProgress);
+  const savingInProgress = useSelector(state => state.tasks.savingInProgress);
 
   const handleClose = () => {
     setOpen(false);
@@ -48,11 +48,11 @@ const SectionContent = ({ section }) => {
   return (
     <Fragment>
       <Grid container wrap="nowrap" direction="column" className={classes.taskList}>
-        <TaskList sectionId={section.id} />
+        <TaskList sectionId={sectionId} />
         {open && (
           <TaskCreate
             savingInProgress={savingInProgress}
-            sectionId={section.id}
+            sectionId={sectionId}
             handleClose={handleClose}
           />
         )}
@@ -64,7 +64,7 @@ const SectionContent = ({ section }) => {
 };
 
 SectionContent.propTypes = {
-  section: PropTypes.object.isRequired,
+  sectionId: PropTypes.string.isRequired,
 };
 
 export default SectionContent;

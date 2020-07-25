@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Grid, AppBar, Toolbar, makeStyles } from '@material-ui/core';
 import Logo from 'components/shared/Logo/Logo';
-import { fetchProject } from 'actions/projects';
 import PropTypes from 'prop-types';
 import NavbarMenu from 'components/shared/NavbarMenu/NavbarMenu';
 import ProjectLocation from './ProjectLocation';
-import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -21,10 +19,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ProjectNavbar = ({ projectId }) => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchProject(projectId));
-  }, [dispatch, projectId]);
   const classes = useStyles();
 
   return (
@@ -32,7 +26,7 @@ const ProjectNavbar = ({ projectId }) => {
       <Grid component={Toolbar} container direction="column">
         <Grid className={classes.headerToolBar} container>
           <Logo />
-          <NavbarMenu />{' '}
+          <NavbarMenu />
         </Grid>
         <Grid className={classes.headerToolBar} container>
           <ProjectLocation projectId={projectId} />

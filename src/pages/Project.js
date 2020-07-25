@@ -1,8 +1,10 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import ProjectBackground from '../components/Project/ProjectBackground';
 import { Grid, makeStyles } from '@material-ui/core';
 import ProjectNavbar from '../components/Project/ProjectNavbar/ProjectNavbar';
 import ProjectContent from '../components/Project/ProjectContent/ProjectContent';
+import { useDispatch } from 'react-redux';
+import { fetchProjectData } from 'actions/projects';
 
 const useStyles = makeStyles(theme => ({
   projectPage: {
@@ -16,6 +18,11 @@ const Project = ({
   },
 }) => {
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchProjectData(id));
+  }, [dispatch, id]);
 
   return (
     <Fragment>

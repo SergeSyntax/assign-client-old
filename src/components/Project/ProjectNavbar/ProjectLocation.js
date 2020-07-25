@@ -37,8 +37,7 @@ const useStyles = makeStyles(theme => ({
 
 const ProjectLocation = ({ projectId }) => {
   const dispatch = useDispatch();
-
-  const project = useSelector(state => state.projects.projectList);
+  const currentProject = useSelector(state => state.projects.projectList[projectId]);
   const loadingProject = useSelector(state => state.projects.loadingProject);
   const classes = useStyles();
 
@@ -74,7 +73,7 @@ const ProjectLocation = ({ projectId }) => {
           <Chip
             onClick={openMenu}
             className={classes.chip}
-            label={project[[projectId]] ? project[[projectId]].title : ''}
+            label={currentProject ? currentProject.title : ''}
             icon={<AiOutlineFolderOpen className={classes.icon} />}
             deleteIcon={<MdExpandMore className={classes.icon} />}
             onDelete={openMenu}
