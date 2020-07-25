@@ -19,7 +19,7 @@ const Task = ({
     history.push(`/project/${projectId}`);
   };
   return (
-    <Dialog fullScreen={fullScreen} open={true} onClose={handleClose}>
+    <Dialog maxWidth="md" fullWidth fullScreen={fullScreen} open={true} onClose={handleClose}>
       {loadingTasks ? (
         <div>loading</div>
       ) : (

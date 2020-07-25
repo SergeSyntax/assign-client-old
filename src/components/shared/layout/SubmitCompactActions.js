@@ -8,14 +8,13 @@ const useStyles = makeStyles(theme => ({
   submitCompactActions: {
     marginTop: '1rem',
     display: 'flex',
+    alignItems: 'center',
     justifyContent: 'flex-end',
   },
   cancelIconButton: {
     margin: '1rem',
   },
 }));
-
-
 
 const SubmitCompactActions = ({ handleClose, savingInProgress }) => {
   const classes = useStyles();

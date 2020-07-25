@@ -8,13 +8,43 @@ import {
   Button,
   Grid,
   Typography,
+  TextField,
+  TextareaAutosize,
+  makeStyles,
 } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import CancelIconButton from 'components/shared/Buttons/CancelIconButton';
 import MenuIconButton from 'components/shared/Buttons/MenuIconButton';
+import Label from 'components/shared/Field/Label';
+import { MdDescription } from 'react-icons/md';
+import SubmitCompactActions from 'components/shared/layout/SubmitCompactActions'
+
+const useStyles = makeStyles(theme => ({
+  textArea: {
+    resize: 'none',
+    display: 'block',
+    height: '5rem',
+    minWidth: '100%',
+    padding: '.6rem',
+    fontFamily: 'inherit',
+    fontSize: '1.6rem',
+    outline: 'none',
+    whiteSpace: 'pre-wrap',
+    overflowWrap: 'break-word',
+    borderRadius: '4px',
+    border: '1px solid #cbd4db',
+
+    '&:focus': {
+      borderColor: theme.palette.primary.main,
+    },
+  },
+  textField: {},
+}));
 
 const TaskContent = ({ taskId, handleClose }) => {
   const task = useSelector(state => state.tasks.taskList[taskId]);
+
+  const classes = useStyles();
 
   return (
     <Fragment>
@@ -28,19 +58,25 @@ const TaskContent = ({ taskId, handleClose }) => {
         </Grid>
       </DialogTitle>
       <DialogContent>
-        <DialogContentText>
+        <TextField
+          fullWidth
+          label="Due Date"
+          type="datetime-local"
+          variant="outlined"
+          defaultValue={Date.now()}
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <Label name="Description" icon={MdDescription} />
+        <TextareaAutosize rowsMin={3} className={classes.textArea} placeholder="Add Comment" />
+        <SubmitCompactActions />
+        {/* <DialogContentText>
           Let Google help apps determine location. This means sending anonymous location data to
           Google, even when no apps are running.
-        </DialogContentText>
+        </DialogContentText> */}
       </DialogContent>
-      <DialogActions>
-        <Button autoFocus onClick={handleClose} color="primary">
-          Disagree
-        </Button>
-        <Button onClick={handleClose} color="primary" autoFocus>
-          Agree
-        </Button>
-      </DialogActions>
     </Fragment>
   );
 };
