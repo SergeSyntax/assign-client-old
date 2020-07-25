@@ -2,18 +2,15 @@ import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearFailureAlert } from 'actions/errors';
+import { clearAlert } from 'actions/alerts';
 
-const ServerError = () => {
-  const { relevant, error } = useSelector(state => state.errors);
+const ServerAlert = () => {
+  const message = useSelector(state => state.alerts.message);
+  const relevant = useSelector(state => state.alerts.relevant);
   const dispatch = useDispatch();
 
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    dispatch(clearFailureAlert());
+    if (reason !== 'clickaway') dispatch(clearAlert());
   };
 
   return (
@@ -22,13 +19,12 @@ const ServerError = () => {
       open={relevant}
       autoHideDuration={6000}
       onClose={handleClose}
-      cl
     >
       <MuiAlert elevation={6} variant="filled" severity="error" onClose={handleClose}>
-        {error}
+        {message}
       </MuiAlert>
     </Snackbar>
   );
 };
 
-export default ServerError;
+export default ServerAlert;

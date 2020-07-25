@@ -1,6 +1,6 @@
 import { fork, call, takeLatest, put, take, select } from 'redux-saga/effects';
 import history from '../history';
-import { requestFailure } from 'actions/errors';
+import { requestAlert } from 'actions/alerts';
 import * as api from '../api/users';
 import {
   CREATE_USER_REQUEST,
@@ -44,7 +44,7 @@ function* createUser({ payload }) {
   } catch (err) {
     yield put({ type: CREATE_USER_FAILURE });
 
-    yield put(requestFailure(err));
+    yield put(requestAlert(err));
   }
 }
 
@@ -64,7 +64,7 @@ function* useLogin({ payload }) {
   } catch (err) {
     yield put({ type: USER_LOGIN_FAILURE });
 
-    yield put(requestFailure(err));
+    yield put(requestAlert(err));
   }
 }
 

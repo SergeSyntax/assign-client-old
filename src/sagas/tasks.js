@@ -1,6 +1,7 @@
 import { CREATE_TASK_SUCCESS, CREATE_TASK_FAILURE, CREATE_TASK_REQUEST } from 'actions/types';
 import { fork, takeLatest, call, put } from 'redux-saga/effects';
-import { requestFailure } from 'actions/errors';
+import { requestAlert } from 'actions/alerts';
+
 import * as api from 'api/tasks';
 
 function* createTask({ payload }) {
@@ -11,7 +12,7 @@ function* createTask({ payload }) {
     yield put({ type: CREATE_TASK_SUCCESS, payload: task });
   } catch (err) {
     yield put({ type: CREATE_TASK_FAILURE });
-    yield put(requestFailure(err));
+    yield put(requestAlert(err));
   }
 }
 

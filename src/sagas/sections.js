@@ -8,7 +8,7 @@ import {
   FETCH_SECTIONS_SUCCESS,
 } from 'actions/types';
 import * as api from 'api/sections';
-import { requestFailure } from 'actions/errors';
+import { requestAlert } from 'actions/alerts';
 
 function* createSection({ payload }) {
   try {
@@ -18,7 +18,7 @@ function* createSection({ payload }) {
     yield put({ type: CREATE_SECTION_SUCCESS, payload: section });
   } catch (err) {
     yield put({ type: CREATE_SECTION_FAILURE });
-    yield put(requestFailure(err));
+    yield put(requestAlert(err));
   }
 }
 
@@ -30,7 +30,7 @@ function* fetchSections({ payload }) {
     yield put({ type: FETCH_SECTIONS_SUCCESS, payload: sections });
   } catch (err) {
     yield put({ type: FETCH_SECTIONS_FAILURE });
-    yield put(requestFailure(err));
+    yield put(requestAlert(err));
   }
 }
 

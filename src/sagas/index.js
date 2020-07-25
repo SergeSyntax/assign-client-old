@@ -1,10 +1,10 @@
 import { all } from 'redux-saga/effects';
 import users from './users';
-import errors from './errors';
+import alerts from './alerts';
 import projects from './projects';
 import sections from './sections';
 import tasks from './tasks';
 
 export default function* rootSaga() {
-  yield all([...users, ...errors, ...projects, ...sections, ...tasks]);
+  yield all([...users, ...alerts, ...projects, ...sections, ...tasks]);
 }

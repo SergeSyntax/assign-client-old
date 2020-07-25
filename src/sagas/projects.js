@@ -15,7 +15,7 @@ import {
   DELETE_PROJECT_SUCCESS,
   DELETE_PROJECT_FAILURE,
 } from 'actions/types';
-import { requestFailure } from 'actions/errors';
+import { requestAlert } from 'actions/alerts';
 import * as api from 'api/projects';
 
 function* createProject({ payload }) {
@@ -26,7 +26,7 @@ function* createProject({ payload }) {
     yield put({ type: CREATE_PROJECT_SUCCESS, payload: project });
   } catch (err) {
     yield put({ type: CREATE_PROJECT_FAILURE });
-    yield put(requestFailure(err));
+    yield put(requestAlert(err));
   }
 }
 
@@ -38,7 +38,7 @@ function* fetchProjects() {
     yield put({ type: FETCH_PROJECTS_SUCCESS, payload: projects });
   } catch (err) {
     yield put({ type: FETCH_PROJECTS_FAILURE });
-    yield put(requestFailure(err));
+    yield put(requestAlert(err));
   }
 }
 
@@ -62,7 +62,7 @@ function* editProject({ payload: { id, values } }) {
     yield put({ type: EDIT_PROJECT_SUCCESS, payload: project });
   } catch (err) {
     yield put({ type: EDIT_PROJECT_FAILURE });
-    yield put(requestFailure(err));
+    yield put(requestAlert(err));
   }
 }
 
@@ -72,7 +72,7 @@ function* deleteProject({ payload }) {
     yield put({ type: DELETE_PROJECT_SUCCESS, payload: payload });
   } catch (err) {
     yield put({ type: DELETE_PROJECT_FAILURE });
-    yield put(requestFailure(err));
+    yield put(requestAlert(err));
   }
 }
 

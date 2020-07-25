@@ -7,7 +7,7 @@ import Terms from 'pages/unplugged/Terms';
 import PrivacyPolicy from 'pages/unplugged/PrivacyPolicy';
 import Login from 'pages/Auth/Login';
 import PasswordRecovery from 'pages/Auth/PasswordRecovery/PasswordRecovery';
-import ServerError from 'components/shared/ServerError/ServerError';
+import ServerAlert from 'components/shared/ServerError/ServerAlert';
 import { useSelector, useDispatch } from 'react-redux';
 import Loading from 'pages/Loading/Loading';
 import Dashboard from 'pages/Dashboard/Dashboard';
@@ -49,7 +49,7 @@ function App() {
         </Fragment>
       )}
 
-      <ServerError />
+      <ServerAlert />
     </Router>
   );
 }
