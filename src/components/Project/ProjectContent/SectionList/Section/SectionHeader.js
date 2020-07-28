@@ -41,7 +41,7 @@ const SectionHeader = ({ sectionId }) => {
       <MenuIconButton
         iconClassName={classes.sectionMenuButtonIcon}
         onClick={() => {
-          console.log('not working');
+          console.error('not working');
         }}
       />
     </Grid>

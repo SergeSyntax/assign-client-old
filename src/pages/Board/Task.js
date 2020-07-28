@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Dialog, useTheme, useMediaQuery } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import TaskContent from './TaskContent';
+import TaskContent from './Task/TaskContent';
 
 const Task = ({
   match: {
@@ -10,8 +10,6 @@ const Task = ({
   },
   history,
 }) => {
-  console.log('match:', projectId);
-  console.log('history:', history);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const loadingTasks = useSelector(state => state.tasks.loadingTasks);

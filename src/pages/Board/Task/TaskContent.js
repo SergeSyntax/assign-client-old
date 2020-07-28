@@ -1,7 +1,6 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  DialogTitle,
   DialogContent,
   Grid,
   TextField,
@@ -11,9 +10,8 @@ import {
   Typography,
 } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import { GrTextAlignFull, GrBook, GrClock } from 'react-icons/gr';
+import { GrTextAlignFull, GrClock } from 'react-icons/gr';
 import SubmitCompactActions from 'components/shared/layout/SubmitCompactActions';
-import { GoTag } from 'react-icons/go';
 import TaskHeader from './TaskHeader/TaskHeader';
 
 const useStyles = makeStyles(theme => ({

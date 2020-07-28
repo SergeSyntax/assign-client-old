@@ -14,7 +14,7 @@ const schema = Joi.object().keys({
 const validate = generateValidation(schema);
 
 const onSubmit = values => {
-  console.log(values);
+  console.error(values);
 };
 
 const PasswordRecoveryForm = () => {

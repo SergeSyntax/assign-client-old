@@ -5,6 +5,9 @@ import {
   CREATE_TASK_SUCCESS,
   FETCH_PROJECT_DATA_REQUEST,
   FETCH_PROJECT_DATA_FAILURE,
+  RENAME_TASK_REQUEST,
+  RENAME_TASK_FAILURE,
+  RENAME_TASK_SUCCESS,
 } from 'actions/types';
 import _ from 'lodash';
 
@@ -27,6 +30,19 @@ const getTasksList = projectData =>
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     // set the tasks data for the current project
+    case RENAME_TASK_REQUEST:
+      return state;
+
+    case RENAME_TASK_FAILURE:
+      return state;
+
+    case RENAME_TASK_SUCCESS:
+      console.log(payload);
+      return {
+        ...state,
+        // savingInProgress: false,
+        taskList: { ...state.taskList, [payload.id]: payload },
+      };
     case FETCH_PROJECT_DATA_REQUEST:
       return { ...state, loadingTasks: true };
     case FETCH_PROJECT_DATA_FAILURE:
