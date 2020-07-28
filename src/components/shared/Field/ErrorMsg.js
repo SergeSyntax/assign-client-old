@@ -13,10 +13,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ErrorMsg = ({ meta }) => {
+const ErrorMsg = ({ meta, ...rest }) => {
   const classes = useStyles(meta);
   return (
-    <FormHelperText className={classes.errorMessage}>
+    <FormHelperText className={classes.errorMessage} {...rest}>
       {meta.error || 'empty'}
     </FormHelperText>
   );

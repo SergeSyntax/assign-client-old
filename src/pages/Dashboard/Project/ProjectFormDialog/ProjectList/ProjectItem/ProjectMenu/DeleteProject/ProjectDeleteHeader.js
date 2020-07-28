@@ -24,7 +24,7 @@ const ProjectDeleteHeader = ({ handleClose }) => {
   return (
     <div className={classes.container}>
       <h2 className={classes.title}> Are you absolutely sure?</h2>
-      <CancelIconButton handleClose={handleClose} />
+      <CancelIconButton onClick={handleClose} />
     </div>
   );
 };

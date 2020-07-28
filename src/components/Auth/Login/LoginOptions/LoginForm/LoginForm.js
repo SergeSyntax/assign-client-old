@@ -26,11 +26,11 @@ const LoginForm = () => {
     <Form
       validate={validate}
       onSubmit={onSubmit}
-      render={({ handleSubmit, submitting }) => (
+      render={({ handleSubmit }) => (
         <form autoComplete="off" onSubmit={handleSubmit} className="login__form" noValidate>
           <EmailInput />
           <PasswordInput />
-          <UserSubmitButton submitting={submitting} value="Sign In" />
+          <UserSubmitButton value="Sign In" />
         </form>
       )}
     />

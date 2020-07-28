@@ -9,7 +9,6 @@ const FieldInput = ({ input, meta: { touched, error }, ...rest }) => {
       id={input.name}
       fullWidth
       error={touched && error && true}
-      className="input"
       variant="outlined"
       {...rest}
     />

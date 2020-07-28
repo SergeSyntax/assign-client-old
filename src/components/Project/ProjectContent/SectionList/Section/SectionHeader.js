@@ -40,7 +40,7 @@ const SectionHeader = ({ sectionId }) => {
       <Typography className={classes.sectionTitle}>{sectionTitle} </Typography>
       <MenuIconButton
         iconClassName={classes.sectionMenuButtonIcon}
-        handleClose={() => {
+        onClick={() => {
           console.log('not working');
         }}
       />

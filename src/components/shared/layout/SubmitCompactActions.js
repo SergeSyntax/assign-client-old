@@ -22,7 +22,7 @@ const SubmitCompactActions = ({ handleClose, savingInProgress }) => {
   return (
     <div className={classes.submitCompactActions}>
       <div className={classes.cancelIconButton}>
-        <CancelIconButton handleClose={handleClose} />
+        <CancelIconButton onClick={handleClose} />
       </div>
       <SubmitButton
         inProgress={savingInProgress}

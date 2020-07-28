@@ -1,29 +1,27 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   DialogTitle,
   DialogContent,
-  DialogContentText,
-  DialogActions,
-  Button,
   Grid,
-  Typography,
   TextField,
   TextareaAutosize,
   makeStyles,
+  CardActionArea,
+  Typography,
 } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import CancelIconButton from 'components/shared/Buttons/CancelIconButton';
-import MenuIconButton from 'components/shared/Buttons/MenuIconButton';
-import Label from 'components/shared/Field/Label';
-import { MdDescription } from 'react-icons/md';
-import SubmitCompactActions from 'components/shared/layout/SubmitCompactActions'
+import { GrTextAlignFull, GrBook, GrClock } from 'react-icons/gr';
+import SubmitCompactActions from 'components/shared/layout/SubmitCompactActions';
+import { GoTag } from 'react-icons/go';
+import TaskHeader from './TaskHeader/TaskHeader';
 
 const useStyles = makeStyles(theme => ({
   textArea: {
     resize: 'none',
     display: 'block',
-    height: '5rem',
+    height: '10rem',
+    minHeight: '10rem',
     minWidth: '100%',
     padding: '.6rem',
     fontFamily: 'inherit',
@@ -33,6 +31,7 @@ const useStyles = makeStyles(theme => ({
     overflowWrap: 'break-word',
     borderRadius: '4px',
     border: '1px solid #cbd4db',
+    verticalAlign: 'center',
 
     '&:focus': {
       borderColor: theme.palette.primary.main,
@@ -43,24 +42,29 @@ const useStyles = makeStyles(theme => ({
 
 const TaskContent = ({ taskId, handleClose }) => {
   const task = useSelector(state => state.tasks.taskList[taskId]);
+  const [title, setTitle] = useState(task.title);
+  const [description, setDescription] = useState();
+  const [showDescriptionInput, setShowDescriptionInput] = useState(false);
 
   const classes = useStyles();
 
+  const TaskPropertyTitle = ({ Icon, text, size, ...rest }) => {
+    return (
+      <Grid item style={{ fontSize: size, display: 'inline-flex', alignItems: 'center' }} {...rest}>
+        <Icon style={{ marginRight: '1rem' }} />{' '}
+        <Typography style={{ fontSize: 'inherit' }}>{text}</Typography>
+      </Grid>
+    );
+  };
+
   return (
-    <Fragment>
-      <DialogTitle id="responsive-dialog-title">
-        <Grid container justify="space-between">
-          <Grid item>{task.title}</Grid>
-          <Grid item>
-            <MenuIconButton style={{ marginRight: '1rem' }} handleClose={handleClose} />
-            <CancelIconButton handleClose={handleClose} />
-          </Grid>
-        </Grid>
-      </DialogTitle>
+    <Grid container direction="column">
+      <TaskHeader taskId={taskId} handleClose={handleClose} />
       <DialogContent>
+        <TaskPropertyTitle Icon={GrClock} text="Due Date" size="1.6rem" />
         <TextField
+          onChange={e => setTitle(e.target.value)}
           fullWidth
-          label="Due Date"
           type="datetime-local"
           variant="outlined"
           defaultValue={Date.now()}
@@ -69,15 +73,29 @@ const TaskContent = ({ taskId, handleClose }) => {
             shrink: true,
           }}
         />
-        <Label name="Description" icon={MdDescription} />
-        <TextareaAutosize rowsMin={3} className={classes.textArea} placeholder="Add Comment" />
-        <SubmitCompactActions />
-        {/* <DialogContentText>
-          Let Google help apps determine location. This means sending anonymous location data to
-          Google, even when no apps are running.
-        </DialogContentText> */}
+        <TaskPropertyTitle Icon={GrTextAlignFull} text="Description" size="1.6rem" />
+
+        {showDescriptionInput ? (
+          <TextareaAutosize
+            onBlur={() => setShowDescriptionInput(false)}
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+            className={classes.textArea}
+            placeholder="Add Comment"
+            autoFocus
+          />
+        ) : (
+          <CardActionArea
+            onClick={() => setShowDescriptionInput(true)}
+            className={classes.textArea}
+          >
+            {description || 'Add Comment'}
+          </CardActionArea>
+        )}
+
+        <SubmitCompactActions handleClose={handleClose} />
       </DialogContent>
-    </Fragment>
+    </Grid>
   );
 };
 

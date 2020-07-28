@@ -7,18 +7,18 @@ const useStyles = makeStyles(theme => ({
   menuIconButton: { padding: '.7rem', borderRadius: '.6rem' },
 }));
 
-const MenuIconButton = ({ handleClose, iconClassName, ...rest }) => {
+const MenuIconButton = ({ onClick, iconClassName, ...rest }) => {
   const classes = useStyles();
 
   return (
-    <IconButton className={classes.menuIconButton} size="small" onClick={handleClose} {...rest}>
+    <IconButton className={classes.menuIconButton} size="small" onClick={onClick} {...rest}>
       <GoKebabHorizontal className={iconClassName} />
     </IconButton>
   );
 };
 
 MenuIconButton.propTypes = {
-  handleClose: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   iconClassName: PropTypes.string,
 };
 
