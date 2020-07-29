@@ -2,10 +2,9 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
 import { Grid, makeStyles } from '@material-ui/core';
-import TaskTitleInput from '../TaskHeader/TaskTitleForm/TaskTitleInput';
 import FieldInput from 'components/shared/Field/FieldInput';
 import ErrorMsg from 'components/shared/Field/ErrorMsg';
-import { GrBook, GrClock } from 'react-icons/gr';
+import { GrClock } from 'react-icons/gr';
 import TaskPropertyLabel from '../TaskPropertyLabel';
 import Joi from '@hapi/joi';
 import generateValidation from 'utils/generateValidation';
@@ -73,6 +72,8 @@ const TaskDueDateForm = ({ taskId }) => {
   );
 };
 
-TaskDueDateForm.propTypes = {};
+TaskDueDateForm.propTypes = {
+  taskId: PropTypes.string.isRequired,
+};
 
 export default TaskDueDateForm;
