@@ -61,9 +61,8 @@ const TaskDescriptionForm = ({ taskId }) => {
       validate={validate}
       initialValues={{ description: description ? description : '' }}
       onSubmit={values => {
-        console.log(values);
-        setShowDescriptionInput(false);
         dispatch(setTaskDescription({ ...values, taskId }));
+        setShowDescriptionInput(false);
       }}
       render={({ handleSubmit }) => (
         <Grid

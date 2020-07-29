@@ -19,19 +19,36 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const getUserNameAndLetter = (name, email) => {
+  if (name && name !== 'unknown') {
+    const secondLetter = /\s[a-z]/i.exec(name);
+    const firstLetter = name[0];
+    const letter = secondLetter ? `${firstLetter}${secondLetter[0][1]}` : firstLetter;
+    return { name, letter };
+  } else {
+    const name = email.split('@')[0];
+    const letter = name[0].toUpperCase();
+
+    return { name, letter };
+  }
+};
+
 const UserName = () => {
   const classes = useStyles();
-  const user = useSelector(state => state.users.userInfo.name);
-  const nameLetter = user.match(/[A-Z]/g);
-  const email = useSelector(state => state.users.userInfo.email).toUpperCase();
-  const userLetter =
-    nameLetter && nameLetter[0] && nameLetter[1]
-      ? `${nameLetter[0]}${nameLetter[1]}`
-      : email.substring(0, 1);
+  const username = useSelector(state => state.users.userInfo.name);
+  const email = useSelector(state => state.users.userInfo.email);
+
+  const { name, letter } = getUserNameAndLetter(username, email);
+
+  // const nameLetter = user.match(/[A-Z]/g);
+  // const userLetter =
+  //   nameLetter && nameLetter[0] && nameLetter[1]
+  //     ? `${nameLetter[0]}${nameLetter[1]}`
+  //     : email.substring(0, 1);
   return (
     <Button className={classes.userButton}>
-      <Avatar className={classes.userIcon}>{`${userLetter}`}</Avatar>
-      <Typography className={classes.userName}>{user}</Typography>
+      <Avatar className={classes.userIcon}>{letter}</Avatar>
+      <Typography className={classes.userName}>{name}</Typography>
     </Button>
   );
 };
