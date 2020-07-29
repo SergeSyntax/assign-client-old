@@ -7,3 +7,6 @@ export const renameTask = ({ title, taskId }) => Axios.patch(`/tasks/${taskId}/r
 
 export const setTaskDueDate = ({ dueDate, taskId }) =>
   Axios.patch(`/tasks/${taskId}/set-due-date`, { dueDate });
+
+export const setTaskDescription = ({ description, taskId }) =>
+  Axios.patch(`/tasks/${taskId}/set-description `, { description });

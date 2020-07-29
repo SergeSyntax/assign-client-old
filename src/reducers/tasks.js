@@ -11,6 +11,9 @@ import {
   SET_DUE_DATE_FAILURE,
   SET_DUE_DATE_REQUEST,
   SET_DUE_DATE_SUCCESS,
+  SET_TASK_DESCRIPTION_REQUEST,
+  SET_TASK_DESCRIPTION_SUCCESS,
+  SET_TASK_DESCRIPTION_FAILURE,
 } from 'actions/types';
 import _ from 'lodash';
 
@@ -54,6 +57,21 @@ export default (state = initialState, { type, payload }) => {
       return state;
 
     case SET_DUE_DATE_SUCCESS:
+      return {
+        ...state,
+        // savingInProgress: false,
+        taskList: { ...state.taskList, [payload.id]: payload },
+      };
+
+
+          // set the tasks data for the current project
+    case SET_TASK_DESCRIPTION_REQUEST:
+      return state;
+
+    case SET_TASK_DESCRIPTION_FAILURE:
+      return state;
+
+    case SET_TASK_DESCRIPTION_SUCCESS:
       return {
         ...state,
         // savingInProgress: false,

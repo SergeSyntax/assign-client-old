@@ -8,6 +8,9 @@ import {
   SET_DUE_DATE_REQUEST,
   SET_DUE_DATE_SUCCESS,
   SET_DUE_DATE_FAILURE,
+  SET_TASK_DESCRIPTION_SUCCESS,
+  SET_TASK_DESCRIPTION_FAILURE,
+  SET_TASK_DESCRIPTION_REQUEST,
 } from 'actions/types';
 import { fork, takeLatest, call, put, select } from 'redux-saga/effects';
 import { requestAlert } from 'actions/alerts';
@@ -56,6 +59,23 @@ function* setTaskDueDate({ payload }) {
   }
 }
 
+function* setTaskDescription({ payload }) {
+  try {
+    // if the title is the same avoid sending a patch request to the server
+    const oldTaskDescription = yield select(
+      state => state.tasks.taskList[payload.taskId].description
+    );
+    if (oldTaskDescription === payload.description) return;
+    const {
+      data: { task },
+    } = yield call(api.setTaskDescription, payload);
+    yield put({ type: SET_TASK_DESCRIPTION_SUCCESS, payload: task });
+  } catch (err) {
+    yield put({ type: SET_TASK_DESCRIPTION_FAILURE });
+    yield put(requestAlert(err));
+  }
+}
+
 function* watchCreateTaskRequest() {
   yield takeLatest(CREATE_TASK_REQUEST, createTask);
 }
@@ -66,8 +86,12 @@ function* watchRenameTaskRequest() {
 function* watchSetTaskDueDateRequest() {
   yield takeLatest(SET_DUE_DATE_REQUEST, setTaskDueDate);
 }
+function* watchSetTaskDescriptionRequest() {
+  yield takeLatest(SET_TASK_DESCRIPTION_REQUEST, setTaskDescription);
+}
 export default [
   fork(watchCreateTaskRequest),
   fork(watchRenameTaskRequest),
   fork(watchSetTaskDueDateRequest),
+  fork(watchSetTaskDescriptionRequest),
 ];

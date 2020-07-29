@@ -8,7 +8,7 @@ import TaskPropertyLabel from '../TaskPropertyLabel';
 import Joi from '@hapi/joi';
 import generateValidation from 'utils/generateValidation';
 import { useSelector, useDispatch } from 'react-redux';
-// import { setTaskDescription } from 'actions/tasks';
+import { setTaskDescription } from 'actions/tasks';
 
 const useStyles = makeStyles(theme => ({
   titleWrapper: { display: 'flex', width: '100%', alignItems: 'center' },
@@ -63,7 +63,7 @@ const TaskDescriptionForm = ({ taskId }) => {
       onSubmit={values => {
         console.log(values);
         setShowDescriptionInput(false);
-        // dispatch(setTaskDescription({ ...values, taskId }));
+        dispatch(setTaskDescription({ ...values, taskId }));
       }}
       render={({ handleSubmit }) => (
         <Grid
