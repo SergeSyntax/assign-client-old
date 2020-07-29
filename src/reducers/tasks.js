@@ -8,6 +8,9 @@ import {
   RENAME_TASK_REQUEST,
   RENAME_TASK_FAILURE,
   RENAME_TASK_SUCCESS,
+  SET_DUE_DATE_FAILURE,
+  SET_DUE_DATE_REQUEST,
+  SET_DUE_DATE_SUCCESS,
 } from 'actions/types';
 import _ from 'lodash';
 
@@ -37,6 +40,20 @@ export default (state = initialState, { type, payload }) => {
       return state;
 
     case RENAME_TASK_SUCCESS:
+      return {
+        ...state,
+        // savingInProgress: false,
+        taskList: { ...state.taskList, [payload.id]: payload },
+      };
+
+    // set the tasks data for the current project
+    case SET_DUE_DATE_REQUEST:
+      return state;
+
+    case SET_DUE_DATE_FAILURE:
+      return state;
+
+    case SET_DUE_DATE_SUCCESS:
       return {
         ...state,
         // savingInProgress: false,

@@ -7,6 +7,11 @@ import FieldInput from 'components/shared/Field/FieldInput';
 import ErrorMsg from 'components/shared/Field/ErrorMsg';
 import { GrBook, GrClock } from 'react-icons/gr';
 import TaskPropertyLabel from '../TaskPropertyLabel';
+import Joi from '@hapi/joi';
+import generateValidation from 'utils/generateValidation';
+import { useSelector, useDispatch } from 'react-redux';
+import { setTaskDueDate } from 'actions/tasks';
+import formatDate from 'utils/formatDate';
 const useStyles = makeStyles(theme => ({
   titleWrapper: { display: 'flex', width: '100%', alignItems: 'center', fontSize: '2rem' },
   titleIcon: { marginRight: '1rem' },
@@ -15,15 +20,26 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const TaskDueDateForm = props => {
+const minDate = Date.now();
+const maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 100));
+
+const schema = Joi.object().keys({
+  dueDate: Joi.date().greater(minDate).less(maxDate),
+});
+
+const validate = generateValidation(schema);
+
+const TaskDueDateForm = ({ taskId }) => {
   const classes = useStyles();
+  const dueDate = useSelector(state => state.tasks.taskList[taskId].dueDate);
+  const dispatch = useDispatch();
 
   return (
     <Form
-      // validate={validate}
-      // initialValues={{ title: taskTitle }}
+      validate={validate}
+      initialValues={{ dueDate: dueDate ? formatDate(dueDate) : null }}
       onSubmit={values => {
-        console.log(values);
+        dispatch(setTaskDueDate({ ...values, taskId }));
       }}
       render={({ handleSubmit }) => (
         <Grid
@@ -34,7 +50,7 @@ const TaskDueDateForm = props => {
           onSubmit={handleSubmit}
           noValidate
         >
-          <Field name="title" onBlur={handleSubmit}>
+          <Field name="dueDate" initialValue={dueDate} onBlur={handleSubmit}>
             {props => (
               <Fragment>
                 <TaskPropertyLabel label={props.input.name} Icon={GrClock} text="Due Date" />
@@ -47,7 +63,7 @@ const TaskDueDateForm = props => {
                     type="datetime-local"
                   />
                 </div>
-                <ErrorMsg meta={props.meta} style={{ marginLeft: '4rem' }} />
+                <ErrorMsg meta={props.meta} style={{ marginLeft: '2rem' }} />
               </Fragment>
             )}
           </Field>

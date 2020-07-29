@@ -8,12 +8,13 @@ import TaskTitleForm from './TaskTitleForm/TaskTitleForm';
 
 const TaskHeader = ({ taskId, handleClose }) => {
   const useStyles = makeStyles(theme => ({
+    taskWrapper: { paddingBottom: 0 },
     taskOptions: { marginLeft: '1rem', display: 'inline-flex', paddingTop: '.5rem' },
   }));
 
   const classes = useStyles();
   return (
-    <DialogTitle>
+    <DialogTitle className={classes.taskWrapper}>
       <Grid container justify="space-between" alignItems="flex-start" wrap="nowrap">
         <TaskTitleForm taskId={taskId} />
         <Grid item className={classes.taskOptions}>

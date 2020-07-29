@@ -46,16 +46,13 @@ const TaskContent = ({ taskId, handleClose }) => {
 
   const classes = useStyles();
 
-
-
   return (
     <Grid container direction="column">
       <TaskHeader taskId={taskId} handleClose={handleClose} />
       <DialogContent>
-
         <TaskDueDateForm taskId={taskId} />
 
-        <TaskPropertyLabel Icon={GrTextAlignFull} text="Description" />
+        {/* <TaskPropertyLabel Icon={GrTextAlignFull} label="Description" /> */}
 
         {showDescriptionInput ? (
           <TextareaAutosize
