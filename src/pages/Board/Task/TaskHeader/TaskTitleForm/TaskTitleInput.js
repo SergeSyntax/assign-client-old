@@ -17,6 +17,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '2rem',
     width: '100%',
     padding: '.57rem 1.15rem',
+    wordBreak: 'break-word',
   },
 }));
 

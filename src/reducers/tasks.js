@@ -37,7 +37,6 @@ export default (state = initialState, { type, payload }) => {
       return state;
 
     case RENAME_TASK_SUCCESS:
-      console.log(payload);
       return {
         ...state,
         // savingInProgress: false,

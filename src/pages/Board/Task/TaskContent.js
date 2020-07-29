@@ -13,6 +13,8 @@ import { useSelector } from 'react-redux';
 import { GrTextAlignFull, GrClock } from 'react-icons/gr';
 import SubmitCompactActions from 'components/shared/layout/SubmitCompactActions';
 import TaskHeader from './TaskHeader/TaskHeader';
+import TaskDueDateForm from './TaskDueDateForm/TaskDueDateForm';
+import TaskPropertyLabel from './TaskPropertyLabel';
 
 const useStyles = makeStyles(theme => ({
   textArea: {
@@ -39,39 +41,21 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TaskContent = ({ taskId, handleClose }) => {
-  const task = useSelector(state => state.tasks.taskList[taskId]);
-  const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState();
   const [showDescriptionInput, setShowDescriptionInput] = useState(false);
 
   const classes = useStyles();
 
-  const TaskPropertyTitle = ({ Icon, text, size, ...rest }) => {
-    return (
-      <Grid item style={{ fontSize: size, display: 'inline-flex', alignItems: 'center' }} {...rest}>
-        <Icon style={{ marginRight: '1rem' }} />{' '}
-        <Typography style={{ fontSize: 'inherit' }}>{text}</Typography>
-      </Grid>
-    );
-  };
+
 
   return (
     <Grid container direction="column">
       <TaskHeader taskId={taskId} handleClose={handleClose} />
       <DialogContent>
-        <TaskPropertyTitle Icon={GrClock} text="Due Date" size="1.6rem" />
-        <TextField
-          onChange={e => setTitle(e.target.value)}
-          fullWidth
-          type="datetime-local"
-          variant="outlined"
-          defaultValue={Date.now()}
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-        <TaskPropertyTitle Icon={GrTextAlignFull} text="Description" size="1.6rem" />
+
+        <TaskDueDateForm taskId={taskId} />
+
+        <TaskPropertyLabel Icon={GrTextAlignFull} text="Description" />
 
         {showDescriptionInput ? (
           <TextareaAutosize

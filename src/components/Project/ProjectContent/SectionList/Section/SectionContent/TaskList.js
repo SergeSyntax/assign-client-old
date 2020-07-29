@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 const useStyles = makeStyles({
   card: { margin: '1rem', flexShrink: '0' },
   cardContent: {
-    wordWrap: 'break-word',
+    wordBreak: 'break-word',
   },
 });
 
