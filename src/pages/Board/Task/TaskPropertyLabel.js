@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
+import _ from 'lodash';
+
 const useStyles = makeStyles(theme => ({
   taskPropertyWrapper: {
     fontSize: '1.6rem',
@@ -12,19 +14,18 @@ const useStyles = makeStyles(theme => ({
   taskPropertyText: { fontSize: 'inherit' },
 }));
 
-const TaskPropertyLabel = ({ Icon, text, label }) => {
+const TaskPropertyLabel = ({ Icon, label }) => {
   const classes = useStyles();
   return (
-    <Grid item component="label"  htmlFor={label} className={classes.taskPropertyWrapper}>
+    <Grid item component="label" htmlFor={label} className={classes.taskPropertyWrapper}>
       <Icon className={classes.taskPropertyIcon} />{' '}
-      <Typography className={classes.taskPropertyText}>{text}</Typography>
+      <Typography className={classes.taskPropertyText}>{_.capitalize(label)}</Typography>
     </Grid>
   );
 };
 
 TaskPropertyLabel.propTypes = {
   label: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
   Icon: PropTypes.func.isRequired,
 };
 

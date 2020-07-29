@@ -53,7 +53,7 @@ const TaskDueDateForm = ({ taskId }) => {
           <Field name="dueDate" initialValue={dueDate} onBlur={handleSubmit}>
             {props => (
               <Fragment>
-                <TaskPropertyLabel label={props.input.name} Icon={GrClock} text="Due Date" />
+                <TaskPropertyLabel label={props.input.name} Icon={GrClock} />
 
                 <div className={classes.titleWrapper}>
                   <FieldInput

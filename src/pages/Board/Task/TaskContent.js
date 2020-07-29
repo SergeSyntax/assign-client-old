@@ -15,6 +15,7 @@ import SubmitCompactActions from 'components/shared/layout/SubmitCompactActions'
 import TaskHeader from './TaskHeader/TaskHeader';
 import TaskDueDateForm from './TaskDueDateForm/TaskDueDateForm';
 import TaskPropertyLabel from './TaskPropertyLabel';
+import TaskDescriptionForm from './TaskDescriptionForm/TaskDescriptionForm';
 
 const useStyles = makeStyles(theme => ({
   textArea: {
@@ -51,10 +52,10 @@ const TaskContent = ({ taskId, handleClose }) => {
       <TaskHeader taskId={taskId} handleClose={handleClose} />
       <DialogContent>
         <TaskDueDateForm taskId={taskId} />
-
+        <TaskDescriptionForm taskId={taskId} />
         {/* <TaskPropertyLabel Icon={GrTextAlignFull} label="Description" /> */}
 
-        {showDescriptionInput ? (
+        {/* {showDescriptionInput ? (
           <TextareaAutosize
             onBlur={() => setShowDescriptionInput(false)}
             value={description}
@@ -70,9 +71,9 @@ const TaskContent = ({ taskId, handleClose }) => {
           >
             {description || 'Add Comment'}
           </CardActionArea>
-        )}
+        )} */}
 
-        <SubmitCompactActions handleClose={handleClose} />
+        {/* <SubmitCompactActions handleClose={handleClose} /> */}
       </DialogContent>
     </Grid>
   );
