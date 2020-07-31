@@ -16,9 +16,11 @@ import {
 } from 'actions/types';
 import Axios from 'axios';
 import AuthCookie from 'utils/AuthCookie';
+import request from 'utils/request';
 
 const setDefaultHeaders = authToken => {
-  Axios.defaults.headers = {
+  request.defaults.headers
+ = {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${authToken}`,
   };
@@ -74,13 +76,13 @@ function* fetchUser() {
 
     if (authToken) {
       yield call(setDefaultHeaders, authToken);
+    }
+    const {
+      data: { user: userInfo },
+    } = yield call(api.fetchUser);
 
-      const {
-        data: { user: userInfo },
-      } = yield call(api.fetchUser);
-
-      yield put({ type: FETCH_USER_SUCCESS, payload: { userInfo, authToken } });
-    } else yield put({ type: FETCH_USER_FAILURE });
+    yield put({ type: FETCH_USER_SUCCESS, payload: { userInfo, authToken } });
+    // } else yield put({ type: FETCH_USER_FAILURE });
   } catch (err) {
     yield call(AuthCookie.clear);
     yield put({ type: FETCH_USER_FAILURE });
@@ -89,7 +91,8 @@ function* fetchUser() {
 
 function* userLogout() {
   yield call(AuthCookie.clear);
-  window.location.href = '/';
+  window.location.assign(`${process.env.REACT_APP_BASEURL}/users/logout`);
+  // yield call(api.logoutUser);
 }
 
 function* watchCreateUserRequest() {
