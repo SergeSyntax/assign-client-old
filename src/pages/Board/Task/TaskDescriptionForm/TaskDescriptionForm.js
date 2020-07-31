@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
-import { Grid, makeStyles, TextareaAutosize, CardActionArea } from '@material-ui/core';
+import { Grid, makeStyles, TextareaAutosize, CardActionArea, Card } from '@material-ui/core';
 import ErrorMsg from 'components/shared/Field/ErrorMsg';
 import { GrTextAlignFull } from 'react-icons/gr';
 import TaskPropertyLabel from '../TaskPropertyLabel';
@@ -14,32 +14,34 @@ const useStyles = makeStyles(theme => ({
   titleWrapper: { display: 'flex', width: '100%', alignItems: 'center' },
   titleIcon: { marginRight: '1rem' },
   textAreaInput: {
-    resize: 'none',
-    display: 'block',
     width: '100%',
-    padding: '.6rem',
+    padding: '1rem',
+    lineHeight: 'inherit',
+    letterSpacing: 'inherit',
     fontFamily: 'inherit',
-    fontSize: '1.6rem',
-    outline: 'none',
-    whiteSpace: 'pre-wrap',
+    border: 'none',
+    fontSize: '1.4rem',
     borderRadius: '4px',
-    border: '1px solid #cbd4db',
-
+    minHeight: '8rem',
+    resize: 'none',
     '&:focus': {
-      borderColor: theme.palette.primary.main,
+      outlineColor: theme.palette.primary.main,
     },
   },
   textArea: {
     width: '100%',
-    height: '9.12rem',
-    padding: '.6rem',
+    padding: '1rem',
+    lineHeight: 'inherit',
+    letterSpacing: 'inherit',
     fontFamily: 'inherit',
-    fontSize: '1.6rem',
-    outline: 'none',
-    whiteSpace: 'pre-wrap',
+    fontSize: '1.4rem',
     borderRadius: '4px',
-    border: '1px solid #cbd4db',
+    minHeight: '8rem',
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
   },
+  textAreaContent: { display: 'inline-flex' },
 }));
 
 const schema = Joi.object().keys({
@@ -59,8 +61,9 @@ const TaskDescriptionForm = ({ taskId }) => {
   return (
     <Form
       validate={validate}
-      initialValues={{ description: description ? description : '' }}
+      initialValues={{ description: description ?? '' }}
       onSubmit={values => {
+        values.description = values.description ?? '';
         dispatch(setTaskDescription({ ...values, taskId }));
         setShowDescriptionInput(false);
       }}
@@ -77,12 +80,10 @@ const TaskDescriptionForm = ({ taskId }) => {
             {props => (
               <Fragment>
                 <TaskPropertyLabel label={props.input.name} Icon={GrTextAlignFull} />
-
                 <div className={classes.titleWrapper}>
                   {showDescriptionInput ? (
                     <TextareaAutosize
                       {...props.input}
-                      rows={4}
                       onBlur={handleSubmit}
                       className={classes.textAreaInput}
                       style={{
@@ -95,14 +96,9 @@ const TaskDescriptionForm = ({ taskId }) => {
                     <CardActionArea
                       onClick={() => setShowDescriptionInput(true)}
                       className={classes.textArea}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'flex-start',
-                        alignItems: 'flex-start',
-                      }}
                     >
-                      <div style={{ display: 'inline-flex' }}>
-                        {props.input.value || placeholder}
+                      <div className={classes.textAreaContent}>
+                        {props?.input?.value || placeholder}
                       </div>
                     </CardActionArea>
                   )}

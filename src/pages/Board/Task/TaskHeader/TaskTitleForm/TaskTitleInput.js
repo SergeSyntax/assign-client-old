@@ -11,12 +11,21 @@ const useStyles = makeStyles(theme => ({
   titleWrapper: { display: 'flex', width: '100%', alignItems: 'center' },
   titleIcon: { marginRight: '1rem' },
   titleField: {
-    '& .MuiInputBase-input': { fontSize: '2rem' },
+    '& .MuiInputBase-input': {
+      fontSize: '2rem',
+      lineHeight: 'inherit',
+      letterSpacing: 'inherit',
+      fontFamily: 'inherit',
+    },
   },
   titleText: {
     fontSize: '2rem',
     width: '100%',
-    padding: '.57rem 1.15rem',
+    borderRadius: '4px',
+    padding: '0.5rem 1.2rem',
+    lineHeight: 'inherit',
+    letterSpacing: 'inherit',
+    fontFamily: 'inherit',
     wordBreak: 'break-word',
   },
 }));

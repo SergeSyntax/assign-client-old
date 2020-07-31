@@ -9,7 +9,7 @@ import TaskTitleForm from './TaskTitleForm/TaskTitleForm';
 const TaskHeader = ({ taskId, handleClose }) => {
   const useStyles = makeStyles(theme => ({
     taskWrapper: { paddingBottom: 0 },
-    taskOptions: { marginLeft: '1rem', display: 'inline-flex', paddingTop: '.5rem' },
+    taskOptions: { marginLeft: '4rem', display: 'inline-flex', paddingTop: '.5rem' },
   }));
 
   const classes = useStyles();
