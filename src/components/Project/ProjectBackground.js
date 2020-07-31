@@ -91,10 +91,11 @@ const ProjectBackground = () => {
           enable: true,
           mode: 'repulse',
         },
-        onclick: {
-          enable: true,
-          mode: 'push',
-        },
+        // the amount of participles at some point is distracting
+        // onclick: {
+        //   enable: true,
+        //   mode: 'push',
+        // },
         resize: true,
       },
       modes: {

@@ -62,6 +62,7 @@ const TaskDescriptionForm = ({ taskId }) => {
     <Form
       validate={validate}
       initialValues={{ description: description ?? '' }}
+      subscription={{ initialValues: true }}
       onSubmit={values => {
         values.description = values.description ?? '';
         dispatch(setTaskDescription({ ...values, taskId }));

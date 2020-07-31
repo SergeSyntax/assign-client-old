@@ -38,6 +38,7 @@ const ProjectForm = ({
       validate={validate}
       onSubmit={onSubmit}
       initialValues={initialValues}
+      subscription={{ initialValues: true }}
       render={({ handleSubmit }) => (
         <form autoComplete="off" className={classes.container} onSubmit={handleSubmit} noValidate>
           <TitleInput />

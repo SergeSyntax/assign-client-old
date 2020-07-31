@@ -14,13 +14,11 @@ import {
   CREATE_USER_FAILURE,
   USER_LOGIN_FAILURE,
 } from 'actions/types';
-import Axios from 'axios';
 import AuthCookie from 'utils/AuthCookie';
 import request from 'utils/request';
 
 const setDefaultHeaders = authToken => {
-  request.defaults.headers
- = {
+  request.defaults.headers = {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${authToken}`,
   };

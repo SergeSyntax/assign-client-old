@@ -35,6 +35,7 @@ const TaskTitleForm = ({ taskId }) => {
     <Form
       validate={validate}
       initialValues={{ title: taskTitle }}
+      subscription={{ initialValues: true }}
       onSubmit={onSubmit}
       render={({ handleSubmit }) => (
         <Grid

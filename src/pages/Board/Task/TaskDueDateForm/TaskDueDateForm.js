@@ -37,6 +37,7 @@ const TaskDueDateForm = ({ taskId }) => {
     <Form
       validate={validate}
       initialValues={{ dueDate: dueDate ? formatDate(dueDate) : null }}
+      subscription={{ initialValues: true }}
       onSubmit={values => {
         dispatch(setTaskDueDate({ ...values, taskId }));
       }}
