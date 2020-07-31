@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import request from 'utils/request';
 
 export const createSection = ({ title, projectId }) =>
-  Axios.post(`/projects/${projectId}/sections`, { title });
+request.post(`/projects/${projectId}/sections`, { title });

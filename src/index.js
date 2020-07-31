@@ -13,9 +13,6 @@ import theme from './theme';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import 'typeface-roboto';
 import './index.scss';
-import Axios from 'axios';
-
-Axios.defaults.baseURL = process.env.REACT_APP_BASEURL;
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));

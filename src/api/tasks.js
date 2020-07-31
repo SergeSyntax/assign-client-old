@@ -1,12 +1,13 @@
-import Axios from 'axios';
+import request from 'utils/request';
 
 export const createTask = ({ title, sectionId }) =>
-  Axios.post(`/projects/sections/${sectionId}/tasks/`, { title });
+  request.post(`/projects/sections/${sectionId}/tasks/`, { title });
 
-export const renameTask = ({ title, taskId }) => Axios.patch(`/tasks/${taskId}/rename `, { title });
+export const renameTask = ({ title, taskId }) =>
+  request.patch(`/tasks/${taskId}/rename `, { title });
 
 export const setTaskDueDate = ({ dueDate, taskId }) =>
-  Axios.patch(`/tasks/${taskId}/set-due-date`, { dueDate });
+  request.patch(`/tasks/${taskId}/set-due-date`, { dueDate });
 
 export const setTaskDescription = ({ description, taskId }) =>
-  Axios.patch(`/tasks/${taskId}/set-description `, { description });
+  request.patch(`/tasks/${taskId}/set-description `, { description });
