@@ -13,6 +13,8 @@ const AuthButtons = () => {
         color="default"
         fullWidth
         className="google-button"
+        component="a"
+        href={`${process.env.REACT_APP_BASEURL}/users/google`}
       >
         Continue with Google
       </Button>
@@ -22,6 +24,8 @@ const AuthButtons = () => {
         color="default"
         fullWidth
         className="facebook-button"
+        component="a"
+        href={`${process.env.REACT_APP_BASEURL}/users/facebook`}
       >
         Continue with facebook
       </Button>
