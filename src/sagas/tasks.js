@@ -16,10 +16,9 @@ import {
   DELETE_TASK_REQUEST,
 } from 'actions/types';
 import { fork, takeLatest, call, put, select } from 'redux-saga/effects';
-import { requestAlert } from 'actions/alerts';
+import { requestAlert, showAlert } from 'actions/alerts';
 import * as api from 'api/tasks';
 import formatDate from 'utils/formatDate';
-
 
 function* createTask({ payload }) {
   try {
@@ -38,6 +37,7 @@ function* renameTask({ payload }) {
     // if the title is the same avoid sending a patch request to the server
     const oldTaskTitle = yield select(state => state.tasks.taskList[payload.taskId].title);
     if (oldTaskTitle === payload.title) return;
+    yield put(showAlert('renaming task...'));
     const {
       data: { task },
     } = yield call(api.renameTask, payload);
@@ -53,6 +53,8 @@ function* setTaskDueDate({ payload }) {
     // if the title is the same avoid sending a patch request to the server
     const oldDueDate = yield select(state => state.tasks.taskList[payload.taskId].dueDate);
     if (formatDate(oldDueDate) === formatDate(payload.dueDate)) return;
+    yield put(showAlert("saving task's due date..."));
+
     const {
       data: { task },
     } = yield call(api.setTaskDueDate, payload);
@@ -70,6 +72,8 @@ function* setTaskDescription({ payload }) {
       state => state.tasks.taskList[payload.taskId].description
     );
     if (oldTaskDescription === payload.description) return;
+    yield put(showAlert("saving task's description..."));
+
     const {
       data: { task },
     } = yield call(api.setTaskDescription, payload);
@@ -83,6 +87,7 @@ function* setTaskDescription({ payload }) {
 function* deleteTask({ payload }) {
   try {
     yield call(api.deleteTask, payload);
+    yield put(showAlert("deleting task..."));
     yield put({ type: DELETE_TASK_SUCCESS, payload });
   } catch (err) {
     yield put({ type: DELETE_TASK_FAILURE });

@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core';
 import { TaskTitleText } from './TaskTitleText';
 
 const useStyles = makeStyles(theme => ({
-  titleWrapper: { display: 'flex', width: '100%', alignItems: 'center' },
+  titleWrapper: { display: 'flex', width: '100%', alignItems: 'center', minHeight: '5rem' },
   titleIcon: { marginRight: '1rem' },
   titleField: {
     '& .MuiInputBase-input': {

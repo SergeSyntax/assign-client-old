@@ -1,5 +1,6 @@
 export const REQUEST_ALERT = 'REQUEST_ALERT';
 export const SHOW_ALERT = 'SHOW_ALERT';
+export const SHOW_FAILURE_ALERT = 'SHOW_FAILURE_ALERT';
 export const CLEAR_ALERT = 'CLEAR_ALERT';
 
 export const CREATE_USER_REQUEST = 'CREATE_USER_REQUEST';

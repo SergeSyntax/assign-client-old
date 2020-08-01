@@ -8,7 +8,7 @@ import {
   DELETE_SECTION_FAILURE,
 } from 'actions/types';
 import * as api from 'api/sections';
-import { requestAlert } from 'actions/alerts';
+import { requestAlert, showAlert } from 'actions/alerts';
 
 function* createSection({ payload }) {
   try {
@@ -24,6 +24,7 @@ function* createSection({ payload }) {
 
 function* deleteSection({ payload }) {
   try {
+    yield put(showAlert('Deleting section...'));
     yield call(api.deleteSection, payload);
     yield put({ type: DELETE_SECTION_SUCCESS, payload });
   } catch (err) {

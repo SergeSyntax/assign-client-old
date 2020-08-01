@@ -12,7 +12,9 @@ export default class AuthCookie {
   }
 
   static set(token) {
-    return Cookies.set(AUTH_COOKIE, token, { expires: MAX_DAYS_EXP });
+    return Cookies.set(AUTH_COOKIE, token, {
+      expires: MAX_DAYS_EXP,
+    });
   }
 
   static clear() {
