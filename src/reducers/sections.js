@@ -5,6 +5,9 @@ import {
   FETCH_PROJECT_DATA_REQUEST,
   FETCH_PROJECT_DATA_SUCCESS,
   CREATE_SECTION_FAILURE,
+  DELETE_SECTION_SUCCESS,
+  DELETE_SECTION_REQUEST,
+  DELETE_SECTION_FAILURE,
 } from 'actions/types';
 import _ from 'lodash';
 
@@ -44,6 +47,18 @@ export default (state = initialState, { type, payload }) => {
         savingInProgress: false,
         sectionList: { ...state.sectionList, [payload.id]: payload },
         sectionIds: [...state.sectionIds, payload.id],
+      };
+
+    case DELETE_SECTION_REQUEST:
+      return { ...state, savingInProgress: true };
+    case DELETE_SECTION_FAILURE:
+      return { ...state, savingInProgress: false };
+    case DELETE_SECTION_SUCCESS:
+      return {
+        ...state,
+        savingInProgress: false,
+        sectionList: _.omit(state.sectionList, payload),
+        sectionIds: state.sectionIds.filter(projectId => projectId !== payload),
       };
 
     default:

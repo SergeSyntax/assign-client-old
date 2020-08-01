@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, makeStyles, Card } from '@material-ui/core';
-import SectionHeader from './SectionHeader';
+import SectionHeader from './SectionHeader/SectionHeader';
 import SectionContent from './SectionContent/SectionContent';
 
 const useStyles = makeStyles(theme => ({

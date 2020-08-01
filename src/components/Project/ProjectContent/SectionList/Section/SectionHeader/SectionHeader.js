@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import MenuIconButton from 'components/shared/Buttons/MenuIconButton';
+import SectionMenu from './SectionMenu';
 
 const useStyles = makeStyles(theme => ({
   sectionHeader: {
@@ -17,9 +17,6 @@ const useStyles = makeStyles(theme => ({
   sectionMenuButton: {
     padding: '.6rem',
     borderRadius: '.6rem',
-  },
-  sectionMenuButtonIcon: {
-    fontSize: '1.4rem',
   },
 }));
 
@@ -38,12 +35,7 @@ const SectionHeader = ({ sectionId }) => {
       className={classes.sectionHeader}
     >
       <Typography className={classes.sectionTitle}>{sectionTitle} </Typography>
-      <MenuIconButton
-        iconClassName={classes.sectionMenuButtonIcon}
-        onClick={() => {
-          console.error('not working');
-        }}
-      />
+      <SectionMenu sectionId={sectionId} />
     </Grid>
   );
 };

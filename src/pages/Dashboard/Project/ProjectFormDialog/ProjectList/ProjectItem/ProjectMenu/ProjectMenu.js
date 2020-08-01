@@ -6,7 +6,7 @@ import ProjectMenuButton from './ProjectMenuButton';
 // import _ from 'lodash';
 import EditProjectButton from './EditProject/EditProjectButton';
 import EditProject from './EditProject/EditProject';
-import DeleteButton from './DeleteProject/DeleteButton';
+import DeleteButton from '../../../../../../../components/shared/MenuItems/DeleteButton';
 import ProjectDelete from './DeleteProject/ProjectDelete';
 
 const useStyles = makeStyles(theme => ({
