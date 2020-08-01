@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
-import { Grid, makeStyles, TextareaAutosize, CardActionArea, Card } from '@material-ui/core';
+import { Grid, makeStyles, TextareaAutosize, CardActionArea } from '@material-ui/core';
 import ErrorMsg from 'components/shared/Field/ErrorMsg';
 import { GrTextAlignFull } from 'react-icons/gr';
 import TaskPropertyLabel from '../TaskPropertyLabel';

@@ -3,7 +3,7 @@ import _ from 'lodash';
 /**
  * @param {import('@hapi/joi').Schema}schema Joi validation schema
  *
- * @return {Function} Joi validation function
+ * @return {object} object with filed keys and error values
  */
 export default schema => values => {
   const { error } = schema.validate(values, { abortEarly: false });

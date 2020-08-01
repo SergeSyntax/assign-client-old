@@ -2,6 +2,8 @@ import Cookies from 'js-cookie';
 
 const AUTH_COOKIE = 'assign-auth-token';
 
+const MAX_DAYS_EXP = 30;
+
 export default class AuthCookie {
   name = AuthCookie;
 
@@ -10,7 +12,7 @@ export default class AuthCookie {
   }
 
   static set(token) {
-    return Cookies.set(AUTH_COOKIE, token, { expires: 20 });
+    return Cookies.set(AUTH_COOKIE, token, { expires: MAX_DAYS_EXP });
   }
 
   static clear() {
