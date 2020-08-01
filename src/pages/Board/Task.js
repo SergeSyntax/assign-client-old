@@ -16,12 +16,15 @@ const Task = ({
   const handleClose = () => {
     history.push(`/project/${projectId}`);
   };
+
+  // if (!isTask) handleClose();
+
   return (
     <Dialog maxWidth="md" fullWidth fullScreen={fullScreen} open={true} onClose={handleClose}>
       {loadingTasks ? (
         <div>loading</div>
       ) : (
-        <TaskContent taskId={taskId} handleClose={handleClose} />
+        <TaskContent projectId={projectId} taskId={taskId} handleClose={handleClose} />
       )}
     </Dialog>
   );

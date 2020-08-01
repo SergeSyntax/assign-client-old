@@ -11,3 +11,5 @@ export const setTaskDueDate = ({ dueDate, taskId }) =>
 
 export const setTaskDescription = ({ description, taskId }) =>
   request.patch(`/tasks/${taskId}/set-description `, { description });
+
+export const deleteTask = taskId => request.delete(`/tasks/${taskId}`);

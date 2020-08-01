@@ -14,6 +14,9 @@ import {
   SET_TASK_DESCRIPTION_REQUEST,
   SET_TASK_DESCRIPTION_SUCCESS,
   SET_TASK_DESCRIPTION_FAILURE,
+  DELETE_TASK_REQUEST,
+  DELETE_TASK_FAILURE,
+  DELETE_TASK_SUCCESS,
 } from 'actions/types';
 import _ from 'lodash';
 
@@ -97,6 +100,19 @@ export default (state = initialState, { type, payload }) => {
         taskList: { ...state.taskList, [payload.id]: payload },
         taskIds: [...state.taskIds, payload.id],
       };
+
+      case DELETE_TASK_REQUEST:
+        return { ...state, savingInProgress: true };
+      case DELETE_TASK_FAILURE:
+        return { ...state, savingInProgress: false };
+      case DELETE_TASK_SUCCESS:
+        return {
+          ...state,
+          savingInProgress: false,
+          taskList: _.omit(state.taskList, payload),
+          taskIds: state.taskIds.filter(taskId => taskId !== payload),
+        };
+  
 
     default:
       return state;

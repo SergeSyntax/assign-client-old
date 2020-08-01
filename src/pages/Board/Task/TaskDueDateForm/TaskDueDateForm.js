@@ -30,7 +30,7 @@ const validate = generateValidation(schema);
 
 const TaskDueDateForm = ({ taskId }) => {
   const classes = useStyles();
-  const dueDate = useSelector(state => state.tasks.taskList[taskId].dueDate);
+  const dueDate = useSelector(state => state.tasks.taskList[taskId]?.dueDate);
   const dispatch = useDispatch();
 
   return (

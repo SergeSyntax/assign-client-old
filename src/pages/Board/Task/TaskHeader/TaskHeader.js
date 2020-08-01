@@ -5,6 +5,7 @@ import MenuIconButton from 'components/shared/Buttons/MenuIconButton';
 import CancelIconButton from 'components/shared/Buttons/CancelIconButton';
 
 import TaskTitleForm from './TaskTitleForm/TaskTitleForm';
+import TaskMenu from './TaskMenu/TaskMenu';
 
 const TaskHeader = ({ taskId, handleClose }) => {
   const useStyles = makeStyles(theme => ({
@@ -18,12 +19,7 @@ const TaskHeader = ({ taskId, handleClose }) => {
       <Grid container justify="space-between" alignItems="flex-start" wrap="nowrap">
         <TaskTitleForm taskId={taskId} />
         <Grid item className={classes.taskOptions}>
-          <MenuIconButton
-            style={{ marginRight: '1rem' }}
-            onClick={() => {
-              console.error('not working');
-            }}
-          />
+          <TaskMenu taskId={taskId} handleClose={handleClose} />
           <CancelIconButton onClick={handleClose} />
         </Grid>
       </Grid>

@@ -1,18 +1,13 @@
 import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import MenuIconButton from 'components/shared/Buttons/MenuIconButton';
-import { makeStyles, Menu } from '@material-ui/core';
-import SectionMenuButton from './SectionMenuButton';
-import DeleteButton from 'components/shared/MenuItems/DeleteButton';
 import { useDispatch } from 'react-redux';
-import { deleteSection } from 'actions/sections';
-const useStyles = makeStyles(theme => ({
-  sectionMenuButtonIcon: {
-    fontSize: '1.4rem',
-  },
-}));
-const SectionMenu = ({ sectionId }) => {
-  const classes = useStyles();
+
+import MenuIconButton from 'components/shared/Buttons/MenuIconButton';
+import { Menu, makeStyles } from '@material-ui/core';
+import DeleteButton from 'components/shared/MenuItems/DeleteButton';
+import { deleteTask } from 'actions/tasks';
+
+const TaskMenu = ({ taskId, handleClose }) => {
   const dispatch = useDispatch();
 
   // Menu state
@@ -24,18 +19,24 @@ const SectionMenu = ({ sectionId }) => {
     setAnchorEl(null);
   };
 
+  const onClick = () => {
+    handleClose();
+    dispatch(deleteTask(taskId));
+  };
+
   return (
     <Fragment>
-      <SectionMenuButton onClick={openMenu} />
+      <MenuIconButton style={{ marginRight: '1rem' }} onClick={openMenu} />
       <Menu autoFocus anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={closeMenu}>
-        <DeleteButton onClick={() => dispatch(deleteSection(sectionId))} />
+        <DeleteButton onClick={onClick} />
       </Menu>
     </Fragment>
   );
 };
 
-SectionMenu.propTypes = {
-  sectionId: PropTypes.string.isRequired,
+TaskMenu.propTypes = {
+  taskId: PropTypes.string.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
-export default SectionMenu;
+export default TaskMenu;

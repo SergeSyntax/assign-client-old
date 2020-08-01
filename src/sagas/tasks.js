@@ -11,11 +11,15 @@ import {
   SET_TASK_DESCRIPTION_SUCCESS,
   SET_TASK_DESCRIPTION_FAILURE,
   SET_TASK_DESCRIPTION_REQUEST,
+  DELETE_TASK_SUCCESS,
+  DELETE_TASK_FAILURE,
+  DELETE_TASK_REQUEST,
 } from 'actions/types';
 import { fork, takeLatest, call, put, select } from 'redux-saga/effects';
 import { requestAlert } from 'actions/alerts';
 import * as api from 'api/tasks';
 import formatDate from 'utils/formatDate';
+
 
 function* createTask({ payload }) {
   try {
@@ -76,6 +80,16 @@ function* setTaskDescription({ payload }) {
   }
 }
 
+function* deleteTask({ payload }) {
+  try {
+    yield call(api.deleteTask, payload);
+    yield put({ type: DELETE_TASK_SUCCESS, payload });
+  } catch (err) {
+    yield put({ type: DELETE_TASK_FAILURE });
+    yield put(requestAlert(err));
+  }
+}
+
 function* watchCreateTaskRequest() {
   yield takeLatest(CREATE_TASK_REQUEST, createTask);
 }
@@ -89,9 +103,15 @@ function* watchSetTaskDueDateRequest() {
 function* watchSetTaskDescriptionRequest() {
   yield takeLatest(SET_TASK_DESCRIPTION_REQUEST, setTaskDescription);
 }
+
+function* watchDeleteTaskRequest() {
+  yield takeLatest(DELETE_TASK_REQUEST, deleteTask);
+}
+
 export default [
   fork(watchCreateTaskRequest),
   fork(watchRenameTaskRequest),
   fork(watchSetTaskDueDateRequest),
   fork(watchSetTaskDescriptionRequest),
+  fork(watchDeleteTaskRequest),
 ];

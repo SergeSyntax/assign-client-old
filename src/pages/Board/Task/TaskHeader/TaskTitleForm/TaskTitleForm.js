@@ -21,7 +21,7 @@ const validate = generateValidation(schema);
 const TaskTitleForm = ({ taskId }) => {
   const classes = useStyles();
   const [showTitleInput, setShowTitleInput] = useState(false);
-  const taskTitle = useSelector(state => state.tasks.taskList[taskId].title);
+  const taskTitle = useSelector(state => state.tasks.taskList[taskId]?.title);
   const dispatch = useDispatch();
 
   const onSubmit = values => {

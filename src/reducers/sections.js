@@ -58,7 +58,7 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         savingInProgress: false,
         sectionList: _.omit(state.sectionList, payload),
-        sectionIds: state.sectionIds.filter(projectId => projectId !== payload),
+        sectionIds: state.sectionIds.filter(taskId => taskId !== payload),
       };
 
     default:

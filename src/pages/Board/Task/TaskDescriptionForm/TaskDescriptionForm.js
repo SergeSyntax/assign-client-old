@@ -55,7 +55,7 @@ const placeholder = 'Add Comment';
 const TaskDescriptionForm = ({ taskId }) => {
   const [showDescriptionInput, setShowDescriptionInput] = useState(false);
   const classes = useStyles();
-  const description = useSelector(state => state.tasks.taskList[taskId].description);
+  const description = useSelector(state => state.tasks.taskList[taskId]?.description);
   const dispatch = useDispatch();
 
   return (
