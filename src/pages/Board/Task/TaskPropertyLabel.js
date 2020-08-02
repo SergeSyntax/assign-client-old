@@ -14,10 +14,10 @@ const useStyles = makeStyles(theme => ({
   taskPropertyText: { fontSize: 'inherit' },
 }));
 
-const TaskPropertyLabel = ({ Icon, label }) => {
+const TaskPropertyLabel = ({ Icon, label, ...rest }) => {
   const classes = useStyles();
   return (
-    <Grid item component="label" htmlFor={label} className={classes.taskPropertyWrapper}>
+    <Grid item component="label" htmlFor={label} className={classes.taskPropertyWrapper} {...rest}>
       <Icon className={classes.taskPropertyIcon} />{' '}
       <Typography className={classes.taskPropertyText}>{_.capitalize(label)}</Typography>
     </Grid>

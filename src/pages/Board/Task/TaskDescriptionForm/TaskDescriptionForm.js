@@ -81,7 +81,11 @@ const TaskDescriptionForm = ({ taskId }) => {
           <Field name="description" initialValue={description ? description : ''}>
             {props => (
               <Fragment>
-                <TaskPropertyLabel label={props.input.name} Icon={GrTextAlignFull} />
+                <TaskPropertyLabel
+                  label={props.input.name}
+                  Icon={GrTextAlignFull}
+                  onClick={() => setShowDescriptionInput(true)}
+                />
                 <div className={classes.titleWrapper}>
                   {showDescriptionInput ? (
                     <TextareaAutosize

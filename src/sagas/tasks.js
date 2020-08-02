@@ -18,7 +18,7 @@ import {
 import { fork, takeLatest, call, put, select } from 'redux-saga/effects';
 import { requestAlert, showAlert } from 'actions/alerts';
 import * as api from 'api/tasks';
-import formatDate from 'utils/formatDate';
+import {formatDataForMaterialUI} from 'utils/formatDate';
 
 function* createTask({ payload }) {
   try {
@@ -52,7 +52,7 @@ function* setTaskDueDate({ payload }) {
   try {
     // if the title is the same avoid sending a patch request to the server
     const oldDueDate = yield select(state => state.tasks.taskList[payload.taskId].dueDate);
-    if (formatDate(oldDueDate) === formatDate(payload.dueDate)) return;
+    if (formatDataForMaterialUI(oldDueDate) === formatDataForMaterialUI(payload.dueDate)) return;
     yield put(showAlert("saving task's due date..."));
 
     const {

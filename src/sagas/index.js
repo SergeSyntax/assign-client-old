@@ -4,7 +4,8 @@ import alerts from './alerts';
 import projects from './projects';
 import sections from './sections';
 import tasks from './tasks';
+import comments from './comments';
 
 export default function* rootSaga() {
-  yield all([...users, ...alerts, ...projects, ...sections, ...tasks]);
+  yield all([...users, ...alerts, ...projects, ...sections, ...tasks, ...comments]);
 }

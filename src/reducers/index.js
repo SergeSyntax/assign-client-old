@@ -4,5 +4,6 @@ import alerts from './alerts';
 import projects from './projects';
 import sections from './sections';
 import tasks from './tasks';
+import comments from './comments';
 
-export default combineReducers({ users, alerts, projects, sections, tasks });
+export default combineReducers({ users, alerts, projects, sections, tasks, comments });

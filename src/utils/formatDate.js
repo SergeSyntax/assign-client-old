@@ -7,6 +7,6 @@ const LOCAL_DATE_FORMAT = 'YYYY-MM-DDThh:mm';
  * @param {*} date
  * @returns date in the format: 'YYYY-MM-DDThh:mm'
  */
-const formatDate = date => moment(date).format(LOCAL_DATE_FORMAT);
+export const formatDataForMaterialUI = date => moment(date).format(LOCAL_DATE_FORMAT);
 
-export default formatDate;
+export const formatDatePrettyPrint = date => moment(date).format('lll');

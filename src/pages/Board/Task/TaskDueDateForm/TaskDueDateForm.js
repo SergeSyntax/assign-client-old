@@ -10,7 +10,7 @@ import Joi from '@hapi/joi';
 import generateValidation from 'utils/generateValidation';
 import { useSelector, useDispatch } from 'react-redux';
 import { setTaskDueDate } from 'actions/tasks';
-import formatDate from 'utils/formatDate';
+import { formatDataForMaterialUI } from 'utils/formatDate';
 const useStyles = makeStyles(theme => ({
   titleWrapper: { display: 'flex', width: '100%', alignItems: 'center', fontSize: '2rem' },
   titleIcon: { marginRight: '1rem' },
@@ -36,7 +36,7 @@ const TaskDueDateForm = ({ taskId }) => {
   return (
     <Form
       validate={validate}
-      initialValues={{ dueDate: dueDate ? formatDate(dueDate) : null }}
+      initialValues={{ dueDate: dueDate ? formatDataForMaterialUI(dueDate) : null }}
       subscription={{ initialValues: true }}
       onSubmit={values => {
         dispatch(setTaskDueDate({ ...values, taskId }));
