@@ -10,14 +10,21 @@ import {
   Typography,
   makeStyles,
   Divider,
+  Card,
+  CardHeader,
+  IconButton,
+  CardContent,
 } from '@material-ui/core';
 import { formatDatePrettyPrint } from 'utils/formatDate';
 import { useSelector } from 'react-redux';
+import { blue } from '@material-ui/core/colors';
+import { GoKebabHorizontal, GoKebabVertical } from 'react-icons/go';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: '1rem',
+    marginTop: '2rem',
     width: '100%',
+    marginLeft: '2.65rem',
     // maxWidth: '36ch',
     backgroundColor: theme.palette.background.paper,
   },
@@ -27,6 +34,10 @@ const useStyles = makeStyles(theme => ({
   userIcon: {
     color: theme.palette.primary.main,
     backgroundColor: '#EAECF0',
+    fontSize: '1.6rem',
+  },
+  avatar: {
+    backgroundColor: blue[800],
     fontSize: '1.6rem',
   },
 }));
@@ -51,14 +62,27 @@ const CommentItem = ({ commentId }) => {
   const classes = useStyles();
 
   return (
-    <List className={classes.root}>
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar className={classes.userIcon}>{letter}</Avatar>
-        </ListItemAvatar>
-        <ListItemText primary={name} secondary={formatDatePrettyPrint(comment.createdAt)} />
-      </ListItem>
-    </List>
+    <Card className={classes.root} elevation={3}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            {letter}
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <GoKebabVertical style={{ fontSize: '1.6rem' }} />
+          </IconButton>
+        }
+        title={name}
+        subheader={formatDatePrettyPrint(comment.createdAt)}
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {comment.message}
+        </Typography>
+      </CardContent>
+    </Card>
   );
 };
 

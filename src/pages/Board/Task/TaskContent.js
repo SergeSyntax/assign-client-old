@@ -14,14 +14,21 @@ import {
 import TaskHeader from './TaskHeader/TaskHeader';
 import TaskDueDateForm from './TaskDueDateForm/TaskDueDateForm';
 import TaskDescriptionForm from './TaskDescriptionForm/TaskDescriptionForm';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import CreateComment from './TaskActivity/CreateComment';
 import ActivityList from './TaskActivity/ActivityList';
 import { GoX } from 'react-icons/go';
+import { deleteTask } from 'actions/tasks';
 
 const TaskContent = ({ taskId, handleClose, projectId }) => {
   const taskIds = useSelector(state => state.tasks.taskIds);
+  const dispatch = useDispatch();
+
+  const onClick = () => {
+    handleClose();
+    dispatch(deleteTask(taskId));
+  };
 
   return taskIds.includes(taskId) ? (
     <Grid container direction="column" style={{}}>
@@ -32,15 +39,15 @@ const TaskContent = ({ taskId, handleClose, projectId }) => {
         container
         direction="row"
         justify="space-between"
-        wrap="nowrap"
+        // wrap="nowrap"
       >
-        <Grid item xs={7}>
+        <Grid item md={7} xs={12}>
           <TaskDueDateForm taskId={taskId} />
           <TaskDescriptionForm taskId={taskId} />
           <CreateComment taskId={taskId} />
           <ActivityList taskId={taskId} />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item md={3} xs={12}>
           <List
             component="nav"
             subheader={
@@ -50,7 +57,7 @@ const TaskContent = ({ taskId, handleClose, projectId }) => {
             }
             // className={classes.root}
           >
-            <ListItem button>
+            <ListItem button onClick={onClick}>
               <ListItemIcon>
                 <GoX />
               </ListItemIcon>

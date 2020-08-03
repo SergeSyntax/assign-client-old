@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   },
   textArea: {
     width: '100%',
-    padding: '1rem',
+    padding: '2rem',
     // lineHeight: 'inherit',
     // letterSpacing: 'inherit',
     // fontFamily: 'inherit',
@@ -47,6 +47,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'flex-start',
     wordBreak: 'break-word',
     cursor: 'pointer',
+    color: theme.palette.grey[600],
   },
   textAreaContent: { display: 'inline-flex' },
 }));
@@ -57,7 +58,7 @@ const schema = Joi.object().keys({
 
 const validate = generateValidation(schema);
 
-const placeholder = 'Write a comment...';
+const placeholder = 'Ask a question or post an update...';
 
 const CreateComment = ({ taskId }) => {
   const savingInProgress = useSelector(state => state.comments.savingInProgress);
@@ -127,7 +128,7 @@ const CreateComment = ({ taskId }) => {
           )}
         />
       ) : (
-        <Card style={{ marginLeft: '2.65rem', width: '100%' }}>
+        <Card elevation={3} style={{ marginLeft: '2.65rem', width: '100%' }}>
           <CardActionArea onClick={() => setShowActivityInput(true)} className={classes.textArea}>
             <div className={classes.textAreaContent}>{placeholder}</div>
           </CardActionArea>

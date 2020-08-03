@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
-import { Grid, makeStyles, TextareaAutosize, CardActionArea } from '@material-ui/core';
+import { Grid, makeStyles, TextareaAutosize, CardActionArea, Card } from '@material-ui/core';
 import ErrorMsg from 'components/shared/Field/ErrorMsg';
 import { GrTextAlignFull } from 'react-icons/gr';
 import TaskPropertyLabel from '../TaskPropertyLabel';
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   textArea: {
-    border: `1px solid ${theme.palette.grey[400]}`,
+    border: `1px solid transparent`,
     width: '100%',
     padding: '1rem',
     lineHeight: 'inherit',
@@ -52,7 +52,7 @@ const schema = Joi.object().keys({
 
 const validate = generateValidation(schema);
 
-const placeholder = 'Add Comment';
+const placeholder = 'Add more detail to this task...';
 
 const TaskDescriptionForm = ({ taskId }) => {
   const [showDescriptionInput, setShowDescriptionInput] = useState(false);
@@ -100,14 +100,16 @@ const TaskDescriptionForm = ({ taskId }) => {
                       autoFocus
                     />
                   ) : (
-                    <CardActionArea
-                      onClick={() => setShowDescriptionInput(true)}
-                      className={classes.textArea}
-                    >
-                      <div className={classes.textAreaContent}>
-                        {props?.input?.value || placeholder}
-                      </div>
-                    </CardActionArea>
+                    <Card style={{ width: '100%' }} elevation={2}>
+                      <CardActionArea
+                        onClick={() => setShowDescriptionInput(true)}
+                        className={classes.textArea}
+                      >
+                        <div className={classes.textAreaContent}>
+                          {props?.input?.value || placeholder}
+                        </div>
+                      </CardActionArea>
+                    </Card>
                   )}
                 </div>
                 <ErrorMsg meta={props.meta} style={{ marginLeft: '3rem', marginBottom: '.5rem' }} />
