@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setTaskDescription } from 'actions/tasks';
 
 const useStyles = makeStyles(theme => ({
-  titleWrapper: { display: 'flex', width: '100%', alignItems: 'center' },
+  titleWrapper: { display: 'flex', width: '100%', alignItems: 'center', marginLeft: '2.65rem' },
   titleIcon: { marginRight: '1rem' },
   textAreaInput: {
     width: '100%',
@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     lineHeight: 'inherit',
     letterSpacing: 'inherit',
     fontFamily: 'inherit',
-    border: 'none',
+    // border: 'none',
     fontSize: '1.4rem',
     borderRadius: '4px',
     minHeight: '8rem',
@@ -29,6 +29,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   textArea: {
+    border: `1px solid ${theme.palette.grey[400]}`,
     width: '100%',
     padding: '1rem',
     lineHeight: 'inherit',
@@ -46,7 +47,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const schema = Joi.object().keys({
-  description: Joi.string().max(5000).allow(''),
+  description: Joi.string().max(5000),
 });
 
 const validate = generateValidation(schema);
@@ -109,7 +110,7 @@ const TaskDescriptionForm = ({ taskId }) => {
                     </CardActionArea>
                   )}
                 </div>
-                <ErrorMsg meta={props.meta} style={{ marginLeft: '2rem' }} />
+                <ErrorMsg meta={props.meta} style={{ marginLeft: '3rem', marginBottom: '.5rem' }} />
               </Fragment>
             )}
           </Field>

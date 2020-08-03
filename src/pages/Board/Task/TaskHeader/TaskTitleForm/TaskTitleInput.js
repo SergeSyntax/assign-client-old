@@ -4,29 +4,37 @@ import { Field } from 'react-final-form';
 import { GrBook } from 'react-icons/gr';
 import FieldInput from 'components/shared/Field/FieldInput';
 import ErrorMsg from 'components/shared/Field/ErrorMsg';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, InputAdornment, CardActionArea } from '@material-ui/core';
 import { TaskTitleText } from './TaskTitleText';
+import { MdAccountCircle } from 'react-icons/md';
 
 const useStyles = makeStyles(theme => ({
   titleWrapper: { display: 'flex', width: '100%', alignItems: 'center', minHeight: '5rem' },
-  titleIcon: { marginRight: '1rem' },
+  titleIcon: { marginRight: '1rem', fontSize: '2.3rem' },
   titleField: {
     '& .MuiInputBase-input': {
-      fontSize: '2rem',
-      lineHeight: 'inherit',
-      letterSpacing: 'inherit',
+      fontSize: '2.3rem',
+      fontWeight: 500,
+      lineHeight: '3rem',
+      letterSpacing: '.1rem',
+      // borderRadius: '4px',
+      padding: '.1rem 0',
       fontFamily: 'inherit',
+      height: 'none',
     },
   },
   titleText: {
-    fontSize: '2rem',
+    fontSize: '2.3rem',
+    fontWeight: 500,
+    lineHeight: '3rem',
+    letterSpacing: '.1rem',
+    padding: '1rem 2rem',
     width: '100%',
     borderRadius: '4px',
-    padding: '0.5rem 1.2rem',
-    lineHeight: 'inherit',
-    letterSpacing: 'inherit',
     fontFamily: 'inherit',
     wordBreak: 'break-word',
+    display: 'flex',
+    justifyContent: 'flex-start',
   },
 }));
 
@@ -38,17 +46,34 @@ const TaskTitleInput = ({ showTitleInput, setShowTitleInput, handleSubmit }) => 
       {props => (
         <Fragment>
           <div className={classes.titleWrapper}>
-            <GrBook className={classes.titleIcon} />
             {showTitleInput ? (
               <FieldInput
                 className={classes.titleField}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment style={{ marginLeft: '.8rem' }} position="start">
+                      <GrBook className={classes.titleIcon} />
+                    </InputAdornment>
+                  ),
+                }}
                 {...props}
                 autoFocus
+                multiline
                 size="small"
                 type="text"
               />
             ) : (
-              <TaskTitleText {...props} className={classes.titleText} />
+              <Fragment>
+                {' '}
+                <CardActionArea {...props} className={classes.titleText}>
+                  {' '}
+                  <InputAdornment style={{marginRight:'.7rem'}}  position="start">
+                    <GrBook className={classes.titleIcon} style={{fontSize:'2.3rem'}} />
+                  </InputAdornment>
+                  <div>{`${props.input.value}`}</div>
+                </CardActionArea>
+                {/* <TaskTitleText {...props} className={classes.titleText} /> */}
+              </Fragment>
             )}
           </div>
           <ErrorMsg meta={props.meta} style={{ marginLeft: '4rem' }} />

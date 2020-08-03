@@ -17,8 +17,6 @@ const Task = ({
     history.push(`/project/${projectId}`);
   };
 
-  // if (!isTask) handleClose();
-
   return (
     <Dialog maxWidth="md" fullWidth fullScreen={fullScreen} open={true} onClose={handleClose}>
       {loadingTasks ? (

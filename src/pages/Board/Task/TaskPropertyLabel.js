@@ -5,13 +5,16 @@ import _ from 'lodash';
 
 const useStyles = makeStyles(theme => ({
   taskPropertyWrapper: {
-    fontSize: '1.6rem',
+    fontSize: '1.7rem',
     display: 'inline-flex',
     alignItems: 'center',
     marginBottom: '1rem',
+    // color: '#6972DA',
+    fontWeight: 500,
+    letterSpacing: '.15rem',
   },
   taskPropertyIcon: { marginRight: '1rem' },
-  taskPropertyText: { fontSize: 'inherit' },
+  taskPropertyText: { fontSize: 'inherit', letterSpacing: 'inherit', fontWeight: 'inherit' },
 }));
 
 const TaskPropertyLabel = ({ Icon, label, ...rest }) => {

@@ -56,17 +56,7 @@ const CommentItem = ({ commentId }) => {
         <ListItemAvatar>
           <Avatar className={classes.userIcon}>{letter}</Avatar>
         </ListItemAvatar>
-        <ListItemText
-          primary={
-            <div style={{ display: 'flex', alignItems: 'baseline' }}>
-              <Typography style={{ marginRight: '2rem', fontWeight: 500 }}>{name}</Typography>
-              <Typography style={{ color: 'grey', fontSize: '.8em' }}>
-                {formatDatePrettyPrint(comment.createdAt)}
-              </Typography>
-            </div>
-          }
-          secondary={<Typography style={{ margin: '.8rem 0' }}> {comment.message}</Typography>}
-        />
+        <ListItemText primary={name} secondary={formatDatePrettyPrint(comment.createdAt)} />
       </ListItem>
     </List>
   );

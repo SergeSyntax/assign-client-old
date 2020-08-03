@@ -12,7 +12,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setTaskDueDate } from 'actions/tasks';
 import { formatDataForMaterialUI } from 'utils/formatDate';
 const useStyles = makeStyles(theme => ({
-  titleWrapper: { display: 'flex', width: '100%', alignItems: 'center', fontSize: '2rem' },
+  titleWrapper: {
+    display: 'flex',
+    width: '100%',
+    alignItems: 'center',
+    fontSize: '2rem',
+    marginLeft: '2.65rem',
+  },
   titleIcon: { marginRight: '1rem' },
   titleField: {
     '& .MuiInputBase-input': { fontSize: '1.6rem' },
@@ -61,9 +67,10 @@ const TaskDueDateForm = ({ taskId }) => {
                     {...props}
                     size="small"
                     type="datetime-local"
+                    fullWidth={false}
                   />
                 </div>
-                <ErrorMsg meta={props.meta} style={{ marginLeft: '2rem' }} />
+                <ErrorMsg meta={props.meta} style={{ marginLeft: '3rem', marginBottom: '.5rem' }} />
               </Fragment>
             )}
           </Field>

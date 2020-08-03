@@ -96,6 +96,7 @@ const CreateComment = ({ taskId }) => {
                   <Fragment>
                     <Card
                       className={classes.titleWrapper}
+                      style={{ marginLeft: '2.65rem' }}
                       onBlur={() => {
                         if (props.input.value.length === 0) setShowActivityInput(false);
                       }}
@@ -126,7 +127,7 @@ const CreateComment = ({ taskId }) => {
           )}
         />
       ) : (
-        <Card>
+        <Card style={{ marginLeft: '2.65rem', width: '100%' }}>
           <CardActionArea onClick={() => setShowActivityInput(true)} className={classes.textArea}>
             <div className={classes.textAreaContent}>{placeholder}</div>
           </CardActionArea>
