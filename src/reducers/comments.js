@@ -58,8 +58,8 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         savingInProgress: false,
-        commentList: { ...state.commentList, [payload.id]: payload },
-        commentIds: [...state.commentIds, payload.id],
+        commentList: { [payload.id]: payload, ...state.commentList },
+        commentIds: [payload.id, ...state.commentIds],
       };
     default:
       return state;
