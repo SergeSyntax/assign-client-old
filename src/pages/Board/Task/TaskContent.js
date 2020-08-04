@@ -55,7 +55,6 @@ const TaskContent = ({ taskId, handleClose, projectId }) => {
                 Task Actions{' '}
               </ListSubheader>
             }
-            // className={classes.root}
           >
             <ListItem button onClick={onClick}>
               <ListItemIcon>
@@ -63,12 +62,6 @@ const TaskContent = ({ taskId, handleClose, projectId }) => {
               </ListItemIcon>
               <ListItemText primary="Delete" />
             </ListItem>
-            {/* <ListItem button>
-            <ListItemIcon>
-              <DraftsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Drafts" />
-          </ListItem> */}
           </List>
         </Grid>
       </Grid>
