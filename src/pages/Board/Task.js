@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Dialog, useTheme, useMediaQuery } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import TaskContent from './Task/TaskContent';
-import { TaskLoadingSkeleton } from './Task/TaskLoadingSkeleton';
+import TaskContent from '../../components/Task/TaskContent/TaskContent';
+import { TaskLoadingSkeleton } from '../../components/Task/TaskLoadingSkeleton';
 
 const Task = ({
   match: {

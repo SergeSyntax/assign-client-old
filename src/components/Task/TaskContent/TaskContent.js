@@ -12,7 +12,6 @@ import {
 } from '@material-ui/core';
 
 import TaskHeader from './TaskHeader/TaskHeader';
-import TaskDueDateForm from './TaskDueDateForm/TaskDueDateForm';
 import TaskDescriptionForm from './TaskDescriptionForm/TaskDescriptionForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -20,6 +19,7 @@ import CreateComment from './TaskActivity/CreateComment';
 import ActivityList from './TaskActivity/ActivityList';
 import { GoX } from 'react-icons/go';
 import { deleteTask } from 'actions/tasks';
+import TaskDueDateForm from './TaskDueDateForm/TaskDueDateForm';
 
 const useStyles = makeStyles(theme => ({
   cardContent: { padding: '2rem 4rem', marginBottom: '2rem' },
