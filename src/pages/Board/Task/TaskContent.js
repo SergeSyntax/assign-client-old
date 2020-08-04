@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  DialogContent,
   Grid,
   List,
   ListSubheader,
@@ -9,6 +8,7 @@ import {
   ListItemIcon,
   ListItemText,
   CardContent,
+  makeStyles,
 } from '@material-ui/core';
 
 import TaskHeader from './TaskHeader/TaskHeader';
@@ -21,9 +21,14 @@ import ActivityList from './TaskActivity/ActivityList';
 import { GoX } from 'react-icons/go';
 import { deleteTask } from 'actions/tasks';
 
+const useStyles = makeStyles(theme => ({
+  cardContent: { padding: '2rem 4rem', marginBottom: '2rem' },
+}));
+
 const TaskContent = ({ taskId, handleClose, projectId }) => {
   const taskIds = useSelector(state => state.tasks.taskIds);
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   const onClick = () => {
     handleClose();
@@ -31,15 +36,14 @@ const TaskContent = ({ taskId, handleClose, projectId }) => {
   };
 
   return taskIds.includes(taskId) ? (
-    <Grid container direction="column" style={{}}>
+    <Grid container direction="column">
       <TaskHeader taskId={taskId} handleClose={handleClose} />
       <Grid
         component={CardContent}
-        style={{ padding: '2rem 4rem' }}
+        className={classes.cardContent}
         container
         direction="row"
         justify="space-between"
-        // wrap="nowrap"
       >
         <Grid item md={7} xs={12}>
           <TaskDueDateForm taskId={taskId} />

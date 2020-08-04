@@ -50,7 +50,7 @@ function* renameTask({ payload }) {
 
 function* setTaskDueDate({ payload }) {
   try {
-    // if the title is the same avoid sending a patch request to the server
+    // if the dueDate is the same avoid sending a patch request to the server
     const oldDueDate = yield select(state => state.tasks.taskList[payload.taskId].dueDate);
     if (formatDataForMaterialUI(oldDueDate) === formatDataForMaterialUI(payload.dueDate)) return;
     yield put(showAlert("saving task's due date..."));
@@ -67,7 +67,7 @@ function* setTaskDueDate({ payload }) {
 
 function* setTaskDescription({ payload }) {
   try {
-    // if the title is the same avoid sending a patch request to the server
+    // if the description is the same avoid sending a patch request to the server
     const oldTaskDescription = yield select(
       state => state.tasks.taskList[payload.taskId].description
     );

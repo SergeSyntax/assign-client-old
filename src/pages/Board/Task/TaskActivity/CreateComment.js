@@ -29,12 +29,8 @@ const useStyles = makeStyles(theme => ({
   textArea: {
     width: '100%',
     padding: '2rem',
-    // lineHeight: 'inherit',
-    // letterSpacing: 'inherit',
-    // fontFamily: 'inherit',
     fontSize: '1.4rem',
     borderRadius: '4px',
-    // minHeight: '4rem',
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',

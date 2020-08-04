@@ -16,5 +16,3 @@ export default schema => values => {
 
   return {};
 };
-
-// const validate = generateValidation

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { IconButton, Menu, makeStyles } from '@material-ui/core';
 import { MdArrowDropDown } from 'react-icons/md';
 import Logout from './Logout';
@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DropDownMenu = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const classes = useStyles();
 
   const handleClick = event => {

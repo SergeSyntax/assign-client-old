@@ -40,11 +40,6 @@ const UserName = () => {
 
   const { name, letter } = getUserNameAndLetter(username, email);
 
-  // const nameLetter = user.match(/[A-Z]/g);
-  // const userLetter =
-  //   nameLetter && nameLetter[0] && nameLetter[1]
-  //     ? `${nameLetter[0]}${nameLetter[1]}`
-  //     : email.substring(0, 1);
   return (
     <Button className={classes.userButton}>
       <Avatar className={classes.userIcon}>{letter}</Avatar>

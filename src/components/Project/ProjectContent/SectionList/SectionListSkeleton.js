@@ -7,7 +7,6 @@ const useStyles = makeStyles(theme => ({
   section: {
     background: '#EBECF0',
     height: '96%',
-    // minWidth: '20rem',
     flexShrink: '0',
     margin: '1rem 0',
     '&:not(:last-child)': {

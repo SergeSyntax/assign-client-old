@@ -1,5 +1,3 @@
-// {{URL}}
-
 import request from 'utils/request';
 
 export const createComment = ({ message, taskId }) =>

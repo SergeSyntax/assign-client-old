@@ -19,7 +19,6 @@ const useStyles = makeStyles(theme => ({
     lineHeight: 'inherit',
     letterSpacing: 'inherit',
     fontFamily: 'inherit',
-    // border: 'none',
     fontSize: '1.4rem',
     borderRadius: '4px',
     minHeight: '8rem',

@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
     marginTop: '2rem',
     width: '100%',
     marginLeft: '2.65rem',
-    // maxWidth: '36ch',
     backgroundColor: theme.palette.background.paper,
   },
   inline: {

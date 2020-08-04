@@ -3,7 +3,7 @@ import { Divider, makeStyles, Grid, Container, Hidden } from '@material-ui/core'
 import './Dashboard.scss';
 import './Dashboard.scss';
 import Header from '../../components/Dashboard/Header/Header';
-import DashboardContent from './DashboardContent';
+import Projects from './Project/Projects';
 import DashboardNavbar from './DashboardNavbar';
 
 const useStyles = makeStyles(theme => ({
@@ -46,7 +46,7 @@ const Dashboard = () => {
           </Hidden>
 
           <Grid className={classes.content} sm={11} md={8} lg={6} item>
-            <DashboardContent />
+            <Projects />
           </Grid>
           <Hidden mdDown>
             <Divider orientation="vertical" />

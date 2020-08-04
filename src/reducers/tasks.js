@@ -66,8 +66,7 @@ export default (state = initialState, { type, payload }) => {
         taskList: { ...state.taskList, [payload.id]: payload },
       };
 
-
-          // set the tasks data for the current project
+    // set the tasks data for the current project
     case SET_TASK_DESCRIPTION_REQUEST:
       return state;
 
@@ -101,18 +100,17 @@ export default (state = initialState, { type, payload }) => {
         taskIds: [...state.taskIds, payload.id],
       };
 
-      case DELETE_TASK_REQUEST:
-        return { ...state, savingInProgress: true };
-      case DELETE_TASK_FAILURE:
-        return { ...state, savingInProgress: false };
-      case DELETE_TASK_SUCCESS:
-        return {
-          ...state,
-          savingInProgress: false,
-          taskList: _.omit(state.taskList, payload),
-          taskIds: state.taskIds.filter(taskId => taskId !== payload),
-        };
-  
+    case DELETE_TASK_REQUEST:
+      return { ...state, savingInProgress: true };
+    case DELETE_TASK_FAILURE:
+      return { ...state, savingInProgress: false };
+    case DELETE_TASK_SUCCESS:
+      return {
+        ...state,
+        savingInProgress: false,
+        taskList: _.omit(state.taskList, payload),
+        taskIds: state.taskIds.filter(taskId => taskId !== payload),
+      };
 
     default:
       return state;

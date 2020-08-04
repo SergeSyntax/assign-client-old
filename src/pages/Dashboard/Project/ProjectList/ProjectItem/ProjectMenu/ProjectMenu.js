@@ -6,7 +6,7 @@ import ProjectMenuButton from './ProjectMenuButton';
 // import _ from 'lodash';
 import EditProjectButton from './EditProject/EditProjectButton';
 import EditProject from './EditProject/EditProject';
-import DeleteButton from '../../../../../../../components/shared/MenuItems/DeleteButton';
+import DeleteButton from '../../../../../../components/shared/MenuItems/DeleteButton';
 import ProjectDelete from './DeleteProject/ProjectDelete';
 
 const useStyles = makeStyles(theme => ({
@@ -24,7 +24,7 @@ const ProjectMenu = ({ projectId }) => {
   const classes = useStyles();
 
   // Menu state
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = event => {
     setAnchorEl(event.currentTarget);
   };

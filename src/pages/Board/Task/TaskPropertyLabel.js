@@ -9,7 +9,6 @@ const useStyles = makeStyles(theme => ({
     display: 'inline-flex',
     alignItems: 'center',
     marginBottom: '1rem',
-    // color: '#6972DA',
     fontWeight: 500,
     letterSpacing: '.15rem',
   },

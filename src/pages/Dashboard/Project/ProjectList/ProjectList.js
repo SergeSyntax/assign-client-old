@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProjects } from 'actions/projects';
 import ProjectSkeleton from './ProjectSkeleton';
 import ProjectItem from './ProjectItem/ProjectItem';
-// import EditProjectButton from './EditProjectButton';
+import PropTypes from 'prop-types';
 
-const ProjectList = () => {
+const ProjectList = ({ searchProjectValue }) => {
   const dispatch = useDispatch();
-  const projectIds = useSelector(state => state.projects.projectIds);
+  const projectList = useSelector(state => state.projects.projectList);
   const loadingProjects = useSelector(state => state.projects.loadingProjects);
 
   useEffect(() => {
@@ -21,13 +21,19 @@ const ProjectList = () => {
         <ProjectSkeleton />
       ) : (
         <Fragment>
-          {projectIds.map(projectId => (
-            <ProjectItem key={projectId} projectId={projectId} />
-          ))}
+          {Object.values(projectList)
+            .filter(project => project.title.includes(searchProjectValue))
+            .map(project => (
+              <ProjectItem key={project.id} projectId={project.id} />
+            ))}
         </Fragment>
       )}
     </Grid>
   );
+};
+
+ProjectList.prototype = {
+  searchProjectValue: PropTypes.string.isRequired,
 };
 
 export default ProjectList;

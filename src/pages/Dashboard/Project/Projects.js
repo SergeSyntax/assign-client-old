@@ -8,8 +8,8 @@ import {
   InputAdornment,
 } from '@material-ui/core';
 import { FiSearch } from 'react-icons/fi';
-import CreateProject from './Project/ProjectFormDialog/CreateProject';
-import ProjectList from './Project/ProjectFormDialog/ProjectList/ProjectList';
+import CreateProject from './CreateProject/CreateProject';
+import ProjectList from './ProjectList/ProjectList';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -35,8 +35,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const DashboardContent = () => {
+const Projects = () => {
   const [active, setActive] = useState(false);
+  const [value, setValue] = useState('');
   const classes = useStyles(active);
 
   return (
@@ -63,6 +64,8 @@ const DashboardContent = () => {
         <TextField
           onFocus={() => setActive(true)}
           onBlur={() => setActive(false)}
+          onChange={e => setValue(e.target.value)}
+          value={value}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -75,9 +78,9 @@ const DashboardContent = () => {
         />
         <CreateProject />
       </Grid>
-      <ProjectList />
+      <ProjectList searchProjectValue={value} />
     </Fragment>
   );
 };
 
-export default DashboardContent;
+export default Projects;

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Breadcrumbs, Chip, makeStyles, emphasize, CircularProgress } from '@material-ui/core';
 import { GoHome } from 'react-icons/go';
@@ -41,7 +41,7 @@ const ProjectLocation = ({ projectId }) => {
   const loadingProject = useSelector(state => state.projects.loadingProject);
   const classes = useStyles();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = event => {
     dispatch(fetchProjects());
     setAnchorEl(event.currentTarget);

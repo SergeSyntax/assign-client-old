@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import MenuIconButton from 'components/shared/Buttons/MenuIconButton';
-import { Menu, makeStyles } from '@material-ui/core';
+import { Menu } from '@material-ui/core';
 import DeleteButton from 'components/shared/MenuItems/DeleteButton';
 import { deleteTask } from 'actions/tasks';
 

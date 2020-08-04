@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { createProject } from 'actions/projects';
-import ProjectFormDialog from './ProjectFormDialog';
+import ProjectFormDialog from '../ProjectFormDialog/ProjectFormDialog';
 import CreateProjectButton from './CreateProjectButton';
 import { useDispatch, useSelector } from 'react-redux';
 

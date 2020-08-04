@@ -80,7 +80,6 @@ function* fetchUser() {
     } = yield call(api.fetchUser);
 
     yield put({ type: FETCH_USER_SUCCESS, payload: { userInfo, authToken } });
-    // } else yield put({ type: FETCH_USER_FAILURE });
   } catch (err) {
     yield call(AuthCookie.clear);
     yield put({ type: FETCH_USER_FAILURE });
