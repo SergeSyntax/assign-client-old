@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
-import { GrBook } from 'react-icons/gr';
 import FieldInput from 'components/shared/Field/FieldInput';
 import ErrorMsg from 'components/shared/Field/ErrorMsg';
-import { makeStyles, InputAdornment, CardActionArea } from '@material-ui/core';
+import { makeStyles, CardActionArea } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   titleWrapper: { display: 'flex', width: '100%', alignItems: 'center', minHeight: '5rem' },
@@ -14,12 +13,13 @@ const useStyles = makeStyles(theme => ({
       fontWeight: 500,
       lineHeight: '3rem',
       letterSpacing: '.1rem',
-      padding: '.1rem 0',
+      padding: '.14rem .9rem',
       fontFamily: 'inherit',
       height: 'none',
     },
   },
   titleText: {
+    border: '1px solid transparent',
     fontSize: '2.3rem',
     fontWeight: 500,
     lineHeight: '3rem',
@@ -45,13 +45,6 @@ const TaskTitleInput = ({ showTitleInput, setShowTitleInput, handleSubmit }) => 
             {showTitleInput ? (
               <FieldInput
                 className={classes.titleField}
-                // InputProps={{
-                //   startAdornment: (
-                //     <InputAdornment style={{ marginLeft: '.8rem' }} position="start">
-                //       <GrBook className={classes.titleIcon} />
-                //     </InputAdornment>
-                //   ),
-                // }}
                 {...props}
                 autoFocus
                 multiline
@@ -61,9 +54,6 @@ const TaskTitleInput = ({ showTitleInput, setShowTitleInput, handleSubmit }) => 
             ) : (
               <Fragment>
                 <CardActionArea {...props} className={classes.titleText}>
-                  {/* <InputAdornment style={{ marginRight: '.7rem' }} position="start">
-                    <GrBook className={classes.titleIcon} style={{ fontSize: '2.3rem' }} />
-                  </InputAdornment> */}
                   <div>{`${props.input.value}`}</div>
                 </CardActionArea>
               </Fragment>

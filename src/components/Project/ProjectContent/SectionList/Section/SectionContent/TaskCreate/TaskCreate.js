@@ -1,10 +1,16 @@
 import React, { useRef, useEffect } from 'react';
-import { ClickAwayListener, Card, CardContent } from '@material-ui/core';
+import { ClickAwayListener, Card, CardContent, makeStyles } from '@material-ui/core';
 
 import TaskCreateForm from './TaskCreateForm';
 import PropTypes from 'prop-types';
 
+const useStyles = makeStyles(theme => ({
+  card: { margin: '1rem', flexShrink: '0', padding: '0 1rem' },
+  cardContent: { padding: '1rem' },
+}));
+
 const TaskCreate = ({ sectionId, handleClose, savingInProgress }) => {
+  const classes = useStyles();
   const ref = useRef();
 
   useEffect(() => {
@@ -13,8 +19,8 @@ const TaskCreate = ({ sectionId, handleClose, savingInProgress }) => {
 
   return (
     <ClickAwayListener onClickAway={handleClose}>
-      <Card style={{ margin: '1rem', flexShrink: '0', padding: '0 1rem' }}>
-        <CardContent style={{ padding: '1rem' }}>
+      <Card className={classes.card}>
+        <CardContent className={classes.cardContent}>
           <TaskCreateForm
             ref={ref}
             savingInProgress={savingInProgress}

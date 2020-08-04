@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Dialog, useTheme, useMediaQuery } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import TaskContent from './Task/TaskContent';
+import { TaskLoadingSkeleton } from './Task/TaskLoadingSkeleton';
 
 const Task = ({
   match: {
@@ -20,7 +21,7 @@ const Task = ({
   return (
     <Dialog maxWidth="md" fullWidth fullScreen={fullScreen} open={true} onClose={handleClose}>
       {loadingTasks ? (
-        <div>loading</div>
+        <TaskLoadingSkeleton />
       ) : (
         <TaskContent projectId={projectId} taskId={taskId} handleClose={handleClose} />
       )}

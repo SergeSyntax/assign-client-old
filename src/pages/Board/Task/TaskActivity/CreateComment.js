@@ -1,16 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
-import {
-  Grid,
-  makeStyles,
-  TextareaAutosize,
-  CardActionArea,
-  Card,
-  Button,
-} from '@material-ui/core';
+import { Grid, makeStyles, TextareaAutosize, CardActionArea, Card } from '@material-ui/core';
 import ErrorMsg from 'components/shared/Field/ErrorMsg';
-import { GrTextAlignFull, GrTextAlignLeft } from 'react-icons/gr';
+import { GrTextAlignLeft } from 'react-icons/gr';
 import TaskPropertyLabel from '../TaskPropertyLabel';
 import Joi from '@hapi/joi';
 import generateValidation from 'utils/generateValidation';

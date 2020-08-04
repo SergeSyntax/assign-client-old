@@ -2,14 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  List,
-  ListItem,
   Avatar,
-  ListItemAvatar,
-  ListItemText,
   Typography,
   makeStyles,
-  Divider,
   Card,
   CardHeader,
   IconButton,
@@ -18,7 +13,7 @@ import {
 import { formatDatePrettyPrint } from 'utils/formatDate';
 import { useSelector } from 'react-redux';
 import { blue } from '@material-ui/core/colors';
-import { GoKebabHorizontal, GoKebabVertical } from 'react-icons/go';
+import { GoKebabVertical } from 'react-icons/go';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -86,6 +81,8 @@ const CommentItem = ({ commentId }) => {
   );
 };
 
-CommentItem.propTypes = {};
+CommentItem.propTypes = {
+  commentId: PropTypes.string.isRequired,
+};
 
 export default CommentItem;

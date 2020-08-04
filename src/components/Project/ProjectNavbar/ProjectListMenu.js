@@ -16,6 +16,7 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: 'hsla(206, 100%, 79%,.3)',
     },
+    visibility: loadingProjects => (loadingProjects ? 'hidden' : 'visible'),
   },
   loading: {
     background: 'transparent',
@@ -27,10 +28,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ProjectListMenu = ({ anchorEl, closeMenu, projectId }) => {
-  const classes = useStyles();
-
   const projects = useSelector(state => state.projects.projectList, shallowEqual);
   const loadingProjects = useSelector(state => state.projects.loadingProjects);
+  const classes = useStyles(loadingProjects);
 
   return (
     <Menu
@@ -47,7 +47,6 @@ const ProjectListMenu = ({ anchorEl, closeMenu, projectId }) => {
       {Object.values(projects).map(project => (
         <MenuItem
           className={classes.menuItem}
-          style={{ visibility: loadingProjects ? 'hidden' : 'visible' }}
           onClick={closeMenu}
           component={Link}
           to={`/project/${project.id}`}

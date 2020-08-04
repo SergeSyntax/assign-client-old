@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import {
   makeStyles,
   Grid,
@@ -28,11 +28,16 @@ const useStyles = makeStyles(theme => ({
     fontSize: '2rem',
     textTransform: 'capitalize',
   },
-  titleIcon: { marginRight: '1rem', fontSize: '2.3rem', color: theme.palette.primary.main },
+  titleIcon: {
+    marginRight: '1rem',
+    fontSize: '2.3rem',
+    color: props => (props ? theme.palette.primary.main : theme.palette.grey[400]),
+  },
 }));
 
 const DashboardContent = () => {
-  const classes = useStyles();
+  const [active, setActive] = useState(false);
+  const classes = useStyles(active);
 
   return (
     <Fragment>
@@ -56,10 +61,12 @@ const DashboardContent = () => {
         alignItems="center"
       >
         <TextField
+          onFocus={() => setActive(true)}
+          onBlur={() => setActive(false)}
           InputProps={{
             startAdornment: (
-              <InputAdornment style={{ marginLeft: '.8rem' }} position="start">
-                <FiSearch color="primary" className={classes.titleIcon} />
+              <InputAdornment position="start">
+                <FiSearch className={classes.titleIcon} />
               </InputAdornment>
             ),
           }}

@@ -22,18 +22,21 @@ const useStyles = makeStyles(theme => ({
   buttonProgress: {
     color: '#fff',
   },
+  buttonText: {
+    visibility: inProgress => (inProgress ? 'hidden' : 'visible'),
+  },
 }));
 
 const SubmitButton = ({ text = 'Submit', inProgress, ...rest }) => {
-  const classes = useStyles();
+  const classes = useStyles(inProgress);
 
   return (
     <div className={classes.wrapper}>
       <Button className={classes.button} type="submit" disabled={inProgress} {...rest}>
-        <div style={{ visibility: inProgress ? 'hidden' : 'visible' }}>{text}</div>
+        <div className={classes.buttonText}>{text}</div>
         {inProgress && (
           <span className={classes.buttonWrapper}>
-            <CircularProgress size={24} className={classes.buttonProgress} />
+            <CircularProgress size="2rem" className={classes.buttonProgress} />
           </span>
         )}
       </Button>

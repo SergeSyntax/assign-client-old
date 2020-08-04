@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DialogTitle, Grid, makeStyles, IconButton } from '@material-ui/core';
+import { DialogTitle, Grid, makeStyles } from '@material-ui/core';
 import TaskTitleForm from './TaskTitleForm/TaskTitleForm';
 import CloseTaskButton from './CloseTaskButton';
 
@@ -14,7 +14,7 @@ const TaskHeader = ({ taskId, handleClose }) => {
     <DialogTitle className={classes.taskWrapper}>
       <Grid container justify="space-between" alignItems="flex-start" wrap="nowrap">
         <TaskTitleForm taskId={taskId} />
-        <CloseTaskButton />
+        <CloseTaskButton onClick={handleClose} />
       </Grid>
     </DialogTitle>
   );

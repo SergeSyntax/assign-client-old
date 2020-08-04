@@ -8,12 +8,12 @@ const useStyles = makeStyles(theme => ({
   taskCloseButton: { padding: '.7rem', borderRadius: '.6rem' },
 }));
 
-const CloseTaskButton = ({ handleClose }) => {
+const CloseTaskButton = ({ onClick }) => {
   const classes = useStyles();
 
   return (
     <Grid item className={classes.taskOptions}>
-      <IconButton className={classes.taskCloseButton} size="medium" onClick={handleClose}>
+      <IconButton className={classes.taskCloseButton} size="medium" onClick={onClick}>
         <GoX />
       </IconButton>
     </Grid>
@@ -21,7 +21,7 @@ const CloseTaskButton = ({ handleClose }) => {
 };
 
 CloseTaskButton.propTypes = {
-  handleClose: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default CloseTaskButton;
