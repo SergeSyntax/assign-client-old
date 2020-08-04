@@ -27,12 +27,13 @@ const SectionMenu = ({ sectionId }) => {
     <Fragment>
       <MenuIconButton iconClassName={classes.sectionMenuButtonIcon} onClick={openMenu} />
       <Menu
-        autoFocus
         anchorEl={anchorEl}
+        getContentAnchorEl={null}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
         open={Boolean(anchorEl)}
         onClose={closeMenu}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        autoFocus
       >
         <DeleteButton onClick={() => dispatch(deleteSection(sectionId))} />
       </Menu>
