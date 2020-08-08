@@ -1,6 +1,6 @@
 import React from 'react';
-import { IoLogoGoogle } from 'react-icons/io';
-import { FaFacebookF } from 'react-icons/fa';
+import { IoLogoGoogle, IoLogoGithub } from 'react-icons/io';
+import { FaGithub } from 'react-icons/fa';
 import Button from '@material-ui/core/Button';
 import './AuthButtons.scss';
 import { baseURL } from 'config/server';
@@ -38,7 +38,7 @@ const AuthButtons = () => {
       >
         Continue with Google
       </Button>
-      <Button
+      {/* <Button
         startIcon={<FaFacebookF className="facebook-button__icon" />}
         variant="contained"
         color="default"
@@ -47,6 +47,16 @@ const AuthButtons = () => {
         onClick={() => openWindowPopup(`${baseURL}/users/facebook`)}
       >
         Continue with facebook
+      </Button> */}
+      <Button
+        startIcon={<IoLogoGithub className="facebook-button__icon" />}
+        variant="contained"
+        color="default"
+        fullWidth
+        className="google-button"
+        onClick={() => openWindowPopup(`${baseURL}/users/github`)}
+      >
+        Continue with github
       </Button>
     </div>
   );
