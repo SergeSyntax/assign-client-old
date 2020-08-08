@@ -13,9 +13,12 @@ import {
   FETCH_USER_FAILURE,
   CREATE_USER_FAILURE,
   USER_LOGIN_FAILURE,
+  OAUTH_AUTH_SUCCESS,
 } from 'actions/types';
 import AuthCookie from 'utils/AuthCookie';
 import request from 'utils/request';
+import { baseURL } from 'config/server';
+import { connect, createSocketChannel } from 'utils/socket';
 
 const setDefaultHeaders = authToken => {
   request.defaults.headers = {
@@ -88,8 +91,31 @@ function* fetchUser() {
 
 function* userLogout() {
   yield call(AuthCookie.clear);
-  window.location.assign(`${process.env.REACT_APP_BASEURL}/users/logout`);
+  window.location.assign(`${baseURL}/users/logout`);
   // yield call(api.logoutUser);
+}
+
+function* oAuth() {}
+
+export function* watchUserOauth() {
+  const socket = yield call(connect);
+
+  const socketChannel = yield call(createSocketChannel, socket, 'OAUTH_AUTH');
+
+  while (true) {
+    try {
+      // An error from socketChannel will cause the saga jump to the catch block
+      const { token, user } = yield take(socketChannel);
+      yield call(setDefaultHeaders, token);
+      yield call(AuthCookie.set, token);
+      yield put({ type: OAUTH_AUTH_SUCCESS, payload: { userInfo: user, authToken: token } });
+    } catch (err) {
+      console.error('socket error:', err);
+      // socketChannel is still open in catch block
+      // if we want end the socketChannel, we need close it explicitly
+      // socketChannel.close()
+    }
+  }
 }
 
 function* watchCreateUserRequest() {
@@ -114,4 +140,5 @@ export default [
   fork(watchUserLoginRequest),
   fork(watchFetchUserRequest),
   fork(watchUserLogoutRequest),
+  fork(watchUserOauth),
 ];

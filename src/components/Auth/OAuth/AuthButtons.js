@@ -3,6 +3,27 @@ import { IoLogoGoogle } from 'react-icons/io';
 import { FaFacebookF } from 'react-icons/fa';
 import Button from '@material-ui/core/Button';
 import './AuthButtons.scss';
+import { baseURL } from 'config/server';
+
+const openWindowPopup = url => {
+  let height = window.innerHeight;
+  let width = window.innerWidth;
+  let top = 0;
+  let left = 0;
+  if (width > 620) {
+    width = 620;
+    left = (window.innerWidth - width) / 2;
+  }
+
+  if (height > 740) {
+    height = 740;
+  }
+  return window.open(
+    url,
+    'DescriptiveWindowName',
+    `resizable,scrollbars,status,width=${width},height=${height},top=${top},left=${left}`
+  );
+};
 
 const AuthButtons = () => {
   return (
@@ -13,8 +34,7 @@ const AuthButtons = () => {
         color="default"
         fullWidth
         className="google-button"
-        component="a"
-        href={`${process.env.REACT_APP_BASEURL}/users/google`}
+        onClick={() => openWindowPopup(`${baseURL}/users/google`)}
       >
         Continue with Google
       </Button>
@@ -24,8 +44,7 @@ const AuthButtons = () => {
         color="default"
         fullWidth
         className="facebook-button"
-        component="a"
-        href={`${process.env.REACT_APP_BASEURL}/users/facebook`}
+        onClick={() => openWindowPopup(`${baseURL}/users/facebook`)}
       >
         Continue with facebook
       </Button>

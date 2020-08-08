@@ -7,6 +7,7 @@ import {
   CREATE_USER_REQUEST,
   CREATE_USER_FAILURE,
   USER_LOGIN_FAILURE,
+  OAUTH_AUTH_SUCCESS,
 } from 'actions/types';
 import AuthCookie from 'utils/AuthCookie';
 
@@ -23,6 +24,7 @@ export default (state = initialState, { type, payload }) => {
     case CREATE_USER_REQUEST:
     case USER_LOGIN_REQUEST:
       return { ...state, savingInProgress: true };
+    case OAUTH_AUTH_SUCCESS:
     case FETCH_USER_SUCCESS:
     case CREATE_USER_SUCCESS:
     case USER_LOGIN_SUCCESS:
