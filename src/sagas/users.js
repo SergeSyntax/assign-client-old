@@ -17,7 +17,6 @@ import {
 } from 'actions/types';
 import AuthCookie from 'utils/AuthCookie';
 import request from 'utils/request';
-import { baseURL } from 'config/server';
 import { connect, createSocketChannel } from 'utils/socket';
 
 const setDefaultHeaders = authToken => {
@@ -26,6 +25,10 @@ const setDefaultHeaders = authToken => {
     Authorization: `Bearer ${authToken}`,
   };
 };
+
+function clearStateAndRedirect(location = '/') {
+  window.location.href = location;
+}
 
 function* redirect(location = '/dashboard') {
   yield call(history.push, location);
@@ -77,12 +80,13 @@ function* fetchUser() {
 
     if (authToken) {
       yield call(setDefaultHeaders, authToken);
-    }
-    const {
-      data: { user: userInfo },
-    } = yield call(api.fetchUser);
 
-    yield put({ type: FETCH_USER_SUCCESS, payload: { userInfo, authToken } });
+      const {
+        data: { user: userInfo },
+      } = yield call(api.fetchUser);
+
+      yield put({ type: FETCH_USER_SUCCESS, payload: { userInfo, authToken } });
+    } else yield put({ type: FETCH_USER_FAILURE });
   } catch (err) {
     yield call(AuthCookie.clear);
     yield put({ type: FETCH_USER_FAILURE });
@@ -91,24 +95,28 @@ function* fetchUser() {
 
 function* userLogout() {
   yield call(AuthCookie.clear);
-  window.location.assign(`${baseURL}/users/logout`);
-  // yield call(api.logoutUser);
+  yield call(clearStateAndRedirect);
 }
 
-function* oAuth() {}
+function* oAuth({ token, user }) {
+  try {
+    yield call(setDefaultHeaders, token);
+    yield call(AuthCookie.set, token);
+    yield put({ type: OAUTH_AUTH_SUCCESS, payload: { userInfo: user, authToken: token } });
+  } catch (err) {
+    console.error('oAuth error:', err);
+  }
+}
 
 export function* watchUserOauth() {
   const socket = yield call(connect);
-
   const socketChannel = yield call(createSocketChannel, socket, 'OAUTH_AUTH');
 
   while (true) {
     try {
       // An error from socketChannel will cause the saga jump to the catch block
-      const { token, user } = yield take(socketChannel);
-      yield call(setDefaultHeaders, token);
-      yield call(AuthCookie.set, token);
-      yield put({ type: OAUTH_AUTH_SUCCESS, payload: { userInfo: user, authToken: token } });
+      const payload = yield take(socketChannel);
+      yield call(oAuth, payload);
     } catch (err) {
       console.error('socket error:', err);
       // socketChannel is still open in catch block
