@@ -1,9 +1,10 @@
 import React from 'react';
 import { IoLogoGoogle, IoLogoGithub } from 'react-icons/io';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaFacebookF, FaGoogle } from 'react-icons/fa';
 import Button from '@material-ui/core/Button';
 import './AuthButtons.scss';
 import { baseURL } from 'config/server';
+import { makeStyles } from '@material-ui/core';
 
 const openWindowPopup = url => {
   let height = window.innerHeight;
@@ -25,21 +26,47 @@ const openWindowPopup = url => {
   );
 };
 
+const useStyles = makeStyles({
+  githubButton: {
+    '&, &:hover, &:active': {
+      padding: '1rem 2rem',
+      backgroundColor: '#444',
+      color: '#fff',
+      textTransform: 'capitalize',
+
+      icon: {
+        marginLeft: '-2rem',
+
+        marginRight: '1rem',
+        fontSize: '1.4em',
+        marginTop: '-0.2rem',
+        // font-size: 1.2em;
+      },
+    },
+  },
+  googleButton: {
+    '&, &:hover, &:active': {
+      padding: '1rem 2rem',
+      backgroundColor: '#fff',
+      color: '#444',
+      textTransform: 'capitalize',
+      icon: {
+        marginRight: '1rem',
+        fontSize: '1.4em',
+        marginTop: '-0.2rem',
+
+        // font-size: 1.2em;
+      },
+    },
+  },
+});
+
 const AuthButtons = () => {
+  const classes = useStyles();
   return (
     <div id="auth-buttons">
       <Button
-        startIcon={<IoLogoGoogle className="google-button__icon" />}
-        variant="contained"
-        color="default"
-        fullWidth
-        className="google-button"
-        onClick={() => openWindowPopup(`${baseURL}/users/google`)}
-      >
-        Continue with Google
-      </Button>
-      {/* <Button
-        startIcon={<FaFacebookF className="facebook-button__icon" />}
+        startIcon={<FaFacebookF className="icon" />}
         variant="contained"
         color="default"
         fullWidth
@@ -47,16 +74,26 @@ const AuthButtons = () => {
         onClick={() => openWindowPopup(`${baseURL}/users/facebook`)}
       >
         Continue with facebook
-      </Button> */}
+      </Button>
       <Button
-        startIcon={<IoLogoGithub className="facebook-button__icon" />}
+        startIcon={<FaGithub className="icon" />}
         variant="contained"
         color="default"
         fullWidth
-        className="google-button"
+        className={classes.githubButton}
         onClick={() => openWindowPopup(`${baseURL}/users/github`)}
       >
         Continue with github
+      </Button>
+      <Button
+        startIcon={<FaGoogle className="icon" />}
+        variant="contained"
+        color="default"
+        fullWidth
+        className={classes.googleButton}
+        onClick={() => openWindowPopup(`${baseURL}/users/google`)}
+      >
+        Continue with Google
       </Button>
     </div>
   );
