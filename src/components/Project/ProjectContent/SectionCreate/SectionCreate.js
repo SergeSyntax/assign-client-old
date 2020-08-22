@@ -16,7 +16,7 @@ const SectionCreate = ({ projectId }) => {
 
   return (
     <Grid item xs={11} sm={4} md={3} lg={2}>
-      <CreateSectionButton ref={ref} handleClick={openMenu} open={menu.open} />
+      <CreateSectionButton ref={ref} handleClick={openMenu} open={popup.open} />
       <SectionCreatePopover
         open={popup.open}
         anchorEl={popup.anchorEl}

@@ -1,4 +1,4 @@
-import { useCallback, useReducer, useEffect } from 'react';
+import { useCallback, useReducer, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 const initialState = { menuEle: null, projectEdit: false, projectDelete: false };
@@ -13,21 +13,25 @@ const reducer = (state, { type, payload }) => {
     case types.UPDATE_ONE:
       return { ...state, [payload.target]: payload.value };
     case types.CLOSE_ALL:
-      return { ...state, menuEle: null, openEditProject: false, openDeleteProject: false };
+      return { ...state, menuEle: null, projectEdit: false, projectDelete: false };
     default:
       return state;
   }
 };
 
 const useProjectMenu = () => {
-  const [state, dispatch] = useReducer(reducer, initialState, () => initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const didMount = useRef(false);
   const savingInProgress = useSelector(state => state.projects.savingInProgress);
   const closeAll = useCallback(() => {
     dispatch({ type: types.CLOSE_ALL });
   }, [dispatch]);
 
   useEffect(() => {
-    if (!savingInProgress) closeAll();
+    if (didMount.current)
+      if (!savingInProgress) closeAll();
+      else didMount.current = true;
+    didMount.current = true;
   }, [savingInProgress, closeAll]);
 
   const updateOne = payload => {
