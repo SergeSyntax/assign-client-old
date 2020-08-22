@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import { DialogActions } from '@material-ui/core';
 import CancelProject from './CancelProject';
 import SubmitButton from '../../../../../../components/shared/Buttons/SubmitButton';
+import { useSelector } from 'react-redux';
 
-const ProjectFormActions = ({ handleClose, submitLabel, savingInProgress }) => {
+const ProjectFormActions = ({ handleClose, submitLabel }) => {
+  const savingInProgress = useSelector(state => state.projects.savingInProgress);
+
   return (
     <DialogActions>
       <CancelProject handleClose={handleClose} />
@@ -21,7 +24,6 @@ const ProjectFormActions = ({ handleClose, submitLabel, savingInProgress }) => {
 ProjectFormActions.propTypes = {
   handleClose: PropTypes.func.isRequired,
   submitLabel: PropTypes.string.isRequired,
-  savingInProgress: PropTypes.bool.isRequired,
 };
 
 export default ProjectFormActions;

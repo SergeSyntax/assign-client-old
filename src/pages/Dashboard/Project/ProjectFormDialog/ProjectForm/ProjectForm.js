@@ -29,7 +29,6 @@ const ProjectForm = ({
   handleClose,
   initialValues = {},
   submitLabel,
-  savingInProgress,
 }) => {
   const classes = useStyles();
 
@@ -46,7 +45,6 @@ const ProjectForm = ({
           <ProjectFormActions
             submitLabel={submitLabel}
             handleClose={handleClose}
-            savingInProgress={savingInProgress}
           />
         </form>
       )}
@@ -59,7 +57,6 @@ ProjectForm.propTypes = {
   handleClose: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
   submitLabel: PropTypes.string.isRequired,
-  savingInProgress: PropTypes.bool.isRequired,
 };
 
 export default ProjectForm;

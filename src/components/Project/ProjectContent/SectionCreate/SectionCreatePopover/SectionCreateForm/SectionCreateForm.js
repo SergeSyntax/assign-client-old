@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Joi from '@hapi/joi';
 import generateValidation from 'utils/generateValidation';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createSection } from 'actions/sections';
 import InputTitleSmall from './InputTitleSmall';
 import SubmitCompactActions from '../../../../../shared/layout/SubmitCompactActions';
@@ -14,7 +14,8 @@ const schema = Joi.object().keys({
 
 const validate = generateValidation(schema);
 
-const SectionCreateForm = ({ handleClose, projectId, savingInProgress }) => {
+const SectionCreateForm = ({ handleClose, projectId }) => {
+  const savingInProgress = useSelector(state => state.sections.savingInProgress);
   const dispatch = useDispatch();
 
   const onSubmit = values => {
@@ -38,7 +39,6 @@ const SectionCreateForm = ({ handleClose, projectId, savingInProgress }) => {
 SectionCreateForm.propTypes = {
   projectId: PropTypes.string.isRequired,
   handleClose: PropTypes.func.isRequired,
-  savingInProgress: PropTypes.bool.isRequired,
 };
 
 export default SectionCreateForm;

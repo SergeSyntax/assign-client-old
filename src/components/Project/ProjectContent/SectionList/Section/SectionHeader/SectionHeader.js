@@ -10,6 +10,7 @@ import MenuIconButton from 'components/shared/Buttons/MenuIconButton';
 import DeleteButton from 'components/shared/MenuItems/DeleteButton';
 import { deleteSection, renameSection } from 'actions/sections';
 import ErrorMsg from 'components/shared/Field/ErrorMsg';
+import usePopup from 'hooks/usePopup';
 
 const schema = Joi.object().keys({
   title: Joi.string().min(1).max(255).required(),
@@ -45,13 +46,7 @@ const SectionHeader = ({ sectionId }) => {
   };
 
   // Menu state
-  const [anchorEl, setAnchorEl] = useState(null);
-  const openMenu = event => {
-    setAnchorEl(event.currentTarget);
-  };
-  const closeMenu = () => {
-    setAnchorEl(null);
-  };
+  const [menu, setMenuEle] = usePopup();
 
   return (
     <Grid
@@ -111,14 +106,17 @@ const SectionHeader = ({ sectionId }) => {
         alignItems="flex-start"
         style={{ paddingTop: '.5rem' }}
       >
-        <MenuIconButton iconClassName={classes.sectionMenuButtonIcon} onClick={openMenu} />
+        <MenuIconButton
+          iconClassName={classes.sectionMenuButtonIcon}
+          onClick={event => setMenuEle(event.currentTarget)}
+        />
         <Menu
-          anchorEl={anchorEl}
+          anchorEl={menu.anchorEl}
           getContentAnchorEl={null}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
           transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-          open={Boolean(anchorEl)}
-          onClose={closeMenu}
+          open={menu.open}
+          onClose={() => setMenuEle(null)}
           autoFocus
         >
           <DeleteButton onClick={() => dispatch(deleteSection(sectionId))} />

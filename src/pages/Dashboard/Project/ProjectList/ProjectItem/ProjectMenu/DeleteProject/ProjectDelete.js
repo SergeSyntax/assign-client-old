@@ -6,13 +6,10 @@ import ProjectDeleteForm from './ProjectDeleteForm/ProjectDeleteForm';
 import ProjectDeleteContent from './ProjectDeleteContent';
 import ProjectDeleteHeader from './ProjectDeleteHeader';
 
-const ProjectDelete = ({ projectId, open, setOpen }) => {
-  const closeDeleteDialog = () => {
-    setOpen(false);
-  };
+const ProjectDelete = ({ projectId, open, handleClose }) => {
   return (
-    <Dialog open={open} onClose={closeDeleteDialog}>
-      <ProjectDeleteHeader handleClose={closeDeleteDialog} />
+    <Dialog open={open} onClose={handleClose}>
+      <ProjectDeleteHeader handleClose={handleClose} />
       <ProjectDeleteContent projectId={projectId} />
       <ProjectDeleteForm projectId={projectId} />
     </Dialog>

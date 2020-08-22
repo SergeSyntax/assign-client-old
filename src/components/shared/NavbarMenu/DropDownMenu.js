@@ -1,7 +1,8 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import { IconButton, Menu, makeStyles } from '@material-ui/core';
 import { MdArrowDropDown } from 'react-icons/md';
 import Logout from './Logout';
+import usePopup from 'hooks/usePopup';
 
 const useStyles = makeStyles(theme => ({
   dropDownMenuButton: {
@@ -12,28 +13,24 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DropDownMenu = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [menu, setMenuEle] = usePopup();
   const classes = useStyles();
 
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
   return (
     <Fragment>
-      <IconButton onClick={handleClick} className={classes.dropDownMenuButton}>
+      <IconButton
+        onClick={event => setMenuEle(event.currentTarget)}
+        className={classes.dropDownMenuButton}
+      >
         <MdArrowDropDown />
       </IconButton>
       <Menu
-        anchorEl={anchorEl}
+        anchorEl={menu.anchorEl}
         getContentAnchorEl={null}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
+        open={menu.open}
+        onClose={() => setMenuEle(null)}
       >
         <Logout />
       </Menu>

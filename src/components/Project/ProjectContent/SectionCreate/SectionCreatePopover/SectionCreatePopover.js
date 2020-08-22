@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     width: 'inherit',
   },
 }));
-const SectionCreatePopover = ({ open, anchorEl, handleClose, projectId, savingInProgress }) => {
+const SectionCreatePopover = ({ open, anchorEl, handleClose, projectId }) => {
   const classes = useStyles();
 
   return (
@@ -35,11 +35,7 @@ const SectionCreatePopover = ({ open, anchorEl, handleClose, projectId, savingIn
     >
       <Card className={classes.createSectionCard} elevation={4}>
         <CardContent>
-          <SectionCreateForm
-            projectId={projectId}
-            handleClose={handleClose}
-            savingInProgress={savingInProgress}
-          />
+          <SectionCreateForm projectId={projectId} handleClose={handleClose} />
         </CardContent>
       </Card>
     </Popover>
@@ -50,7 +46,6 @@ SectionCreatePopover.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
   projectId: PropTypes.string.isRequired,
-  savingInProgress: PropTypes.bool.isRequired,
 };
 
 export default SectionCreatePopover;

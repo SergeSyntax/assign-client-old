@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu, makeStyles } from '@material-ui/core';
 import ProjectMenuButton from './ProjectMenuButton';
@@ -8,6 +8,7 @@ import EditProjectButton from './EditProject/EditProjectButton';
 import EditProject from './EditProject/EditProject';
 import DeleteButton from '../../../../../../components/shared/MenuItems/DeleteButton';
 import ProjectDelete from './DeleteProject/ProjectDelete';
+import useProjectMenu from './useProjectMenu';
 
 const useStyles = makeStyles(theme => ({
   menu: {
@@ -22,39 +23,20 @@ const useStyles = makeStyles(theme => ({
 
 const ProjectMenu = ({ projectId }) => {
   const classes = useStyles();
-
-  // Menu state
-  const [anchorEl, setAnchorEl] = useState(null);
-  const openMenu = event => {
-    setAnchorEl(event.currentTarget);
-  };
-  const closeMenu = () => {
-    setAnchorEl(null);
-  };
-
-  // Edit dialog state
-  const [openEdit, setOpenEdit] = useState(false);
-  const openEditDialog = () => {
-    setAnchorEl(null);
-    setOpenEdit(true);
-  };
-
-  // Delete dialog state
-  const [openDelete, setOpenDelete] = useState(false);
-  const openDeleteDialog = () => {
-    setAnchorEl(null);
-    setOpenDelete(true);
-  };
+  const { state, updateOne, closeAll } = useProjectMenu();
+  const { projectEdit, projectDelete, menuEle } = state;
 
   return (
     <div className={classes.menu}>
-      <ProjectMenuButton handleClick={openMenu} />
-      <Menu autoFocus anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={closeMenu}>
-        <EditProjectButton onClick={openEditDialog} />
-        <DeleteButton onClick={openDeleteDialog} />
+      <ProjectMenuButton
+        handleClick={event => updateOne({ target: 'menuEle', value: event.currentTarget })}
+      />
+      <Menu autoFocus anchorEl={menuEle} open={Boolean(menuEle)} onClose={closeAll}>
+        <EditProjectButton onClick={() => updateOne({ target: 'projectEdit', value: true })} />
+        <DeleteButton onClick={() => updateOne({ target: 'projectDelete', value: true })} />
       </Menu>
-      <EditProject open={openEdit} setOpen={setOpenEdit} projectId={projectId} />
-      <ProjectDelete projectId={projectId} open={openDelete} setOpen={setOpenDelete} />
+      <EditProject open={projectEdit} handleClose={closeAll} projectId={projectId} />
+      <ProjectDelete projectId={projectId} open={projectDelete} handleClose={closeAll} />
     </div>
   );
 };

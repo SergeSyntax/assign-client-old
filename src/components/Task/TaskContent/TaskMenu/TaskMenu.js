@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
@@ -6,18 +6,13 @@ import MenuIconButton from 'components/shared/Buttons/MenuIconButton';
 import { Menu } from '@material-ui/core';
 import DeleteButton from 'components/shared/MenuItems/DeleteButton';
 import { deleteTask } from 'actions/tasks';
+import usePopup from 'hooks/usePopup';
 
 const TaskMenu = ({ taskId, handleClose }) => {
   const dispatch = useDispatch();
 
   // Menu state
-  const [anchorEl, setAnchorEl] = useState(null);
-  const openMenu = event => {
-    setAnchorEl(event.currentTarget);
-  };
-  const closeMenu = () => {
-    setAnchorEl(null);
-  };
+  const [menu, setMenuEle] = usePopup();
 
   const onClick = () => {
     handleClose();
@@ -26,8 +21,11 @@ const TaskMenu = ({ taskId, handleClose }) => {
 
   return (
     <Fragment>
-      <MenuIconButton style={{ marginRight: '1rem' }} onClick={openMenu} />
-      <Menu autoFocus anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={closeMenu}>
+      <MenuIconButton
+        style={{ marginRight: '1rem' }}
+        onClick={event => setMenuEle(event.currentTarget)}
+      />
+      <Menu autoFocus anchorEl={menu.anchorEl} open={menu.open} onClose={() => setMenuEle(null)}>
         <DeleteButton onClick={onClick} />
       </Menu>
     </Fragment>

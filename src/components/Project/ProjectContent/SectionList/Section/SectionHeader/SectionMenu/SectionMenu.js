@@ -5,6 +5,7 @@ import { makeStyles, Menu } from '@material-ui/core';
 import DeleteButton from 'components/shared/MenuItems/DeleteButton';
 import { useDispatch } from 'react-redux';
 import { deleteSection } from 'actions/sections';
+import usePopup from 'hooks/usePopup';
 const useStyles = makeStyles(theme => ({
   sectionMenuButtonIcon: {
     fontSize: '1.4rem',
@@ -15,24 +16,21 @@ const SectionMenu = ({ sectionId }) => {
   const dispatch = useDispatch();
 
   // Menu state
-  const [anchorEl, setAnchorEl] = useState(null);
-  const openMenu = event => {
-    setAnchorEl(event.currentTarget);
-  };
-  const closeMenu = () => {
-    setAnchorEl(null);
-  };
+  const [menu, setMenuEle] = usePopup();
 
   return (
     <Fragment>
-      <MenuIconButton iconClassName={classes.sectionMenuButtonIcon} onClick={openMenu} />
+      <MenuIconButton
+        iconClassName={classes.sectionMenuButtonIcon}
+        onClick={event => setMenuEle(event.currentTarget)}
+      />
       <Menu
-        anchorEl={anchorEl}
+        anchorEl={menu.anchorEl}
         getContentAnchorEl={null}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-        open={Boolean(anchorEl)}
-        onClose={closeMenu}
+        open={menu.open}
+        onClose={() => setMenuEle(null)}
         autoFocus
       >
         <DeleteButton onClick={() => dispatch(deleteSection(sectionId))} />
