@@ -1,9 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Typography, makeStyles, CardActionArea, Menu } from '@material-ui/core';
+import { Grid, makeStyles, CardActionArea, Menu } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
-import SectionMenu from './SectionMenu/SectionMenu';
-import SectionTitleForm from './SectionTitleForm/SectionTitleForm';
 import { Form, Field } from 'react-final-form';
 import FieldInput from 'components/shared/Field/FieldInput';
 import generateValidation from 'utils/generateValidation';

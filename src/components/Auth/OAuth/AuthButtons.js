@@ -1,5 +1,4 @@
 import React from 'react';
-import { IoLogoGoogle, IoLogoGithub } from 'react-icons/io';
 import { FaGithub, FaFacebookF, FaGoogle } from 'react-icons/fa';
 import Button from '@material-ui/core/Button';
 import './AuthButtons.scss';
