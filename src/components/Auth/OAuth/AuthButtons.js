@@ -64,7 +64,7 @@ const AuthButtons = () => {
   const classes = useStyles();
   return (
     <div id="auth-buttons">
-      <Button
+      {/* <Button
         startIcon={<FaFacebookF className="icon" />}
         variant="contained"
         color="default"
@@ -73,7 +73,7 @@ const AuthButtons = () => {
         onClick={() => openWindowPopup(`${baseURL}/users/facebook`)}
       >
         Continue with facebook
-      </Button>
+      </Button> */}
       <Button
         startIcon={<FaGithub className="icon" />}
         variant="contained"
