@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaFacebookF, FaGoogle } from 'react-icons/fa';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 import Button from '@material-ui/core/Button';
 import './AuthButtons.scss';
 import { baseURL } from 'config/server';
