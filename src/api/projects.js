@@ -1,13 +1,13 @@
 import queryHandler from 'utils/queryHandler';
-import request from 'utils/request';
+import server from 'config/server';
 
-export const createProject = values => request.post('/projects', values);
+export const createProject = values => server.post('/projects', values);
 
 export const fetchProjects = paginationSettings =>
-  request.get(`/projects/${queryHandler(paginationSettings)}`);
+  server.get(`/projects/${queryHandler(paginationSettings)}`);
 
-export const fetchProjectData = id => request.get(`/projects/${id}`);
+export const fetchProjectData = id => server.get(`/projects/${id}`);
 
-export const editProject = (id, values) => request.put(`/projects/${id}`, values);
+export const editProject = (id, values) => server.put(`/projects/${id}`, values);
 
-export const deleteProject = id => request.delete(`/projects/${id}`);
+export const deleteProject = id => server.delete(`/projects/${id}`);

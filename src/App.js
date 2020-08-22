@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import history from './history';
+import history from './utils/history';
 import { Router, Switch, Route } from 'react-router-dom';
 import Landing from 'pages/Landing';
 import ContactUs from 'pages/unplugged/ContactUs';

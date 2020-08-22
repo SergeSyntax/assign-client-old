@@ -6,7 +6,7 @@ import { Dialog } from '@material-ui/core';
 const Loading = () => {
   return (
     <Dialog fullScreen open={true}>
-      <div className="loading">
+      <div className="loading" data-test="loading-page">
         <div className="loading__spinner"></div>
         <Logo />
       </div>

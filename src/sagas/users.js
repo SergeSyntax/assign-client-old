@@ -1,5 +1,5 @@
 import { fork, call, takeLatest, put, take, select } from 'redux-saga/effects';
-import history from '../history';
+import history from '../utils/history';
 import { requestAlert } from 'actions/alerts';
 import * as api from '../api/users';
 import {
@@ -16,11 +16,11 @@ import {
   OAUTH_AUTH_SUCCESS,
 } from 'actions/types';
 import AuthCookie from 'utils/AuthCookie';
-import request from 'utils/request';
 import { connect, createSocketChannel } from 'utils/socket';
+import server from 'config/server';
 
 const setDefaultHeaders = authToken => {
-  request.defaults.headers = {
+  server.defaults.headers = {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${authToken}`,
   };

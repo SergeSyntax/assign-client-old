@@ -1,4 +1,4 @@
-import request from 'utils/request';
+import server from 'config/server';
 
 export const createComment = ({ message, taskId }) =>
-  request.post(`/tasks/${taskId}/comments/`, { message });
+  server.post(`/tasks/${taskId}/comments/`, { message });
