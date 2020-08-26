@@ -12,6 +12,7 @@ import Register from 'pages/Auth/Register';
 import Dashboard from 'pages/Dashboard/Dashboard';
 import PublicRoute from 'components/shared/PublicRoute';
 import PrivateRoute from 'components/shared/PrivateRoute';
+import { NoMatch } from './NoMatch';
 
 const Routes = () => {
   return (
@@ -26,6 +27,7 @@ const Routes = () => {
         <Route path="/contact-us" component={ContactUs} />
         <Route path="/terms" component={Terms} />
         <Route path="/privacy-policy" component={PrivacyPolicy} />
+        <Route path="*" component={NoMatch} />
       </Switch>
     </Router>
   );
