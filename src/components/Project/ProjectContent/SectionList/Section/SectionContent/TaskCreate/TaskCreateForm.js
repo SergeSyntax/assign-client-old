@@ -5,7 +5,7 @@ import { createTask } from 'actions/tasks';
 import { useDispatch } from 'react-redux';
 import ErrorMsg from 'components/shared/Field/ErrorMsg';
 import FieldInput from 'components/shared/Field/FieldInput';
-import SubmitCompactActions from 'components/shared/layout/SubmitCompactActions';
+import SubmitCompactActions from 'components/Project/ProjectContent/SubmitCompactActions';
 import Joi from '@hapi/joi';
 import generateValidation from 'utils/generateValidation';
 

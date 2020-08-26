@@ -1,13 +1,10 @@
 import {
   FETCH_USER_SUCCESS,
   FETCH_USER_FAILURE,
-  CREATE_USER_SUCCESS,
-  USER_LOGIN_SUCCESS,
   USER_LOGIN_REQUEST,
   CREATE_USER_REQUEST,
-  CREATE_USER_FAILURE,
-  USER_LOGIN_FAILURE,
-  OAUTH_AUTH_SUCCESS,
+  AUTH_SUCCESS,
+  AUTH_FAILURE,
 } from 'actions/types';
 import AuthCookie from 'utils/AuthCookie';
 
@@ -24,10 +21,8 @@ export default (state = initialState, { type, payload }) => {
     case CREATE_USER_REQUEST:
     case USER_LOGIN_REQUEST:
       return { ...state, savingInProgress: true };
-    case OAUTH_AUTH_SUCCESS:
     case FETCH_USER_SUCCESS:
-    case CREATE_USER_SUCCESS:
-    case USER_LOGIN_SUCCESS:
+    case AUTH_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -37,9 +32,8 @@ export default (state = initialState, { type, payload }) => {
         userInfo: { ...state.userInfo, ...payload.userInfo },
       };
 
-    case CREATE_USER_FAILURE:
-    case USER_LOGIN_FAILURE:
     case FETCH_USER_FAILURE:
+    case AUTH_FAILURE:
       return {
         loading: false,
         authenticated: false,

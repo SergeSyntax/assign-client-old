@@ -5,15 +5,12 @@ import * as api from '../api/users';
 import {
   CREATE_USER_REQUEST,
   USER_LOGIN_REQUEST,
-  USER_LOGIN_SUCCESS,
   FETCH_USER_REQUEST,
-  CREATE_USER_SUCCESS,
   USER_LOGOUT_REQUEST,
   FETCH_USER_SUCCESS,
   FETCH_USER_FAILURE,
-  CREATE_USER_FAILURE,
-  USER_LOGIN_FAILURE,
-  OAUTH_AUTH_SUCCESS,
+  AUTH_SUCCESS,
+  AUTH_FAILURE,
 } from 'actions/types';
 import AuthCookie from 'utils/AuthCookie';
 import { connect, createSocketChannel } from 'utils/socket';
@@ -30,47 +27,58 @@ function clearStateAndRedirect(location = '/') {
   window.location.href = location;
 }
 
-function* redirect(location = '/dashboard') {
-  yield call(history.push, location);
+function* authRedirect(location = '/dashboard') {
+  yield call(
+    history.push,
+    history.location.state ? history.location.state.from.pathname : location
+  );
+}
+
+function* authFlowSuccess(userInfo, authToken) {
+  yield call(setDefaultHeaders, authToken);
+  yield call(AuthCookie.set, authToken);
+  yield put({
+    type: AUTH_SUCCESS,
+    payload: { userInfo, authToken },
+  });
+  yield call(authRedirect);
+}
+
+function* authFlowFailure(err) {
+  yield put({ type: AUTH_FAILURE });
+  yield put(requestAlert(err));
 }
 
 function* createUser({ payload }) {
   try {
     const {
-      data: { user: userInfo },
-      headers: { authorization: authToken },
+      data: { user },
+      headers: { authorization },
     } = yield call(api.createUser, payload);
-    yield call(setDefaultHeaders, authToken);
-    yield call(AuthCookie.set, authToken);
-    yield put({
-      type: CREATE_USER_SUCCESS,
-      payload: { userInfo, authToken },
-    });
-    yield call(redirect);
-  } catch (err) {
-    yield put({ type: CREATE_USER_FAILURE });
 
-    yield put(requestAlert(err));
+    yield call(authFlowSuccess, user, authorization);
+  } catch (err) {
+    yield call(authFlowFailure, err);
   }
 }
 
 function* useLogin({ payload }) {
   try {
     const {
-      data: { user: userInfo },
-      headers: { authorization: authToken },
+      data: { user },
+      headers: { authorization },
     } = yield call(api.useLogin, payload);
-    yield call(setDefaultHeaders, authToken);
-    yield call(AuthCookie.set, authToken);
-    yield put({
-      type: USER_LOGIN_SUCCESS,
-      payload: { userInfo, authToken },
-    });
-    yield call(redirect);
+    yield call(authFlowSuccess, user, authorization);
   } catch (err) {
-    yield put({ type: USER_LOGIN_FAILURE });
+    yield call(authFlowFailure, err);
+  }
+}
 
-    yield put(requestAlert(err));
+function* oAuth({ token, user }) {
+  try {
+    yield call(authFlowSuccess, user, token);
+  } catch (err) {
+    yield call(authFlowFailure, err);
   }
 }
 
@@ -96,16 +104,6 @@ function* fetchUser() {
 function* userLogout() {
   yield call(AuthCookie.clear);
   yield call(clearStateAndRedirect);
-}
-
-function* oAuth({ token, user }) {
-  try {
-    yield call(setDefaultHeaders, token);
-    yield call(AuthCookie.set, token);
-    yield put({ type: OAUTH_AUTH_SUCCESS, payload: { userInfo: user, authToken: token } });
-  } catch (err) {
-    console.error('oAuth error:', err);
-  }
 }
 
 export function* watchUserOauth() {

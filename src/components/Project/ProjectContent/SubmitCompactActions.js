@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
-import CancelIconButton from '../Buttons/CancelIconButton';
+import CancelIconButton from '../../shared/Buttons/CancelIconButton';
 import PropTypes from 'prop-types';
 import SubmitButton from 'components/shared/Buttons/SubmitButton';
 

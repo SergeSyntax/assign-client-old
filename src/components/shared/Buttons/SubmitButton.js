@@ -35,7 +35,7 @@ const SubmitButton = ({ text = 'Submit', inProgress, ...rest }) => {
       <Button className={classes.button} type="submit" disabled={inProgress} {...rest}>
         <div className={classes.buttonText}>{text}</div>
         {inProgress && (
-          <span className={classes.buttonWrapper}>
+          <span data-testid="spinner" className={classes.buttonWrapper}>
             <CircularProgress size="2rem" className={classes.buttonProgress} />
           </span>
         )}

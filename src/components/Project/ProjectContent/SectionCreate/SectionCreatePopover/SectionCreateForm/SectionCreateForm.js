@@ -5,7 +5,7 @@ import generateValidation from 'utils/generateValidation';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSection } from 'actions/sections';
 import InputTitleSmall from './InputTitleSmall';
-import SubmitCompactActions from '../../../../../shared/layout/SubmitCompactActions';
+import SubmitCompactActions from '../../../SubmitCompactActions';
 import { Form } from 'react-final-form';
 
 const schema = Joi.object().keys({

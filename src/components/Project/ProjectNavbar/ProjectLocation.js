@@ -56,14 +56,14 @@ const ProjectLocation = ({ projectId }) => {
         <Chip
           component={Link}
           className={classes.chip}
-          to="/"
+          to="/dashboard"
           label="Dashboard"
           icon={<GoHome className={classes.icon} />}
         />
         <Chip
           component={Link}
           className={classes.chip}
-          to="/projects"
+          to="/dashboard/projects"
           label="Projects"
           icon={<AiOutlineFolder className={classes.icon} />}
         />
