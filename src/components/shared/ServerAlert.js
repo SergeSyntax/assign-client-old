@@ -3,7 +3,10 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearAlert } from 'actions/alerts';
-import { Button, IconButton } from '@material-ui/core';
+import {
+  // Button,
+  IconButton,
+} from '@material-ui/core';
 import { GoX } from 'react-icons/go';
 
 const ServerAlert = () => {
@@ -26,9 +29,9 @@ const ServerAlert = () => {
       action={
         error ? null : (
           <React.Fragment>
-            <Button color="secondary" size="small" onClick={handleClose}>
+            {/* <Button color="secondary" size="small" onClick={handleClose}>
               UNDO
-            </Button>
+            </Button> */}
             <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
               <GoX fontSize="small" />
 
