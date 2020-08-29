@@ -1,6 +1,7 @@
 import io from 'socket.io-client';
 import { serverUrl } from 'config/server';
 import { eventChannel } from 'redux-saga';
+import Axios from 'axios';
 
 /**
  * Establish socket.io connection and return the socket via a Promise
@@ -23,6 +24,8 @@ export const connect = () =>
 export function createSocketChannel(socket, event) {
   // `eventChannel` takes a subscriber function
   // the subscriber function takes an `emit` argument to put messages onto the channel
+
+  Axios.defaults.headers['socketId'] = socket.id;
   return eventChannel(emit => {
     const eventHandler = event => {
       // puts event payload into the channel

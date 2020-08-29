@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import './AuthButtons.scss';
 import { baseURL } from 'config/server';
 import { makeStyles } from '@material-ui/core';
+import Axios from 'axios';
 
 const openWindowPopup = url => {
   let height = window.innerHeight;
@@ -19,7 +20,7 @@ const openWindowPopup = url => {
     height = 740;
   }
   return window.open(
-    url,
+    `${url}?socketId=${Axios.defaults.headers['socketId']}`,
     'DescriptiveWindowName',
     `resizable,scrollbars,status,width=${width},height=${height},top=${top},left=${left}`
   );
