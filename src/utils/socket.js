@@ -10,7 +10,12 @@ import Axios from 'axios';
 export const connect = () =>
   new Promise((resolve, reject) => {
     try {
-      const socket = io(serverUrl);
+      const socket = io(serverUrl, {
+        withCredentials: true,
+        extraHeaders: {
+          Authorization: 'Bearer authorization_token_here',
+        },
+      });
       socket.on('connect', () => {
         resolve(socket);
       });
