@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-export const serverUrl = 'https://assign-management.herokuapp.com';
+export const serverUrl = process.env.REACT_APP_BASEURL || 'http://localhost:5000';
 export const baseURL = `${serverUrl}/api/v1`;
 
 /**
