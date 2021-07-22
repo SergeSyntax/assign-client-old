@@ -1,8 +1,7 @@
 import Axios from 'axios';
 
-export const serverUrl = process.env.REACT_APP_BASEURL || 'http://localhost:5000';
+export const serverUrl = 'https://assign-management.herokuapp.com';
 export const baseURL = `${serverUrl}/api/v1`;
-
 
 /**
  * create axios instance with the application axios default requests configurations
@@ -10,5 +9,3 @@ export const baseURL = `${serverUrl}/api/v1`;
  * @function
  */
 export default Axios.create({ withCredentials: true, baseURL });
-
-
