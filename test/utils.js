@@ -18,24 +18,6 @@ export const createAppMockStore = initialState => {
   return mockStore(initialState);
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
  * @typedef {import('redux').Store} Store
  * Create a testing store with imported reducers, middleware, and initial state.
